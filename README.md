@@ -12,7 +12,7 @@ $$\hat{Q} |\Psi_{\text{Multiversum}}\rangle = \hat{Q} (|\psi_{+t}\rangle + |\psi
 2. **Relativistic Slingshot Velocity:** Models the effective semi-classical quantum bounce that expels lighter satellite cores (SMNCs) out of the central host throat at highly relativistic velocities via the post-Newtonian limit at the critical periastron separation:
 $$v = \sqrt{\frac{2 \cdot G \cdot M_{\text{UMNC}}}{R_{\text{krit}}}} \approx 0.85\ c$$
 
-3. **Baryon-Asymmetry Oasis Density:** Evaluates the scale-invariant thermodynamic compression factor ($\Omega_{\text{Oaza}} = 2.5$) resulting in the final amplified matter density profile to resolve the James Webb Space Telescope (JWST) early galaxy growth paradox:
+3. **Baryon-Asymmetry Oasis Density:** Evaluates the scale-invariant thermodynamic compression factor ($\Omega_{\text{Oaza}} = 2.5$). The initial matter density is strictly dominated by the immediate high-density plasma import from the host's accretion disk, decoupling the final density parameter from the chronological age of the parent aeon. The resulting amplified matter density profile resolves the James Webb Space Telescope (JWST) early galaxy growth paradox:
 $$\eta = \frac{n_B - n_{\bar{B}}}{n_\gamma} = 10^{-9} \cdot \Omega_{\text{Oaza}} = 2.5 \cdot 10^{-9}$$
 
 ## Quantitative Target Output
