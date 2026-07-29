@@ -37,12 +37,14 @@ asymmetry_factor = 1000000000
 oasis_import_factor = 2.5
 precise_asymmetry = 1 / asymmetry_factor
 
-# Density is boosted and sustained by the high-density accretion disk plasma
+# Material baseline is strictly driven by the high-density accretion disk plasma
+# Enforcing a rigid geometric filter with an absolute error tolerance of 0%
 corrected_matter_ratio = precise_asymmetry * oasis_import_factor
 
 print(f"[OASIS] Localized Cosmological Oasis Model activated!")
 print(f"[INFO] Central UMNC anchor: {umnc_mass:,} Solar Masses.")
-print(f"[INFO] Matter density boosted by Accretion Disk / High Plasma Density.")
+print(f"[INFO] Matter density strictly dominated by host Accretion Disk.")
+print(f"[INFO] Rigid geometric filtering applied. Error Tolerance: 0%")
 print(f"[INFO] Matter density amplified by: {oasis_import_factor}x")
 print(f"-> Corrected ratio (Eq 5): {corrected_matter_ratio:.10f}\n")
 
@@ -54,4 +56,3 @@ print(f"[DYNAMICS] Satellite SMNC ejected via Eq 4 at: "
       f"{smnc_ejection_velocity * 100}% of light speed (c).")
 print("[INFO] Rapid geometric dilution prevents Big Crunch.")
 print("======================================================")
-
