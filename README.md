@@ -21,7 +21,7 @@ Upon execution, the programmatic pipeline evaluates initial boundary thresholds 
 ## Seeking arXiv Endorsement
 The full 22-page theoretical manuscript is completely compiled and formatted in LaTeX. I am currently seeking an official endorsement for the arXiv category **astro-ph.CO** (Cosmology). 
 
-If you are a qualified verifier willing to inspect the full PDF and grant an endorsement, please copy the official arXiv verification path below to unlock the verification node:
+If you are a qualified verifier willing to inspect the full PDF and grant an endorsement, please click the official arXiv verification path below to unlock the verification node:
 
 https://arxiv.org/auth/endorse?x=4ITJ34
 
