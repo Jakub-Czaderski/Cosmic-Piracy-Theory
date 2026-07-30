@@ -23,7 +23,7 @@ $$\eta = \frac{n_B - n_{\bar{B}}}{n_\gamma} = 10^{-9} \cdot \Omega_{\text{Oaza}}
 
 ## Theoretical Foundation (5-Fold Discussion Architecture)
 The full theoretical manuscript structures the cosmological implications across five core sub-sections, completely verified within this repository's logical pipeline:
-1. **Mathematical Ideas Behind the Theory:** Integrates the discrete spin-network fabric of LQG with CPT-Symmetric Multiverse Topology and accretion disk plasma decoupling.
+1. **Mathematical Ideas Behind the Theory:** Integrates the discrete spin-network fabric of LQG with CPT-Symmetric Multiverse Topology. Because the topological rupture occurs at a rotating Kerr horizon and leaves behind permanent structural scars, the assumption of spatial homogeneity is explicitly broken. This non-homogeneous geometric fabric naturally decouples the infant cosmos from standard global stress-energy conservation laws, securing the initial matter baseline via host accretion disk plasma.
 2. **Cosmological Scars and Spatial Macro-Anomalies:** Validates the Axis of Evil and the CMB Cold Spot as direct, non-continuous metric drainage scars inherited from the preceding aeon.
 3. **Trans-Cosmic Resonance and Structural Boundary Vulnerabilities:** Proves that newly isolated spin-network domains remain mathematically bound to their ancestral origin points via permanent quantum boundary entanglement across the severed network coordinates.
 4. **Primordial Hyper-Acceleration and the JWST Growth Paradox:** Compresses the baryonic growth timeline from billions of years down to several million years via a Higgs-induced conformal phase transition shockwave around pre-existing anchors.
