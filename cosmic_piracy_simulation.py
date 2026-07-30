@@ -38,23 +38,14 @@ asymmetry_factor = 1000000000
 oasis_import_factor = 2.5
 precise_asymmetry = 1 / asymmetry_factor
 
-# The matter density baseline is fixed by host accretion disk plasma (0% tolerance)
+# The matter density baseline is fixed by the active core metric (0% tolerance)
 corrected_matter_ratio = precise_asymmetry * oasis_import_factor
 
 print(f"[OASIS] Pathway 3 Conformal Phase Transition ignited!")
-print(f"[INFO] Central UMNC anchor: {umnc_mass:,} Solar Masses.")
-print(f"[INFO] Initial plasma baseline driven by host Accretion Disk.")
+print(f"[INFO] Central anchor mass: {umnc_mass:,} Solar Masses.")
+print(f"[INFO] Initial plasma baseline driven by active core metric.")
 print(f"[INFO] Rigid geometric-thermodynamic filtering applied.")
 print(f"[INFO] Absolute Observational Error Tolerance: 0%")
 print(f"[INFO] Scale-invariant density amplification: {oasis_import_factor}x")
 print(f"-> Corrected Baryon Asymmetry Ratio (Eq 5): {corrected_matter_ratio:.10f}\n")
 time.sleep(1.2)
-
-# --- THREE-BODY CHAOTIC EJECTION DYNAMICS ---
-smnc_ejection_velocity = 0.85
-
-print("[DYNAMICS] Activating chaotic three-body interaction...")
-print(f"[DYNAMICS] Satellite SMNC ejected via Eq 4 at: "
-      f"{smnc_ejection_velocity * 100}% of light speed (c).")
-print("[INFO] Rapid geometric dilution prevents central Big Crunch.")
-print("======================================================")
