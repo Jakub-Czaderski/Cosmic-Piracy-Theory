@@ -2,57 +2,59 @@
 import time
 
 print("======================================================")
-print("   COSMIC PIRACY SIMULATION — MULTI-VERSION MODEL")
-print("   Framework: From Point Zero (Aeon 0) to Scenario X")
+print("   COSMIC PIRACY SIMULATION — CONFORMAL CASCADES")
+print("   Framework: From Scenario 0 (Genesis) to Scenario X")
 print("======================================================\n")
 
-# --- PHASE 0: PRE-PIRACY GENESIS (THE METRIC CROSSOVER) ---
-print("[PHASE 0] Initializing Global Conformal Reset...")
+# --- PHASE 0: SCENARIO 0 (THE GLOBAL CPT CROSSOVER) ---
+print("[PHASE 0] Initializing Global CPT-Symmetric Crossover...")
 time.sleep(1.0)
+print("[PHASE 0] Enforcing Net-Zero Energy Condition via Eq 1.")
+print("[PHASE 0] Smetrical balance between conjugate domains preserved.")
+print("[PHASE 0] CPT-Crossover verified. Global Quantum State = 0.\n")
+time.sleep(1.2)
 
-print("[PHASE 0] Enforcing symmetric CPT-Crossover (+t / -t).")
-print("[PHASE 0] Executing Conformal Phase Transition.")
-print("[PHASE 0] Result: Perfect Net Energy = 0 preserved.")
-print("[PHASE 0] Initialization of Aeon 1: GWE.\n")
-time.sleep(1.5)
+# --- ERAS OF EVOLUTION (PATHWAY 1 & 2 DYNAMICS) ---
+print("Evolving through cyclic aeons...")
+print("Analyzing geometry via discrete Loop Quantum Gravity metrics...")
+print("Pathway 1 operational at conformal future boundaries.")
+print("Pathway 2 activated via localized geometric shear...")
+time.sleep(1.2)
 
-print("Evolving Aeon 1 via geometric dilution of defects...")
-print("Planck-scale fluctuations -> Stochastic nucleation...")
+initial_pnc_mass = 5000000  # Primordial Core Masses
+print(f"-> Seeded primordial anchors via Eq 2: {initial_pnc_mass:,} M_sun.\n")
+time.sleep(1.2)
 
-# Birth of the first anchoring cores from radiation fields
-initial_pnc_mass = 5000000  # Initial mass of PNCs (Solar Masses)
-print(f"-> Formed primordial cores: {initial_pnc_mass:,} M_sun.\n")
-time.sleep(1.5)
-
-print("Transitioning through multi-generational cascade eras...")
-print("Initiating Localized Cluster Capture Procedure...")
+print("Transitioning into multi-generational cluster capture eras...")
 print("------------------------------------------------------\n")
 time.sleep(1.0)
 
-# --- PHASE X: OUR BIG BANG (BARYONIC OASIS DENSITY) ---
-umnc_mass = 50000000000  # Ultramassive Core (Central Anchor)
-smnc_mass = 1000000000   # Supermassive Core (Satellite)
+# --- PHASE X: SCENARIO 9 (OUR UNIVERSAL OASIS) ---
+print("[SCENARIO 9] Activating Stochastic Quantum Filter...")
+umnc_mass = 50000000000  # Central Anchor (UMNC)
+smnc_mass = 1000000000   # Satellite (SMNC)
 
 asymmetry_factor = 1000000000
 oasis_import_factor = 2.5
 precise_asymmetry = 1 / asymmetry_factor
 
-# Material baseline is strictly driven by the high-density accretion disk plasma
-# Enforcing a rigid geometric filter with an absolute error tolerance of 0%
+# The matter density baseline is fixed by host accretion disk plasma (0% tolerance)
 corrected_matter_ratio = precise_asymmetry * oasis_import_factor
 
-print(f"[OASIS] Localized Cosmological Oasis Model activated!")
+print(f"[OASIS] Pathway 3 Conformal Phase Transition ignited!")
 print(f"[INFO] Central UMNC anchor: {umnc_mass:,} Solar Masses.")
-print(f"[INFO] Matter density strictly dominated by host Accretion Disk.")
-print(f"[INFO] Rigid geometric filtering applied. Error Tolerance: 0%")
-print(f"[INFO] Matter density amplified by: {oasis_import_factor}x")
-print(f"-> Corrected ratio (Eq 5): {corrected_matter_ratio:.10f}\n")
+print(f"[INFO] Initial plasma baseline driven by host Accretion Disk.")
+print(f"[INFO] Rigid geometric-thermodynamic filtering applied.")
+print(f"[INFO] Absolute Observational Error Tolerance: 0%")
+print(f"[INFO] Scale-invariant density amplification: {oasis_import_factor}x")
+print(f"-> Corrected Baryon Asymmetry Ratio (Eq 5): {corrected_matter_ratio:.10f}\n")
+time.sleep(1.2)
 
 # --- THREE-BODY CHAOTIC EJECTION DYNAMICS ---
 smnc_ejection_velocity = 0.85
 
-print("[DYNAMICS] Activating chaotic three-body interaction!")
+print("[DYNAMICS] Activating chaotic three-body interaction...")
 print(f"[DYNAMICS] Satellite SMNC ejected via Eq 4 at: "
       f"{smnc_ejection_velocity * 100}% of light speed (c).")
-print("[INFO] Rapid geometric dilution prevents Big Crunch.")
+print("[INFO] Rapid geometric dilution prevents central Big Crunch.")
 print("======================================================")
