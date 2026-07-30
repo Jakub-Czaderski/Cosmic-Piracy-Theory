@@ -3,23 +3,28 @@
 This repository provides the open-source numerical verification pipeline for the **Cosmic Piracy Hypothesis (CP-Theory)**. 
 The core framework presents a background-independent alternative to standard cosmic inflation by integrating the structural mechanics of Loop Quantum Gravity (LQG) with the global symmetries of a CPT-conserving Conformal Cyclic Cosmology (CCC).
 
-## What this Code Simulates
-The attached Python script (`cosmic_piracy_simulation.py`) models the multi-generational cascade mechanism operational during a localized Conformal Phase Transition (Pathway 2). It algorithmically verifies three critical evolutionary thresholds and boundary dynamics:
+## Core Mechanisms: The Three Evolutionary Pathways
+The architectural matrix of CP-Theory tracks the fate of primordial geometry across three distinct topological transitions:
+* **Pathway 1 (Standard Conformal Reset):** A smooth, continuous cosmic transition at the future boundary, preserving global scale-invariance over cyclic generations.
+* **Pathway 2 (Localized Topological Detachment):** Occurs when local gravitational shear gradients overcome the discrete spatial network constraints, slicing an autonomous 4D sub-manifold into a newborn bubble universe.
+* **Pathway 3 (Higgs-Induced Conformal Phase Transition):** A stochastically or geometrically triggered vacuum drop that unleashes a macroscopic radiative shockwave, rekalibrating local mass-coupling couplings.
 
-1. **Global CPT-Conservation Boundary:** Validates the net-zero energy preservation condition when a 4D sub-manifold detaches from the parent aeon, governed by the global CPT state equation:
+## What this Code Simulates
+The attached Python script (`cosmic_piracy_simulation.py`) models the multi-generational cascade mechanism operational from the absolute origin down to our current epoch. It algorithmically verifies three critical evolutionary thresholds:
+
+1. **Scenario 0 (Global CPT-Conservation Boundary):** Validates the net-zero energy preservation condition at the symmetric Ur-Genesis crossover via Equation (1). The global quantum state remains a perfect zero-sum equation, ensuring that energy deflation in one sector balances the CPT-conjugate domain:
 $$\hat{Q} |\Psi_{\text{Multiversum}}\rangle = \hat{Q} (|\psi_{+t}\rangle + |\psi_{-t}\rangle) = 0$$
 
-2. **Relativistic Slingshot Velocity:** Models the effective semi-classical quantum bounce that expels lighter satellite cores (SMNCs) out of the central host throat at highly relativistic velocities via the post-Newtonian limit at the critical periastron separation:
+2. **Relativistic Slingshot Velocity (Pathway 2 via Event 2):** Models the effective semi-classical quantum bounce that expels lighter satellite cores (SMNCs) out of the central cluster throat at highly relativistic velocities via Equation (4):
 $$v = \sqrt{\frac{2 \cdot G \cdot M_{\text{UMNC}}}{R_{\text{krit}}}} \approx 0.85\ c$$
 
-3. **Baryon-Asymmetry Oasis Density & Coupled Filtering:** Evaluates the scale-invariant thermodynamic compression factor ($\Omega_{\text{Oaza}} = 2.5$). The model completely bypasses anthropic fine-tuning by coupling the mechanical LQG tensile limit ($\Sigma_{\text{max}}$) with the invariant energy threshold of a stochastically filtered Higgs vacuum decay.
+3. **Baryon-Asymmetry Oasis Density & Coupled Filtering (Pathway 3):** Evaluates the scale-invariant thermodynamic compression factor ($\Omega_{\text{Oaza}} = 2.5$). The model eliminates anthropic fine-tuning by introducing a dual-stage filter: the mechanical LQG tensile limit ($\Sigma_{\text{max}}$) dictates the minimum plasma capture from the host's accretion disk, while the rigid, invariant energy threshold of the Higgs vacuum decay locks the subsequent shockwave compression.
 $$\eta = \frac{n_B - n_{\bar{B}}}{n_\gamma} = 10^{-9} \cdot \Omega_{\text{Oaza}} = 2.5 \cdot 10^{-9}$$
 
 ## Theoretical Foundation (5-Fold Discussion Architecture)
 The full theoretical manuscript structures the cosmological implications across five core sub-sections, completely verified within this repository's logical pipeline:
-
-1. **Mathematical Ideas Behind the Theory:** Integrates the discrete spin-network fabric of Loop Quantum Gravity with CPT-Symmetric Multiverse Topology. The material baseline is strictly driven by the high-density accretion disk plasma, decoupling the infant cosmos from the chronological age of the parent aeon.
-2. **Cosmological Scars and Spatial Macro-Anomalies:** Validates the Axis of Evil and the CMB Cold Spot as direct, non-continuous topological signatures and metric drainage scars inherited from the preceding aeon.
+1. **Mathematical Ideas Behind the Theory:** Integrates the discrete spin-network fabric of LQG with CPT-Symmetric Multiverse Topology and accretion disk plasma decoupling.
+2. **Cosmological Scars and Spatial Macro-Anomalies:** Validates the Axis of Evil and the CMB Cold Spot as direct, non-continuous metric drainage scars inherited from the preceding aeon.
 3. **Trans-Cosmic Resonance and Structural Boundary Vulnerabilities:** Proves that newly isolated spin-network domains remain mathematically bound to their ancestral origin points via permanent quantum boundary entanglement across the severed network coordinates.
 4. **Primordial Hyper-Acceleration and the JWST Growth Paradox:** Compresses the baryonic growth timeline from billions of years down to several million years via a Higgs-induced conformal phase transition shockwave around pre-existing anchors.
 5. **The Evolution of Primordial Seeding & Preserved Error Tolerances:** Outlines the strict mathematical bifurcation of observational error tolerances enforced by the temporal onset of the phase transition. Scenario 7b exhibits a dynamic $\pm 15\%$ tolerance due to a mechanical micro-delay exposing the captured plasma to young parent macro-fluctuations. Conversely, Scenario 9 enforces a rigid, absolute error tolerance of $0\%$ due to an instantaneous stochastic quantum trigger locking the vacuum drop.
