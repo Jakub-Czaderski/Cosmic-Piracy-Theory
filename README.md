@@ -1,4 +1,5 @@
 # Cosmic Piracy Theory (CP-Theory) — Numerical Verification
+# Cosmic Piracy Theory (CP-Theory) — Numerical Verification
 
 This repository provides the open-source numerical verification pipeline for the **Cosmic Piracy Hypothesis (CP-Theory)**. 
 The core framework presents a background-independent alternative to standard cosmic inflation by integrating the structural mechanics of Loop Quantum Gravity (LQG) with the global symmetries of a CPT-conserving Conformal Cyclic Cosmology (CCC).
