@@ -11,8 +11,8 @@ def launch_ultimate_multiverse():
     print("    |  |____ |  `--'  |     |  |     |  `--'  | |  |____ |  |____ ")
     print("     \\______| \\______/      |__|      \\______/  |_______| \\______|")
     print("=====================================================================")
-    print("          COSMIC PIRACY MULTIVERSE SANDBOX ENGINE - v5.2")
-    print("          Time-Loop Symmetries & Conformal Metric Postponement")
+    print("          COSMIC PIRACY MULTIVERSE SANDBOX ENGINE - v5.4")
+    print("          Dynamic Cold Spot Precursors & Causal Decoupling")
     print("=====================================================================\n")
 
     mode_input = input("-> Enable automated Scenario Recognition mode (0-12 & Addenda)? (y/n, Default=y): ")
@@ -27,8 +27,6 @@ def launch_ultimate_multiverse():
     current_aeon = 0
     observed_mass_baseline = 5000000
     aeon_generation_number = 0
-    
-    # Status-Flag für die Blockade der Mutter durch Scenario 1
     mother_ccc_postponed = False
 
     while current_aeon < total_aeons:
@@ -36,13 +34,10 @@ def launch_ultimate_multiverse():
         print(f"ITERATION {current_aeon} (GEN-ID: {aeon_generation_number}) - STOCHASTIC MATRIX ACTIVE")
         print("="*75)
         
-        # INTERVENTIONS-NOTICE FALLS MATERIE RÜCKFLUSS HÄNGT
         if mother_ccc_postponed:
-            print("\n⏳ [GRAVITATIONAL LOCK] Mother aeon is retaining drained rest-mass from Scenario 1.")
-            print("   The upcoming global CCC-Reset is structurally postponed.")
-            print("   Enforcing intermediate vacuum stabilization loop before next manual prompt...")
-            time.sleep(0.5)
-            mother_ccc_postponed = False  # Stabilisiert nach einer Schleife
+            print("\n⏳ [GRAVITATIONAL LOCK] Mother aeon retaining drained rest-mass. CCC postponed.")
+            time.sleep(0.4)
+            mother_ccc_postponed = False
 
         if current_aeon == 0:
             photon_input = input("-> Trigger early quantum-geometric Photon Collapse in Aeon 0? (y/n, Default=y): ")
@@ -107,6 +102,7 @@ def launch_ultimate_multiverse():
         print(f"[METRIC] Trapping active with {num_black_holes} non-singular core configurations.")
         print(f"[HIGGS] Localized phase transition boundary initialized at p = {higgs_probability}")
 
+        # Core Piracy & Metric Drainage Evaluation
         if is_low_value and num_black_holes > 0:
             print("\n[ALERT] Low temporal event parameter detected. Instant interception sequence active.")
             stolen_mass = 1500000 * num_black_holes
@@ -115,32 +111,44 @@ def launch_ultimate_multiverse():
         else:
             print("\n[STABILITY] Metric insulated. No active core-theft possible at this boundary.")
 
-        # AUTOMATISCHE SZENARIEN- & ADDENDUM-ERKENNUNG
+        # DYNAMISCHE COLD SPOT EVALUIERUNG NACH JAKUB CZADERSKI
+        cold_spot_triggered = False
+        cold_spot_cause = ""
+
+        if current_aeon == 0 and not photon_collapse and is_low_value:
+            cold_spot_triggered = True
+            cold_spot_cause = "Scenario 1 Metric Drainage (Plasma evacuation into old-aeon giant void)"
+            mother_ccc_postponed = True
+        elif is_inter_bubble:
+            cold_spot_triggered = True
+            cold_spot_cause = "Addendum 1b Trans-Cosmic Collision (Shockwave signature between sibling bubble domains)"
+        elif higgs_probability >= 0.5 and num_black_holes >= 2:
+            cold_spot_triggered = True
+            cold_spot_cause = "Pathway 3 Higgs Conformal Phase Transition (Thermodynamic vacuum anomaly void)"
+
+        if higgs_probability >= 0.5:
+            print("[PATHWAY 3] Higgs conformal phase transition ignited. Radiative shockwave expanding.")
+        else:
+            print("[SUPPRESSION] Thermal barrier stable. Higgs expectation value remains at baseline.")
+
+        # AUTOMATISCHE SZENARIEN-ERKENNUNG
         if recognition_mode:
             print("\n🔍 [RECOGNITION] Analyzing multi-dimensional boundary metrics...")
-            time.sleep(0.3)
+            time.sleep(0.2)
             
             detected_scenario = "Scenario X (Hybrid Pathway)"
-            
             if current_aeon == 0:
                 if not photon_collapse and is_low_value:
                     detected_scenario = "Scenario 1 (The Primeval Topological Deflation Interface)"
-                    mother_ccc_postponed = True  # ZÜNDET DIE MATRIX-BLOCKADE FÜR DEN NÄCHSTEN SCHRITT!
                 elif photon_collapse and is_infinity:
                     detected_scenario = "Scenario 0 (The Global CPT Crossover Baseline)"
                 elif photon_collapse and not is_low_value:
                     detected_scenario = "Scenario 2 (Solitary/Isotropic Hierarchical Accretion)"
             else:
                 if is_infinity:
-                    if num_black_holes == 0:
-                        detected_scenario = "Scenario 10 (Massless Conformal Cyclic Reset)"
-                    else:
-                        detected_scenario = "Scenario 11 (Physically Impossible Boundary / Sterile Trap)"
+                    detected_scenario = "Scenario 10 (Massless Conformal Cyclic Reset)" if num_black_holes == 0 else "Scenario 11 (Sterile Trap)"
                 elif is_low_value:
-                    if num_black_holes == 1:
-                        detected_scenario = "Scenario 3b (Stochastically Triggered Conformal Protection)"
-                    elif num_black_holes >= 2:
-                        detected_scenario = "Scenario 7 (Multi-Core Cluster with Oasis Density Factoring)"
+                    detected_scenario = "Scenario 3b (Conformal Protection)" if num_black_holes == 1 else "Scenario 7 (Multi-Core Cluster)"
                 else:
                     if num_black_holes == 1 and higgs_probability >= 0.5:
                         detected_scenario = "Scenario 5 (Solitary Anchor with Active Higgs Shockwave)"
@@ -151,15 +159,17 @@ def launch_ultimate_multiverse():
 
             print(f"🎯 [MATCH] Classified Blueprint: {detected_scenario}")
             
+            # Ausgabe des entkoppelten Cold Spots
+            if cold_spot_triggered:
+                print(f"❄️ [CMB COLD SPOT DETECTED] An anomalous 5-degree Cold Spot is verified!")
+                print(f"                            Origin Matrix: {cold_spot_cause}")
+            
             if is_inter_bubble:
-                print(f"📚 [ADDENDUM 1b MATCH] Inter-Bubble Domain Intersection active! Horizontal collision detected between sibling universes within Gen-ID: {aeon_generation_number}.")
+                print(f"📚 [ADDENDUM 1b MATCH] Horizontal intersection active within Gen-ID: {aeon_generation_number}.")
             elif is_extremely_high and not mother_ccc_postponed:
-                print("📚 [ADDENDUM 1a MATCH] Trans-Aeon Boundary Intersection active! Vertical Mother-to-Child metric coupling detected.")
+                print("📚 [ADDENDUM 1a MATCH] Trans-Aeon Boundary Intersection active (Mother-to-Child coupling).")
             elif mother_ccc_postponed:
-                print("📚 [ADDENDUM 1a CORRECTION] Reverse Metric Drainage to mother active. Bidirectional CCC scaling suspended!")
-                
-            if is_infinity and current_aeon > 0:
-                print("📚 [ADDENDUM 2 MATCH] Gravitational Wave Crossover and Information Preservation active across the 3-surface.")
+                print("📚 [ADDENDUM 1a CORRECTION] Reverse Metric Drainage active. CCC scaling suspended!")
 
         print(f"\n[EVOLUTION] Aeon {current_aeon} terminates via Event 3.")
         aeon_generation_number += 1
@@ -167,8 +177,8 @@ def launch_ultimate_multiverse():
         observed_mass_baseline = int((observed_mass_baseline + 5000000) * 1.5)
         time.sleep(0.4)
 
-    print("\n" + "="*75)
-    print("SANDBOX RUN COMPLETE: MULTIDIMENSIONAL MATRIX SECURED")
+    print("\n=====================================================================")
+    print(" SANDBOX RUN COMPLETE: DYNAMIC PRECURSORS SECURED WITHOUT RE-LOCKING")
     print("=====================================================================\n")
 
 if __name__ == "__main__":
