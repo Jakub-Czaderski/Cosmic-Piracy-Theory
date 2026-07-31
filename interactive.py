@@ -11,49 +11,80 @@ def launch_ultimate_multiverse():
     print("    |  |____ |  `--'  |     |  |     |  `--'  | |  |____ |  |____ ")
     print("     \\______| \\______/      |__|      \\______/  |_______| \\______|")
     print("=====================================================================")
-    print("          COSMIC PIRACY MULTIVERSE SANDBOX ENGINE - v5.4")
-    print("          Dynamic Cold Spot Precursors & Causal Decoupling")
+    print("          COSMIC PIRACY MULTIVERSE STATE ENGINE - v7.0")
+    print("          Strict Causal Path Tracking & Invariant Boundary Guards")
     print("=====================================================================\n")
 
     mode_input = input("-> Enable automated Scenario Recognition mode (0-12 & Addenda)? (y/n, Default=y): ")
     recognition_mode = False if mode_input.lower().strip() == 'n' else True
 
     try:
-        max_aeons = input("\n-> Enter maximum number of iterations/aeons (Default=3): ")
-        total_aeons = int(max_aeons) if max_aeons.strip() else 3
+        max_aeons = input("\n-> Enter maximum number of iterations/aeons (Default=4): ")
+        total_aeons = int(max_aeons) if max_aeons.strip() else 4
     except ValueError:
-        total_aeons = 3
+        total_aeons = 4
 
+    # Zustandsvariablen zur Vererbung der physikalischen Kausalität
     current_aeon = 0
-    observed_mass_baseline = 5000000
     aeon_generation_number = 0
-    mother_ccc_postponed = False
+    observed_mass_baseline = 5000000
+    
+    pathway_2_triggered_in_previous = False
+    pre_existing_cores_count = 0
+    cold_spot_active_from_previous = False
+    inherited_baryon_excess = False
 
     while current_aeon < total_aeons:
         print("\n" + "="*75)
-        print(f"ITERATION {current_aeon} (GEN-ID: {aeon_generation_number}) - STOCHASTIC MATRIX ACTIVE")
+        print(f"ITERATION {current_aeon} (GEN-ID: {aeon_generation_number}) - CAUSAL MATRIX ACTIVE")
         print("="*75)
         
-        if mother_ccc_postponed:
-            print("\n⏳ [GRAVITATIONAL LOCK] Mother aeon retaining drained rest-mass. CCC postponed.")
-            time.sleep(0.4)
-            mother_ccc_postponed = False
+        # 1. ERZWUNGENE SPEZIALABFRAGE FÜR COLD SPOT NACH SCENARIO 1
+        if cold_spot_active_from_previous:
+            print("\n⏳ [GRAVITATIONAL LOCK] Reverse Metric Drainage active from previous Scenario 1.")
+            print("   You must configure the delayed finite timeline displacement parameter")
+            print("   to stabilize the mother's suspended conformal boundary before proceeding.")
+            while True:
+                drainage_input = input("   -> Enter finite stabilization displacement (in Gyr, e.g., 13.8): ")
+                try:
+                    drainage_val = float(drainage_input)
+                    if drainage_val <= 0:
+                        print("      [ERROR] Value must be positive to overcome gravitational lock. Try again.")
+                        continue
+                    print(f"   [SUCCESS] Boundary stabilized at +{drainage_val} Gyr limit. Releasing lock.")
+                    break
+                except ValueError:
+                    print("      [ERROR] Invalid numerical value. Try again.")
+            cold_spot_active_from_previous = False
 
-        if current_aeon == 0:
+        # 2. ANZAHL DER SCHWARZEN LÖCHER (KERNE) FESTLEGEN ODER VERERBEN
+        if pathway_2_triggered_in_previous:
+            print(f"\n📦 [INHERITANCE] Pathway 2 was triggered in the preceding era.")
+            print(f"   The number of non-singular cores is strictly pre-determined by ancestry.")
+            num_black_holes = pre_existing_cores_count
+            print(f"   [METRIC] Trapping locked at exactly {num_black_holes} core configurations.")
+            pathway_2_triggered_in_previous = False
+        elif inherited_baryon_excess:
+            print("\n💥 [INHERITANCE] Massive matter excess from previous Scenario 12 Higgs decay!")
+            print("   The primordial background is highly asymmetric. Seeding locked at 2 cores.")
+            num_black_holes = 2
+            inherited_baryon_excess = False
+        elif current_aeon == 0:
             photon_input = input("-> Trigger early quantum-geometric Photon Collapse in Aeon 0? (y/n, Default=y): ")
             photon_collapse = False if photon_input.lower().strip() == 'n' else True
+            num_black_holes = 2 if photon_collapse else 0
+            if not photon_collapse:
+                print("[NOTICE] Pure massless radiation background established for Aeon 0.")
         else:
-            photon_collapse = True
+            try:
+                bh_input = input(f"-> Enter number of non-singular core configurations (Black Holes) for this Aeon (Default=2): ")
+                num_black_holes = int(bh_input) if bh_input.strip() else 2
+            except ValueError:
+                num_black_holes = 2
 
-        if not photon_collapse and current_aeon == 0:
-            required_threshold = 0.0001
-            example_prompt = "e.g., 13.8, infinity, 0.002"
-        else:
-            required_threshold = 0.001
-            example_prompt = "e.g., 13.8, infinity, 0.002"
-
+        # 3. ZEITWERT-EINGABE MIT STRENGER VALIDIERUNG GEGEN UNMÖGLICHE SZENARIEN
         while True:
-            displacement_input = input(f"-> Enter Timeline Displacement / event value for Aeon {current_aeon} ({example_prompt}): ")
+            displacement_input = input(f"-> Enter Timeline Displacement / event value for Aeon {current_aeon} (e.g., 13.8, infinity, 0.002): ")
             if not displacement_input.strip():
                 displacement_input = "13.8"
                 
@@ -61,125 +92,108 @@ def launch_ultimate_multiverse():
             try:
                 numeric_value = float(displacement_input)
                 is_low_value = numeric_value < 1.0 if not is_infinity else False
-                is_extremely_high = numeric_value >= 5000.0 if not is_infinity else False
             except ValueError:
                 is_low_value = False
-                is_extremely_high = False
                 numeric_value = None
+
+            # UNMÖGLICHE SZENARIEN SOFORT ABLEHNEN
+            if num_black_holes == 0 and is_low_value and current_aeon > 0:
+                print(f"\n[REJECTION] Impossible combination: A micro-delay rupture threshold (< 1.0 Gyr)")
+                print("            requires localized core anomalies to generate conformal shear force.")
+                print("            Command rejected. Try again with a value fitting description.\n")
+                continue
                 
+            if num_black_holes == 0 and not is_infinity and current_aeon == 0 and not is_low_value:
+                print(f"\n[REJECTION] Impossible combination: A massless background without a Photon Collapse")
+                print("            cannot sustain an expanding, mass-bearing timeline without collapsing sterile.")
+                print("            Command rejected. Try again with 'infinity' or a micro-delay threshold.\n")
+                continue
+
             break
-            
+
+        # 4. KOEXISTIERENDE PARALLELE UNIVERSEN (ADDENDUM 1) ABFRAGEN
         is_inter_bubble = False
-        if current_aeon > 0 or photon_collapse:
+        if num_black_holes > 0 or current_aeon > 0:
             bubble_input = input("-> Does a parallel sibling bubble universe co-exist within this generation? (y/n, Default=n): ")
             is_inter_bubble = True if bubble_input.lower().strip() == 'y' else False
+        print("\n" + "="*75)
+        print(f"ITERATION {current_aeon} (GEN-ID: {aeon_generation_number}) - CAUSAL MATRIX ACTIVE")
+        print("="*75)
+        
+        # 1. ERZWUNGENE SPEZIALABFRAGE FÜR COLD SPOT NACH SCENARIO 1
+        if cold_spot_active_from_previous:
+            print("\n⏳ [GRAVITATIONAL LOCK] Reverse Metric Drainage active from previous Scenario 1.")
+            print("   You must configure the delayed finite timeline displacement parameter")
+            print("   to stabilize the mother's suspended conformal boundary before proceeding.")
+            while True:
+                drainage_input = input("   -> Enter finite stabilization displacement (in Gyr, e.g., 13.8): ")
+                try:
+                    drainage_val = float(drainage_input)
+                    if drainage_val <= 0:
+                        print("      [ERROR] Value must be positive to overcome gravitational lock. Try again.")
+                        continue
+                    print(f"   [SUCCESS] Boundary stabilized at +{drainage_val} Gyr limit. Releasing lock.")
+                    break
+                except ValueError:
+                    print("      [ERROR] Invalid numerical value. Try again.")
+            cold_spot_active_from_previous = False
 
-        if current_aeon == 0:
-            if photon_collapse:
+        # 2. ANZAHL DER SCHWARZEN LÖCHER (KERNE) FESTLEGEN ODER VERERBEN
+        if pathway_2_triggered_in_previous:
+            print(f"\n📦 [INHERITANCE] Pathway 2 was triggered in the preceding era.")
+            print(f"   The number of non-singular cores is strictly pre-determined by ancestry.")
+            num_black_holes = pre_existing_cores_count
+            print(f"   [METRIC] Trapping locked at exactly {num_black_holes} core configurations.")
+            pathway_2_triggered_in_previous = False
+        elif inherited_baryon_excess:
+            print("\n💥 [INHERITANCE] Massive matter excess from previous Scenario 12 Higgs decay!")
+            print("   The primordial background is highly asymmetric. Seeding locked at 2 cores.")
+            num_black_holes = 2
+            inherited_baryon_excess = False
+        elif current_aeon == 0:
+            photon_input = input("-> Trigger early quantum-geometric Photon Collapse in Aeon 0? (y/n, Default=y): ")
+            photon_collapse = False if photon_input.lower().strip() == 'n' else True
+            num_black_holes = 2 if photon_collapse else 0
+            if not photon_collapse:
+                print("[NOTICE] Pure massless radiation background established for Aeon 0.")
+        else:
+            try:
+                bh_input = input(f"-> Enter number of non-singular core configurations (Black Holes) for this Aeon (Default=2): ")
+                num_black_holes = int(bh_input) if bh_input.strip() else 2
+            except ValueError:
                 num_black_holes = 2
-                higgs_probability = 1.0
-            else:
-                num_black_holes = 0
-                higgs_probability = 0.0
-        else:
-            if is_infinity:
-                num_black_holes = 0
-                higgs_probability = 0.0
-            else:
-                try:
-                    bh_input = input(f"-> Enter number of non-singular core configurations (Black Holes) for this Aeon (Default=2): ")
-                    num_black_holes = int(bh_input) if bh_input.strip() else 2
-                except ValueError:
-                    num_black_holes = 2
-                    
-                try:
-                    higgs_input = input(f"-> Enter Higgs vacuum decay probability threshold (0.0 to 1.0, Default=0.85): ")
-                    higgs_probability = float(higgs_input) if higgs_input.strip() else 0.85
-                except ValueError:
-                    higgs_probability = 0.85
 
-        print(f"\n[TIMELINE] Target parameter set to: {displacement_input}")
-        print(f"[METRIC] Trapping active with {num_black_holes} non-singular core configurations.")
-        print(f"[HIGGS] Localized phase transition boundary initialized at p = {higgs_probability}")
+        # 3. ZEITWERT-EINGABE MIT STRENGER VALIDIERUNG GEGEN UNMÖGLICHE SZENARIEN
+        while True:
+            displacement_input = input(f"-> Enter Timeline Displacement / event value for Aeon {current_aeon} (e.g., 13.8, infinity, 0.002): ")
+            if not displacement_input.strip():
+                displacement_input = "13.8"
+                
+            is_infinity = displacement_input.lower() == "infinity"
+            try:
+                numeric_value = float(displacement_input)
+                is_low_value = numeric_value < 1.0 if not is_infinity else False
+            except ValueError:
+                is_low_value = False
+                numeric_value = None
 
-        # Core Piracy & Metric Drainage Evaluation
-        if is_low_value and num_black_holes > 0:
-            print("\n[ALERT] Low temporal event parameter detected. Instant interception sequence active.")
-            stolen_mass = 1500000 * num_black_holes
-            observed_mass_baseline -= stolen_mass
-            print(f"[CORE PIRACY] {stolen_mass:,} M_sun evacuated through topological perforation.")
-        else:
-            print("\n[STABILITY] Metric insulated. No active core-theft possible at this boundary.")
+            # UNMÖGLICHE SZENARIEN SOFORT ABLEHNEN
+            if num_black_holes == 0 and is_low_value and current_aeon > 0:
+                print(f"\n[REJECTION] Impossible combination: A micro-delay rupture threshold (< 1.0 Gyr)")
+                print("            requires localized core anomalies to generate conformal shear force.")
+                print("            Command rejected. Try again with a value fitting description.\n")
+                continue
+                
+            if num_black_holes == 0 and not is_infinity and current_aeon == 0 and not is_low_value:
+                print(f"\n[REJECTION] Impossible combination: A massless background without a Photon Collapse")
+                print("            cannot sustain an expanding, mass-bearing timeline without collapsing sterile.")
+                print("            Command rejected. Try again with 'infinity' or a micro-delay threshold.\n")
+                continue
 
-        # DYNAMISCHE COLD SPOT EVALUIERUNG NACH JAKUB CZADERSKI
-        cold_spot_triggered = False
-        cold_spot_cause = ""
+            break
 
-        if current_aeon == 0 and not photon_collapse and is_low_value:
-            cold_spot_triggered = True
-            cold_spot_cause = "Scenario 1 Metric Drainage (Plasma evacuation into old-aeon giant void)"
-            mother_ccc_postponed = True
-        elif is_inter_bubble:
-            cold_spot_triggered = True
-            cold_spot_cause = "Addendum 1b Trans-Cosmic Collision (Shockwave signature between sibling bubble domains)"
-        elif higgs_probability >= 0.5 and num_black_holes >= 2:
-            cold_spot_triggered = True
-            cold_spot_cause = "Pathway 3 Higgs Conformal Phase Transition (Thermodynamic vacuum anomaly void)"
-
-        if higgs_probability >= 0.5:
-            print("[PATHWAY 3] Higgs conformal phase transition ignited. Radiative shockwave expanding.")
-        else:
-            print("[SUPPRESSION] Thermal barrier stable. Higgs expectation value remains at baseline.")
-
-        # AUTOMATISCHE SZENARIEN-ERKENNUNG
-        if recognition_mode:
-            print("\n🔍 [RECOGNITION] Analyzing multi-dimensional boundary metrics...")
-            time.sleep(0.2)
-            
-            detected_scenario = "Scenario X (Hybrid Pathway)"
-            if current_aeon == 0:
-                if not photon_collapse and is_low_value:
-                    detected_scenario = "Scenario 1 (The Primeval Topological Deflation Interface)"
-                elif photon_collapse and is_infinity:
-                    detected_scenario = "Scenario 0 (The Global CPT Crossover Baseline)"
-                elif photon_collapse and not is_low_value:
-                    detected_scenario = "Scenario 2 (Solitary/Isotropic Hierarchical Accretion)"
-            else:
-                if is_infinity:
-                    detected_scenario = "Scenario 10 (Massless Conformal Cyclic Reset)" if num_black_holes == 0 else "Scenario 11 (Sterile Trap)"
-                elif is_low_value:
-                    detected_scenario = "Scenario 3b (Conformal Protection)" if num_black_holes == 1 else "Scenario 7 (Multi-Core Cluster)"
-                else:
-                    if num_black_holes == 1 and higgs_probability >= 0.5:
-                        detected_scenario = "Scenario 5 (Solitary Anchor with Active Higgs Shockwave)"
-                    elif num_black_holes >= 2 and higgs_probability >= 0.5:
-                        detected_scenario = "Scenario 9 (Multi-Core Cluster with Radiative Perimeter Walls)"
-                    elif num_black_holes >= 2 and higgs_probability < 0.5:
-                        detected_scenario = "Scenario 6 (Multi-Core Cluster via Pure Relativistic Slingshot)"
-
-            print(f"🎯 [MATCH] Classified Blueprint: {detected_scenario}")
-            
-            # Ausgabe des entkoppelten Cold Spots
-            if cold_spot_triggered:
-                print(f"❄️ [CMB COLD SPOT DETECTED] An anomalous 5-degree Cold Spot is verified!")
-                print(f"                            Origin Matrix: {cold_spot_cause}")
-            
-            if is_inter_bubble:
-                print(f"📚 [ADDENDUM 1b MATCH] Horizontal intersection active within Gen-ID: {aeon_generation_number}.")
-            elif is_extremely_high and not mother_ccc_postponed:
-                print("📚 [ADDENDUM 1a MATCH] Trans-Aeon Boundary Intersection active (Mother-to-Child coupling).")
-            elif mother_ccc_postponed:
-                print("📚 [ADDENDUM 1a CORRECTION] Reverse Metric Drainage active. CCC scaling suspended!")
-
-        print(f"\n[EVOLUTION] Aeon {current_aeon} terminates via Event 3.")
-        aeon_generation_number += 1
-        current_aeon += 1
-        observed_mass_baseline = int((observed_mass_baseline + 5000000) * 1.5)
-        time.sleep(0.4)
-
-    print("\n=====================================================================")
-    print(" SANDBOX RUN COMPLETE: DYNAMIC PRECURSORS SECURED WITHOUT RE-LOCKING")
-    print("=====================================================================\n")
-
-if __name__ == "__main__":
-    launch_ultimate_multiverse()
+        # 4. KOEXISTIERENDE PARALLELE UNIVERSEN (ADDENDUM 1) ABFRAGEN
+        is_inter_bubble = False
+        if num_black_holes > 0 or current_aeon > 0:
+            bubble_input = input("-> Does a parallel sibling bubble universe co-exist within this generation? (y/n, Default=n): ")
+            is_inter_bubble = True if bubble_input.lower().strip() == 'y' else False
