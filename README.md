@@ -3,7 +3,6 @@
 > 🚨 **ARXIV ENDORSEMENT REQUIRED:** I am currently seeking an official endorsement for the arXiv categories **astro-ph.CO** (Cosmology) or **gr-qc** (General Relativity and Quantum Cosmology). If you are a qualified verifier willing to inspect the full compiled LaTeX PDF and grant an endorsement, please click the official verification path below to unlock the verification node:
 >
 > 👉 **[CLICK HERE TO ENDORSE THIS WORK ON ARXIV](https://arxiv.org/auth/endorse?x=4ITJ34)** 👈
-*Note: The full 29-page theoretical manuscript is currently held local. To review the complete LaTeX PDF for endorsement verification, please request the file via: **jakubczaderski.cinnamon@proton.me***
 
 ---
 
