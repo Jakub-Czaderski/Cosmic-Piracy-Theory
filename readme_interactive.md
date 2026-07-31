@@ -1,36 +1,37 @@
-# Algorithmic Architecture of the Stochastically Variable Multiverse Sandbox
+# Multidimensional Architecture of the Causal Physics State Engine
 
-This document provides the formal technical specification for the advanced sandbox execution pipeline inside `interactive.py` (v4.0). By modularizing the temporal constraints, core seeding density, and scalar vacuum thresholds per individual iteration, the engine allows structural validation for all evolutionary trajectories defined in the Cosmic Piracy framework (Scenarios 1 through 12, excluding Scenarios 0 and 11).
+This document provides the formal technical specification for the advanced multi-aeon sandbox state engine inside `interactive.py` (v7.0). By tracking persistent thermodynamic and geometric invariants across conformal boundaries, the engine structurally validates multi-generational causal pathways defined in the Cosmic Piracy framework.
 
-## 1. Variable Temporal Evolution (Timeline Displacement)
+## 1. Automated Input Validation & Hard Boundary Guards
 
-Unlike static progression networks, the updated engine treats the Timeline Displacement value ($\Delta t_{\text{Gyr}}$) as a variable matrix element selected by the observer boundary at each conformed reset step:
+The state engine operates under strict physical conservation postulates. Any user-defined input combination that violates background-independent Loop Quantum Gravity (LQG) or global CPT-symmetry invariants is instantly rejected by the compiler to prevent unphysical execution branches:
 
-1. **Standard Accretion Invariants ($\Delta t \gg 1.0$):** Maps standard cosmological evolution branches, tracking the baseline chronology of structural aging.
-2. **Infinite Future Boundary ($\Delta t = \text{infinity}$):** Triggers a clean Conformal Cyclic Cosmology (CCC) global reset under Event 3 constraints, purging the metric of all symmetry-breaking rest mass.
-3. **Micro-Delay Perforations ($\Delta t < 1.0$):** Forces immediate sub-manifold decoupling. This generates an asymmetric, non-continuous topological rupture before thermal expansion smoothing can stabilize the metric.
+1. **Massless Non-Rupture Rejection:** Attempting to force a micro-delay timeline displacement ($\Delta t < 1.0$ Gyr) onto an unseeded, massless radiation background ($N_{\text{core}} = 0$) in multi-generational eras is prohibited. Localized topological graph disconnection requires extreme gravitational shear ($F_{\text{shear}} \ge \Sigma_{\text{max}}$), which cannot manifest without pre-existing core anomalies.
+2. **Sterile Accretion Rejection:** Initializing a multi-generational expanding cosmic timeline without a geometric Photon Collapse or structural core seeding is physically locked, as an empty expanding metric without anchors collapses sterile.
 
-## 2. Dynamic Black Hole Density (Non-Singular Core Seeding)
+## 2. Dynamic Trapping & Causal Invariant Inheritance
 
-The parameter $N_{\text{core}}$ regulates the total number of physical, rotating Kerr-de Sitter anchors trapped within the localized conformal pocket. This choice directly toggles the operational event structure:
+The framework breaks standard linear cosmology by introducing bidirectional inheritance parameters between subsequent generations (Gen-ID matrices):
 
-* **Event 1 Profile ($N_{\text{core}} = 1$):** Mandates a solitary ultramassive non-singular core (UMNC) at the coordinate center, shifting evolution paths toward isotropic Jeans-mass configurations.
-* **Event 2 Profile ($N_{\text{core}} \ge 2$):** Initializes a dense core cluster. This multi-body distribution generates extreme relativistic shear forces ($F_{\text{shear}}$) and triggers chaotic three-body slingshot dynamics.
+*   **Pathway 2 Core Inheritance:** If an asymmetric topological rupture is ignited in the preceding era, the exact number of non-singular cores is strictly pre-determined by the ancestry branch. The metric automatically anchors and locks the next iteration at a fixed saturation threshold (e.g., $N_{\text{core}} = 29$ or $110$) to simulate post-Newtonian slingshot dynamics.
+*   **Scenario 1 Gravitational Postponement:** If a micro-delay evacuation occurs in Aeon 0 on a massless background, the reverse metric drainage acts as a cosmic vacuum cleaner, pulling high-energy plasma backward into the parent cosmos. Because a standard Conformal Cyclic Cosmology (CCC) reset requires absolute masslessness, this mass import forces a structural postponement of the boundary scaling. The engine freezes vertical progression until a dedicated finite timeline stabilization value is manually injected.
+## 3. Context-Aware Macro-Anomaly & Addenda Recognition
 
-## 3. Stochastic Higgs Conformal Phase Transition (Pathway 3)
+The state engine cross-references the thermodynamic energy parameters live during runtime to classify macroscopic perturbations within the Cosmic Microwave Background (CMB) according to the manuscript's architectural specifications:
 
-The ignition threshold of the outward-propagating radiative shockwave is governed by a localized quantum-mechanical decay probability ($p_{\text{Higgs}}$):
+*   **Addendum 1a (Vertical Coupling):** Tracks vertical Trans-Aeon boundary intersections between parent and child metrics across extreme scale limits.
+*   **Addendum 1b (Horizontal Intersections):** Triggered when a parallel sibling bubble universe co-exists within the same generation. Both domains share an identical ancestral origin and inherit a permanent, fortlaufende Gen-ID that remains strictly conserved across localized cyclic resets.
+*   **Dynamic CMB Cold Spot Attribution:** The 5-degree thermal variance signature is dynamically evaluated based on the active path. It is registered either as a consequence of Scenario 1 metric drainage (reverse plasma evacuation into an old-aeon giant void) or as a structural shockwave footprint generated by an Addendum 1b horizontal sibling bubble collision in the bulk.
 
-* **Ignition State ($p_{\text{Higgs}} \ge 0.5$):** Enforces a vacuum tunneling drop. The sudden shift in the vacuum expectation value (VEV) releases a thermodynamic expansion wave, scaling the primordial baryon asymmetry ratio ($\eta$) directly by the Oasis compression factor:
+---
 
-$$\eta = 10^{-9} \cdot \Omega_{\text{Oaza}} = 2.5 \cdot 10^{-9}$$
+## 📬 International Peer-Review & Call for Contributions
 
-* **Suppression State ($p_{\text{Higgs}} < 0.5$):** The scalar barrier exceeds the geometric energy density. Pathway 3 is fully suppressed, forcing the system into either stable unperturbed configurations or direct gravitational collapse.
+This framework is built upon rigorous, background-independent open-source logic. To accelerate the resolution of contemporary cosmological anomalies and maintain absolute mathematical completeness, the international physics community is explicitly invited to stress-test the state engine.
 
-## 4. Core Piracy & Metric Drainage
+If you encounter any logical inconsistencies, structural boundary vulnerabilities, or mathematical feedback regarding the execution matrix of `interactive.py`, please submit your evaluation directly via encrypted communication:
 
-When a low temporal displacement value is coupled with high core counts, an external Pathway 2 interception sequence manifests. The algorithm models the non-local gravitational footprint acting upon the primary channel. Mass invariants are evacuated through the localized perforation according to the scaled function:
+*   **Contact Registry:** jakubczaderski.cinnamon@proton.me
+*   **Required Subject Tag:** `#interactive code#`
 
-$$M_{\text{recalibrated}} = M_{\text{baseline}} - (1,500,000 \times N_{\text{core}})$$
-
-The parallel lineage terminates instantly post-drainage, ensuring the observer remains structurally bound to the primary channel without violating global CPT invariance.
+*Note: Submissions utilizing the specified tag will be queued automatically for algorithmic validation and integrated into subsequent generational updates of the 12-scenario cosmological matrix.*
