@@ -53,33 +53,3 @@ This framework proves that localized vacuum transitions triggered at the event h
 Crucially, via the global CPT state equation (Eq. 1), this mechanism permits a localized charge-inversion cascade within the boundaries of all high-energy trajectories utilizing the Pathway 3 thermodynamic filter (specifically **Scenario 3b, Scenario 5, Scenario 7.2b, and Scenario 9**). Extreme chiral torsion within the active core metric funnels an antimatter-dominated fraction across the temporary boundary node, forcing the newborn sub-manifold to invert its temporal vector ($-t$). This generates an expanding antimatter daughter universe carrying the exact structural "genetic" scars inherited from the parent matter aeon, rendering the process structurally non-destructive and perfectly balanced.
 
 Crucially, this architecture resolves the paradox of time perception via **Timeline Displacement**. In a completely mass-free cosmos, the lack of operational scale reduces eternity to an instantaneous transition. Via persistent quantum boundary entanglement, the non-local link across the ancestral coordinate intersection survives global CCC resets. The LQG spin-network coordinates remain structurally phase-locked across generations, operating as a permanent causal anchor that allows Addendum 1 to trigger without breaking macro-causality, maintaining a perfect equilibrium between opposite temporal vectors.
-
----
-
-## Technical Appendix: Structural Code Blueprint Mapping
-
-The open-source numerical verification pipeline (`cosmic_piracy_simulation.py`) live-evaluates the continuous thermodynamic and geometric variables to map cosmic trajectories directly to the official manuscript blueprints:
-
-*   **Scenario 0:** Global CPT-Conservation Boundary.
-*   **Scenario 1:** Primeval Topological Deflation Interface.
-*   **Scenario 3b:** Advanced Conformal Protection Branch.
-*   **Scenario 5:** Solitary Anchor Matrix.
-*   **Scenario 6:** Multi-Core Cluster Baseline.
-*   **Scenario 7.2b:** High-Tensile Saturation Boundary.
-*   **Scenario 9:** Modular Hybrid Macro-Anomaly.
-*   **Scenario 1 + Scenario 6 Confluence:** Hybrid Trajectory Matrix.
-*   **Addendum 1 Configurations:** Non-Mandatory Alternative Evolutionary Paths.
-
----
-
-## Formal Glossary of the Cosmic Piracy Framework
-
-This appendix establishes the strict, analytical definitions for the thermodynamic, geometric, and algebraic parameters of the framework:
-
-*   **UMNC (Ultramassive Non-Singular Core):** Highest-order primordial anchoring structures formed during the geometric Photon Collapse at the boundary layer of Iteration 0, characterized by a saturated holographic spin-density limit.
-*   **SMNC (Supermassive Non-Singular Core):** Lighter satellite cores expelled out of the central cluster throat at exactly $0.85\ c$ via a semi-classical quantum bounce.
-*   **Pathway 1:** Standard Conformal Reset. A smooth, continuous cosmic transition at the future boundary preserving global scale-invariance.
-*   **Pathway 2:** Localized Topological Detachment. The slicing of an autonomous 4D sub-manifold into a newborn bubble universe via a non-continuous topological holonomy boundary interface.
-*   **Pathway 3:** Higgs-Induced Conformal Phase Transition. A geometrically triggered vacuum drop unleashing an isotropic radiative shockwave that redefines local mass-coupling constants.
-*   **$\Omega_{\text{Oaza}}$ (Oasis Density Scaling Factor):** Scale-invariant thermodynamic compression factor fixated at exactly $2.5$.
-*   **Timeline Displacement:** A localized macro-collision that forcefully displaces matter purely via kinetic and mechanical compression during mature macro-expansion eras.
