@@ -11,8 +11,8 @@ def launch_ultimate_multiverse():
     print("    |  |____ |  `--'  |     |  |     |  `--'  | |  |____ |  |____ ")
     print("     \\______| \\______/      |__|      \\______/  |_______| \\______|")
     print("=====================================================================")
-    print("          COSMIC PIRACY MULTIVERSE STATE ENGINE - v10.8")
-    print("          Absolute Aeon 0 Isolation & Strict Loop Boundary Guards")
+    print("          COSMIC PIRACY MULTIVERSE STATE ENGINE - v11.2")
+    print("          Mass-Dependent Scenario 1 Suppression & Invariant Guards")
     print("=====================================================================\n")
 
     mode_input = input("-> Enable automated Scenario Recognition mode (0-12 & Addenda)? (y/n, Default=y): ")
@@ -35,116 +35,133 @@ def launch_ultimate_multiverse():
     inherited_umnc_count = 0
     inherited_smnc_count = 0
 
-    # ===========================================================================
-    # ISOLATED EXPERIMENTAL NODE FOR AEON 0 (THE UR-GENESIS ENTRY LAYER)
-    # ===========================================================================
-    print("\n" + "="*75)
-    print("ITERATION 0 (GEN-ID: 0) - INITIAL UR-GENESIS BOUNDARY LAYER")
-    print("="*75)
-    
-    photon_input = input("-> Trigger early quantum-geometric Photon Collapse in Aeon 0? (y/n, Default=y): ")
-    photon_collapse = False if photon_input.lower().strip() == 'n' else True
-
-    # 1. TIME PARAMETER DEFINED FIRST AS THE ABSOLUTE CAUSAL ACCRETION MOTOR
-    while True:
-        example_aeon0 = "e.g., 13.8, infinity" if photon_collapse else "e.g., infinity, 0.002"
-        displacement_input = input(f"-> Enter Timeline Displacement value for Aeon 0 ({example_aeon0}): ")
-        if not displacement_input.strip():
-            displacement_input = "13.8"
+    while current_aeon < total_aeons:
+        
+        # ===========================================================================
+        # ISOLATED NODE FOR AEON 0 INITIALIZATION (WITH RIGOROUS SUPPRESSION LAWS)
+        # ===========================================================================
+        if current_aeon == 0:
+            print("\n" + "="*75)
+            print(f"ITERATION 0 (GEN-ID: {aeon_generation_number}) - INITIAL UR-GENESIS BOUNDARY LAYER")
+            print("="*75)
             
-        is_infinity = displacement_input.lower() == "infinity"
-        try:
-            numeric_value = float(displacement_input)
-            is_low_value = numeric_value < 1.0 if not is_infinity else False
-        except ValueError:
-            is_low_value = False
-            numeric_value = None
+            # Gravitational lock triggers ONLY if real mass backflow exists
+            if cold_spot_active_from_previous:
+                print("\n⏳ [GRAVITATIONAL LOCK] Reverse Metric Drainage active from Scenario 1 plasma backflow.")
+                while True:
+                    drainage_input = input("   -> Enter finite stabilization displacement (in Gyr, e.g., 13.8): ")
+                    try:
+                        drainage_val = float(drainage_input)
+                        if drainage_val <= 0:
+                            print("      [ERROR] Value must be positive. Try again.")
+                            continue
+                        print(f"   [SUCCESS] Matrix stabilized at +{drainage_val} Gyr limit. Releasing lock.")
+                        break
+                    except ValueError:
+                        print("      [ERROR] Invalid numerical value.")
+                cold_spot_active_from_previous = False
 
-        if photon_collapse and is_low_value and numeric_value != 0.0:
-            print("\n[REJECTION] Core Accretion Lag: Primordial seeds require a minimum operational")
-            print("            timescale (> 1.0 Gyr) to expand metric horizons and accumulate spin.")
-            print("            Re-enter value matching physical accretion predictions.\n")
-            continue
-        break
+            photon_input = input("-> Trigger early quantum-geometric Photon Collapse in Aeon 0? (y/n, Default=y): ")
+            photon_collapse = False if photon_input.lower().strip() == 'n' else True
 
-    # 2. HIGGS FIELD ENERGETICS PHASE
-    if photon_collapse and not is_infinity:
-        higgs_input = input("-> Insert early instant Higgs vacuum decay for Aeon 0 initialization? (y/n, Default=y): ")
-        higgs_probability_aeon0 = 1.0 if higgs_input.lower().strip() != 'n' else 0.0
-    else:
-        higgs_probability_aeon0 = 1.0 if (is_infinity and input("-> Insert intermediate Higgs vacuum decay during this infinite transition? (y/n, Default=n): ").lower().strip() == 'y') else 0.0
+            while True:
+                example_aeon0 = "e.g., 13.8, infinity" if photon_collapse else "e.g., infinity, 0.002"
+                displacement_input = input(f"-> Enter Timeline Displacement value for Aeon 0 ({example_aeon0}): ")
+                if not displacement_input.strip():
+                    displacement_input = "13.8"
+                    
+                is_infinity = displacement_input.lower() == "infinity"
+                try:
+                    numeric_value = float(displacement_input)
+                    is_low_value = numeric_value < 1.0 if not is_infinity else False
+                except ValueError:
+                    is_low_value = False
+                    numeric_value = None
 
-    # 3. DYNAMIC SEEDING AUTONOMY PROMPTS WITH CHRONOLOGICAL ACCRETION CAPS
-    if is_infinity or not photon_collapse:
-        if is_infinity:
-            print("[NOTICE] Future infinity boundary reached. All localized cores completely evaporated.")
-        else:
-            print("[NOTICE] Massless radiation background locked. Core counts forced to 0.")
-        umnc_aeon0, smnc_aeon0, imnc_aeon0, hmnc_aeon0 = 0, 0, 0, 0
-    else:
-        time_factor = numeric_value if numeric_value is not None else 13.8
-        higgs_boost = 2.5 if higgs_probability_aeon0 >= 0.5 else 1.0
-        
-        max_aeon0_umnc = max(1, int(time_factor * 0.15 * higgs_boost))
-        max_aeon0_smnc = max(2, int(time_factor * 0.35 * higgs_boost))
-        max_aeon0_imnc = max(5, int(time_factor * 0.85 * higgs_boost))
-        max_aeon0_hmnc = max(0, int((time_factor - 1.0) * 1.2 * higgs_boost)) if time_factor > 1.0 else 0
-        
-        print(f"\n[NUCLEATION] Primeval growth potential computed via timescale ({time_factor} Gyr):")
-        print(f"             >> Max UMNC Horizon Capacity: {max_aeon0_umnc}")
-        print(f"             >> Max SMNC Horizon Capacity: {max_aeon0_smnc}")
-        print(f"             >> Max IMNC Horizon Capacity: {max_aeon0_imnc}")
-        print(f"             >> Max HMNC Horizon Capacity: {max_aeon0_hmnc}")
-        
-        try:
-            umnc_aeon0 = int(input(f"-> Enter active UMNC count (Max={max_aeon0_umnc}, Default=2): ") or 2)
-            smnc_aeon0 = int(input(f"-> Enter active SMNC count (Max={max_aeon0_smnc}, Default=4): ") or 4)
-            imnc_aeon0 = int(input(f"-> Enter active IMNC count (Max={max_aeon0_imnc}, Default=12): ") or 12)
-            hmnc_aeon0 = int(input(f"-> Enter active HMNC count (Max={max_aeon0_hmnc}, Default=0): ") or 0) if max_aeon0_hmnc > 0 else 0
-        except ValueError:
-            umnc_aeon0, smnc_aeon0, imnc_aeon0, hmnc_aeon0 = 2, 4, 12, 0
+                # Massless background has NO accretion lag constraint
+                if photon_collapse and is_low_value and numeric_value != 0.0:
+                    print("\n[REJECTION] Core Accretion Lag: Primordial seeds require minimum operational timescales.\n")
+                    continue
+                break
 
-    total_cores_aeon0 = umnc_aeon0 + smnc_aeon0 + imnc_aeon0 + hmnc_aeon0
-    is_inter_bubble = False
-    if not photon_collapse and is_low_value:
-        is_inter_bubble = input("-> Does a parallel sibling bubble universe co-exist via vacuum perforation? (y/n, Default=n): ").lower().strip() == 'y'
+            if photon_collapse and not is_infinity:
+                higgs_input = input("-> Insert early instant Higgs vacuum decay for Aeon 0 initialization? (y/n, Default=y): ")
+                higgs_probability_aeon0 = 1.0 if higgs_input.lower().strip() != 'n' else 0.0
+            else:
+                higgs_probability_aeon0 = 1.0 if (is_infinity and input("-> Insert intermediate Higgs vacuum decay during transition? (y/n, Default=n): ").lower().strip() == 'y') else 0.0
 
-    print(f"\n[TIMELINE] Target parameter locked at: {displacement_input}")
-    print(f"[METRIC] Active grid processing total of {total_cores_aeon0} cores.")
-    print(f"         [DISTRIBUTION] {umnc_aeon0} UMNC | {smnc_aeon0} SMNC | {imnc_aeon0} IMNC | {hmnc_aeon0} HMNC")
-    
-    if not photon_collapse and is_low_value:
-        print("[ALERT] Micro-delay event matching unseeded radiation. Scenario 1 triggered!")
-        cold_spot_active_from_previous = True
+            # SEED EXTRACTION: Forced to absolute zero if no photon collapse occurred
+            if is_infinity or not photon_collapse:
+                if is_infinity and photon_collapse:
+                    print("[NOTICE] Future infinity boundary reached. All localized cores completely evaporated.")
+                elif not photon_collapse:
+                    print("[NOTICE] Pure massless radiation background locked. Core counts forced to 0.")
+                umnc_aeon0, smnc_aeon0, imnc_aeon0, hmnc_aeon0 = 0, 0, 0, 0
+            else:
+                time_factor = numeric_value if numeric_value_value is not None else 13.8
+                higgs_boost = 2.5 if higgs_probability_aeon0 >= 0.5 else 1.0
+                max_aeon0_umnc = max(1, int(time_factor * 0.15 * higgs_boost))
+                max_aeon0_smnc = max(2, int(time_factor * 0.35 * higgs_boost))
+                max_aeon0_imnc = max(5, int(time_factor * 0.85 * higgs_boost))
+                max_aeon0_hmnc = max(0, int((time_factor - 1.0) * 1.2 * higgs_boost)) if time_factor > 1.0 else 0
+                
+                print(f"\n[NUCLEATION] Primeval growth potential computed via timescale ({time_factor} Gyr):")
+                try:
+                    umnc_aeon0 = int(input(f"-> Enter active UMNC count (Max={max_aeon0_umnc}, Default=2): ") or 2)
+                    smnc_aeon0 = int(input(f"-> Enter active SMNC count (Max={max_aeon0_smnc}, Default=4): ") or 4)
+                    imnc_aeon0 = int(input(f"-> Enter active IMNC count (Max={max_aeon0_imnc}, Default=12): ") or 12)
+                    hmnc_aeon0 = int(input(f"-> Enter active HMNC count (Max={max_aeon0_hmnc}, Default=0): ") or 0) if max_aeon0_hmnc > 0 else 0
+                except ValueError:
+                    umnc_aeon0, smnc_aeon0, imnc_aeon0, hmnc_aeon0 = 2, 4, 12, 0
 
-    if recognition_mode:
-        print("\n[RECOGNITION] Evaluating Aeon 0 custom node matrix...")
-        detected_scenario = "Scenario X (Hybrid Pathway)"
-        if not photon_collapse and is_low_value:
-            detected_scenario = "Scenario 1 (The Primeval Topological Deflation Interface)"
-        elif photon_collapse and not is_low_value:
-            detected_scenario = "Scenario 0 (The Global CPT Crossover Baseline)"
-        elif photon_collapse and is_infinity:
-            detected_scenario = "Scenario 10 (Massless Reset Baseline)"
-        print(f"[MATCH] Classified Blueprint: {detected_scenario}")
+            total_cores_aeon0 = umnc_aeon0 + smnc_aeon0 + imnc_aeon0 + hmnc_aeon0
+            is_inter_bubble = False
+            if not photon_collapse and is_low_value:
+                is_inter_bubble = input("-> Does a parallel sibling bubble universe co-exist via vacuum perforation? (y/n, Default=n): ").lower().strip() == 'y'
 
-    print("\n[EVOLUTION] Aeon 0 terminates via Conformal Crossover.")
-    
-    trigger_infinite_genesis_loop = (not photon_collapse and is_infinity and higgs_probability_aeon0 >= 0.5)
-    if trigger_infinite_genesis_loop:
-        print("\n[INFINITE LOOP] Sterile vacuum reset completed. Aeon 0 loop hard locked.\n")
-        inherited_baryon_excess = True
-        current_aeon = 0
-    else:
-        current_aeon = 1
-        observed_mass_baseline = int((observed_mass_baseline + 5000000) * 1.5)
-        if photon_collapse:
-            pathway_2_triggered_in_previous = True
-            inherited_umnc_count = umnc_aeon0 + 2
-            inherited_smnc_count = smnc_aeon0 + imnc_aeon0 + hmnc_aeon0
-    
-    aeon_generation_number += 1
-    time.sleep(0.1)
+            print(f"\n[TIMELINE] Target parameter locked at: {displacement_input}")
+            print(f"[METRIC] Active grid processing total of {total_cores_aeon0} cores.")
+            
+            # KORREKTUR: Scenario 1 wird NUR getriggert, wenn Photon Collapse AKTIV war und echte Kerne existieren!
+            if photon_collapse and is_low_value:
+                print("[ALERT] Micro-delay event matching active mass seeds. Scenario 1 triggered!")
+                cold_spot_active_from_previous = True
+            elif not photon_collapse and is_low_value:
+                print("[NOTICE] Micro-delay timeline on an unseeded background. Sterile vacuum collapse.")
+
+            if recognition_mode:
+                print("\n[RECOGNITION] Evaluating Aeon 0 custom node matrix...")
+                detected_scenario = "Scenario X (Hybrid Pathway)"
+                if photon_collapse and is_low_value:
+                    detected_scenario = "Scenario 1 (The Primeval Topological Deflation Interface)"
+                elif not photon_collapse and is_low_value:
+                    detected_scenario = "Scenario 10 (Massless Reset Baseline / Sterile Pocket)"
+                elif photon_collapse and not is_low_value:
+                    detected_scenario = "Scenario 0 (The Global CPT Crossover Baseline)"
+                print(f"[MATCH] Classified Blueprint: {detected_scenario}")
+
+            print("\n[EVOLUTION] Aeon 0 terminates via Conformal Crossover.")
+            
+            # KORREKTUR: Der Rücksturz-Guard greift ebenfalls nur bei echten Massen-Scherkräften!
+            if photon_collapse and is_low_value:
+                print("\n[RE-ROUTING] Conformal progression denied due to mass drain backflow. Re-executing Aeon 0...\n")
+                current_aeon = 0  
+            else:
+                trigger_infinite_genesis_loop = (not photon_collapse and is_infinity and higgs_probability_aeon0 >= 0.5)
+                if trigger_infinite_genesis_loop:
+                    inherited_baryon_excess = True
+                    current_aeon = 0
+                else:
+                    current_aeon = 1
+                    observed_mass_baseline = int((observed_mass_baseline + 5000000) * 1.5)
+                    if photon_collapse and is_low_value:
+                        pathway_2_triggered_in_previous = True
+                        inherited_umnc_count = umnc_aeon0 + 2
+                        inherited_smnc_count = smnc_aeon0 + imnc_aeon0 + hmnc_aeon0
+            
+            aeon_generation_number += 1
+            time.sleep(0.1)
+            continue 
     # ===========================================================================
     # CONTINUOUS CASCADE LOOP FOR MULTI-GENERATIONAL ERAS (AEON 1+)
     # ===========================================================================
@@ -334,6 +351,31 @@ def launch_ultimate_multiverse():
                     detected_scenario = "Scenario 6 (Multi-Core Cluster via Pure Relativistic Slingshot)"
             print(f"[MATCH] Classified Blueprint: {detected_scenario}")
 
+        # INTERACTIVE EVEN-BRANCH CONTROLLER (CHRONOLOGY OVERRIDE)
+        print("\n" + "-"*60)
+        print(f"PROCESS CONTROL MENU FOR CURRENT MATRIX BOUNDARY (AEON {current_aeon})")
+        print("-"*60)
+        print("1: Add and follow consecutive event within this generation branch")
+        print("2: Execute immediate Conformal Cyclic Reset (Linear forward progression)")
+        
+        while True:
+            branch_choice = input("-> Select strategic next step (1 or 2): ").strip()
+            if branch_choice == "1":
+                print("\n[EVENT OVERRIDE] Staying within active generation layer.")
+                print("                 Injecting dynamic subsequent perturbation...")
+                pathway_2_triggered_in_previous = True
+                inherited_umnc_count = umnc_count
+                inherited_smnc_count = smnc_count + imnc_count + hmnc_count
+                current_aeon = current_aeon 
+                time_leap_override = True
+                break
+            elif branch_choice == "2":
+                print("\n[CONFORMAL PROGRESSION] Executing smooth standard cyclic shift.")
+                time_leap_override = False
+                break
+            else:
+                print("[ERROR] Invalid selection. Enter 1 or 2.")
+
         # PROGRESSION AND RESET RE-ROUTING LAWS
         if is_infinity:
             if higgs_probability >= 0.5:
@@ -345,16 +387,17 @@ def launch_ultimate_multiverse():
                 print(f"\n[EVOLUTION] Aeon {current_aeon} terminates via smooth Scenario 10 transition.")
                 current_aeon += 1
         else:
-            print(f"\n[EVOLUTION] Aeon {current_aeon} terminates via Conformal Crossover.")
-            
-            if relativistic_leap_active and current_aeon == 1:
-                print("\n[TIME LEAP] Selected core trajectories bypass Iteration 2 due to gamma expansion.")
-                print("            Forcing timeline continuum state directly to Iteration 3 matrix configuration.")
-                current_aeon = 3
+            if not time_leap_override:
+                print(f"\n[EVOLUTION] Aeon {current_aeon} terminates via Conformal Crossover.")
+                if relativistic_leap_active and current_aeon == 1:
+                    print("\n[TIME LEAP] Selected core trajectories bypass Iteration 2 due to gamma expansion.")
+                    print("            Forcing timeline continuum state directly to Iteration 3 matrix configuration.")
+                    current_aeon = 3
+                else:
+                    current_aeon += 1
+                observed_mass_baseline = int((observed_mass_baseline + 5000000) * 1.5)
             else:
-                current_aeon += 1
-                
-            observed_mass_baseline = int((observed_mass_baseline + 5000000) * 1.5)
+                print(f"\n[INTEGRATION] Consecutive event layered into active Generation matrix.")
             
         aeon_generation_number += 1
         time.sleep(0.4)
