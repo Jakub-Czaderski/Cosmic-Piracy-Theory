@@ -1,3 +1,4 @@
+# Architectural Specification of the Cosmological State Simulation Kernel
 # Formal Glossary of the Cosmological State Kernel
 
 This document establishes the strict thermodynamic, geometric, and algebraic definitions for the invariant parameters utilized within the `interactive.py` state machine. All metrics are grounded in background-independent Loop Quantum Gravity (LQG) holonomies and Conformal Cyclic Cosmology (CCC) boundary crossovers.
@@ -31,7 +32,6 @@ For cross-referencing during core validation runs, the state engine maps user ex
 *   **Scenario 9:** Multi-Core Cluster with Radiative Perimeter Walls.
 *   **Scenario 10:** Massless Conformal Cyclic Reset (Sterile baseline progression).
 *   **Scenario 12:** Sterile Dynamic Vacuum Phase / Infinite Reset Loop.
-# Architectural Specification of the Cosmological State Simulation Kernel
 
 This document provides the analytical technical specification for the background-independent cosmological state simulation kernel inside `interactive.py. The core pipeline models multi-aeon causal path progressions under strict Loop Quantum Gravity (LQG) and Conformal Cyclic Cosmology (CCC) boundary constraints.
 
