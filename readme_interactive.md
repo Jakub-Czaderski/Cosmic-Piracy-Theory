@@ -1,6 +1,6 @@
 # Architectural Specification of the Cosmological State Simulation Kernel
 
-# Formal Glossary of the Cosmological State Kernel
+## Formal Glossary of the Cosmological State Kernel
 
 This document establishes the strict thermodynamic, geometric, and algebraic definitions for the invariant parameters utilized within the `interactive.py` state machine. All metrics are grounded in background-independent Loop Quantum Gravity (LQG) holonomies and Conformal Cyclic Cosmology (CCC) boundary crossovers.
 
