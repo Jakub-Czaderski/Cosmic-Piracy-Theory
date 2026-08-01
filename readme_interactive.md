@@ -22,19 +22,13 @@ The kernel isolates Iteration 0 (The Ur-Genesis Node) and establishes rigorous m
 
 The state engine tracks persistent thermodynamic and geometric invariants across conformal boundaries using strict multi-generational inheritance locks:
 
-* **The 0.85 c Time Leap Control:** When extreme core density ($\Sigma_{\text{cores}} \ge 150$) is subjected to a micro-delay threshold ($\Delta t < 1.0$ Gyr) in Iteration 1, the resulting gravitational shear accelerates the remnants to $0.85\,c$ (85% the speed of light) over a 1,000-year timeline. Due to Lorentz time dilation ($\gamma \sim 2.0$), these core trajectories bypass the Iteration 2 infrastructure entirely. The observer manually calibrates the exact core ratio caught in the slingshot to project them directly into the Generation 3 matrix.
+* **The 0.85 c Time Leap Control:** When extreme core density ($\Sigma_{\text{cores}} \ge 150$) is subjected to a micro-delay threshold ($\Delta t < 1.0$ Gyr) in Iteration 1, the resulting gravitational shear accelerates the remnants to $0.85\,c$ (85% the speed of light) over a 1,000-year timeline, traversing roughly 850 light-years through primeval plasma. Due to Lorentz time dilation ($\gamma \sim 2.0$), these core trajectories bypass the Iteration 2 infrastructure entirely. The observer manually calibrates the exact core ratio caught in the slingshot to project them directly into the Generation 3 matrix.
 * **Automated Star Formation Rate (SFR):** The rate of stellar-collapse core generation is dynamically computed as an invariant physical consequence of local core-density stress and Higgs field energetics:
 $$\text{SFR} = \max\left(0.1, \, \left(0.5 + \left[2.0 \cdot N_{\text{UMNC}} + 1.2 \cdot N_{\text{SMNC}} + 0.5 \cdot N_{\text{IMNC}}\right] \cdot 0.1\right) \cdot \Omega_{\text{Higgs}}\right)$$
-## 4. Analytical Status Warning & Open-Source Collaboration Call
+## 4. Interactive Event Cascades & Thermodynamic Evaporation
 
-**CRITICAL NOTICE:** This simulation kernel is an ongoing, experimental implementation of the Cosmic Piracy framework. Given the hyper-dense causal variables and multi-aeon tracking constraints, the current code execution is **potentially erroneous and may contain logical or mathematical inconsistencies** under edge-case boundary parameters.
-
-Because this codebase serves as a foundational **Cosmological State Kernel**, developers and theoretical physicists are explicitly encouraged to **fork this repository**, stress-test the state machine, and submit pull requests or bug-fixes to optimize the mathematical compliance of the transition matrix.
-
-### Peer-Review Contact Registry
-If you encounter structural boundary vulnerabilities, runtime inconsistencies, or mathematical bugs within the state kernel, please submit your full evaluation directly via encrypted communication:
-* **Contact Address:** jakubczaderski.cinnamon@proton.me
-* **Mandatory Subject Tag:** `#interactive code#`
+*   **Interactive Process Control:** Utilizing the integrated Process Control Menu, the observer can actively inject subsequent perturbations directly into an active generation branch ("Add and follow consecutive event") or execute an immediate Conformal Cyclic Reset to progress sequentially.
+*   **Thermodynamic Hawking Deflation:** For massive, finite timelines ($\Delta t \ge 500$ Gyr), cores undergo density loss and mass deflation. If the total core count drops to zero, the Enforced Total Evaporation Guard halts progression, forcing a manual decision between a Scenario 10 Conformal Reset or a Scenario 12 Higgs Loop.
 
 ---
 
@@ -47,19 +41,35 @@ This appendix establishes the strict thermodynamic, geometric, and algebraic def
 *   **IMNC (Intermediate Mass Non-Singular Core):** Dynamic, time-dependent black hole configurations generated primarily through stellar-collapse pathways. IMNC density requires a minimum operational timescale ($\Delta t \ge 1.0$ Gyr) to accumulate critical mass via the core accretion scaling laws.
 *   **HMNC (Hypermassive Non-Singular Core):** Advanced cosmological merger profiles representing ultra-dense core clusters that require prolonged chronological aging intervals and accelerated Star Formation Rates.
 *   **Conformal Crossover:** The background-independent transition boundary between subsequent cosmic generations where the geometric metric rescales and invariant gravitational stems are transferred.
+*   **0.85 c Slingshot Leap Control:** A localized kinematic anomaly where extreme core density ($\Sigma_{\text{cores}} \ge 150$) under a micro-delay threshold induces a Lorentz time dilation factor ($\gamma \sim 2.0$), forcing co-moving trajectories to bypass Iteration 2 and project directly into Generation 3 via calibrated structural cluster distributions.
+*   **Chronology Override Holonomy:** An algebraic intersection node within the state kernel, allowing the simulation to actively layer subsequent perturbations directly into an active generation branch ("Add and follow consecutive event") or execute a smooth standard cyclic shift.
+*   **Thermodynamic Hawking Deflation:** For massive, finite timelines ($\Delta t \ge 500$ Gyr), cores undergo mass deflation and core density loss. If total active cores reach zero, the Enforced Total Evaporation Guard halts progression to force an absolute metric path correction matrix.
 
 ---
 
 ## Technical Appendix: Structural Code Blueprint Mapping
 
-For cross-referencing during core validation runs, the state engine maps user execution routes directly to the official manuscript blueprints:
-*   **Scenario 0:** Global CPT Crossover Baseline (Stable long-term expansion).
-*   **Scenario 1:** Primeval Topological Deflation Interface (Mass drainage backflow).
-*   **Scenario 2:** Solitary/Isotropic Hierarchical Accretion.
-*   **Scenario 3b:** Conformal Protection Branch.
-*   **Scenario 5:** Solitary Anchor with Active Higgs Shockwave.
-*   **Scenario 6:** Multi-Core Cluster via Pure Relativistic Slingshot.
-*   **Scenario 7:** Multi-Core Cluster (High-tensile saturation).
-*   **Scenario 9:** Multi-Core Cluster with Radiative Perimeter Walls.
-*   **Scenario 10:** Massless Conformal Cyclic Reset (Sterile baseline progression).
-*   **Scenario 12:** Sterile Dynamic Vacuum Phase / Infinite Reset Loop.
+The operational state kernel maps all localized cosmic trajectories, hybrid confluence states, and simulation execution branches according to the official manuscript blueprints:
+
+*   **Scenario 0:** Global CPT Crossover Baseline. Perfect zero-sum energy preservation at the symmetric Ur-Genesis boundary node ($\hat{Q} |\Psi_{\text{Multiversum}}\rangle = 0$).
+*   **Scenario 1:** Primeval Topological Deflation Interface. Micro-delay evacuation triggering severe reverse metric drainage back into the parent cosmos. Locked via a mass-dependent suppression filter if Photon Collapse is absent.
+*   **Scenario 2:** Solitary/Isotropic Hierarchical Accretion. Metric progression driven by standalone, high-mass primordial nucleation seeds.
+*   **Scenario 3a:** Direct Conformal Protection Branch. Baseline stabilization path without radiative Higgs phase transitions.
+*   **Scenario 3b:** Advanced Conformal Protection under high-energy chiral torsion, forcing a localized charge-inversion cascade ($-t$) to generate an expanding antimatter universe.
+*   **Scenario 5:** Solitary Anchor Matrix with an active, expanding Pathway 3 Higgs phase-transition shockwave.
+*   **Scenario 6:** Multi-Core Cluster evolution via purely kinematic and relativistic slingshot dynamics ($v \approx 0.85\ c$).
+*   **Scenario 7.1:** Multi-Core Cluster with initial Oasis-density accumulation prior to high-energy core theft.
+*   **Scenario 7.2a:** Multi-Core Cluster tracking transitional relativistic slingshot metrics within localized pockets.
+*   **Scenario 7.2b / 7:** Multi-Core Cluster (High-tensile saturation). Triggers an omnidirectional thermodynamic repulsion forcing plasma into ultra-massive primordial "Oasis-Galaxies" ($\eta = 2.5 \cdot 10^{-9}$).
+*   **Scenario 8a:** Multi-Core Cluster experiencing symmetric, non-disruptive gravitational merging thresholds.
+*   **Scenario 8b:** Multi-Core Cluster undergoing asymmetric accretion collapse, generating localized topological metric tears.
+*   **Scenario 9:** Multi-Core Cluster with Radiative Perimeter Walls. Links a localized Scenario 1 metric drainage with a dynamic Higgs phase-transition shockwave footprint.
+*   **Scenario 10:** Massless Conformal Cyclic Reset. Sterile baseline progression where empty radiation fields without Photon Collapse collapse into a sterile pocket.
+*   **Scenario 12:** Sterile Dynamic Vacuum Phase / Infinite Reset Loop. Quantum tunneling activated at absolute zero-mass limit, injecting spectral baryon asymmetry.
+*   **Scenario 1 + Scenario 6 Confluence:** Tracks alternative hybrid trajectories with an observational mass profile error tolerance of $\pm 15\%$.
+*   **Addendum 1 Configurations:** Non-mandatory alternative paths. Active configurations enforce an instant CCC footprint ($\pm 1\%$ tolerance), whereas late aeon paths generate a delayed CCC footprint during mature macro-expansion eras (evaluated exemplarily at $\Delta t \sim 13.8$ Gyr for active observer horizons) via mechanical Timeline Displacement compression without a secondary Higgs transition.
+
+### Peer-Review Contact Registry
+If you encounter runtime inconsistencies, structural boundary vulnerabilities, or mathematical bugs within the state kernel execution, please submit your evaluation directly via encrypted communication:
+*   **Contact Address:** jakubczaderski.cinnamon@proton.me
+*   **Mandatory Subject Tag:** `#interactive code#`
