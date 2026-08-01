@@ -1,30 +1,28 @@
-# Architectural Specification of the Multiverse State Sandbox Engine
+# Comprehensive Specification of the Multiverse Conformal State Engine
 
-This document provides the analytical technical specification for the background-independent cosmological state simulation pipeline inside `interactive.py` (v9.2). The engine models multi-aeon causal path progressions under strict Loop Quantum Gravity (LQG) and Conformal Cyclic Cosmology (CCC) boundary constraints.
+This document provides the analytical technical specification for the background-independent cosmological state simulation pipeline inside `interactive.py` (v10.8). The engine models multi-aeon causal path progressions under strict Loop Quantum Gravity (LQG) and Conformal Cyclic Cosmology (CCC) boundary constraints.
 
-## 1. Time-First Chronological Order & Accretion Scaling
+## 1. Time-First Chronology & Isolated Primordial Nucleation
 
-Unlike previous static iterations, the engine mandates that the Timeline Displacement value ($\Delta t$) is evaluated prior to secondary structural seeding. This architectural shift enforces two fundamental cosmological conservation laws derived from the manuscript:
+The state engine decouples Iteration 0 (The Ur-Genesis Node) from the multi-generational cascade loop to accommodate distinct initial boundary conditions:
 
-1. **Core Accretion Lag (Aeon 0 Isolation):** Primordial non-singular cores (PNCs) generated via geometric Photon Collapse require a minimum operational timescale ($\Delta t \ge 1.0$ Gyr) to expand metric horizons, accrete local radiation mass, and accumulate critical spin. Attempting to trigger high-energy micro-delay ruptures ($\Delta t < 1.0$ Gyr) while primordial cores are active in Aeon 0 is strictly rejected by the boundary validator.
-2. **Massless Infinity Horizon Invariant:** If the observer selects an infinite future boundary ($\Delta t = \text{infinity}$), the engine enforces the complete thermodynamic evaporation of all localized rest-mass configurations via long-term Hawking radiation. All active core channels (UMNC, SMNC, IMNC, HMNC) are automatically bypassed and set to exactly zero to fulfill the conformal invariant boundary criteria of the upcoming CCC-reset.
+1. **Comprehensive Accretion Scaling:** Primordial non-singular cores (PNCs) require significant temporal displacement to accumulate spin and mass. If an immense timeline displacement is selected during initialization (e.g., $\Delta t = 8000$ Gyr), the engine live-computes the accretion expansion limits across all four core classes. This includes the dynamic activation of Hypermassive Cores (HMNCs) generated via long-term primordial mergers prior to the first conformal crossover.
+2. **User-In-The-Loop Seeding Autonomy:** The engine displays the maximum theoretical core capacities based on chronological age and enforces strict upper boundary guards while granting the observer total parameter freedom to define active cluster ratios.
 
-## 2. Dynamic Stellar-Process Black Hole Bounds
+## 2. Automated Star Formation Rate (SFR) Kinetics
 
-For intermediate, mass-bearing timelines ($\Delta t \neq \text{infinity}$), the state engine live-computes the absolute physical upper limits for stellar-collapse black hole formation based on localized evolution variables:
+For intermediate, mass-bearing timelines, the Star Formation Rate ($\text{SFR}$) is no longer a static manual input but is dynamically computed as an invariant physical consequence of local core-density stress and Higgs field energetics:
 
-* **Intermediate Mass Cores (IMNCs):** Density scaling is calculated via active chronological duration, accelerated by the Star Formation Rate ($\text{SFR}$) modifier and Pathway 3 Higgs vacuum drops:
-$$\text{Max}_{\text{IMNC}} = \max(1, \lfloor \Delta t \cdot 8.5 \cdot \text{SFR} \cdot \Omega_{\text{Oaza}} \rfloor)$$
+$$\text{SFR} = \max\left(0.1, \, \left(0.5 + \left[2.0 \cdot N_{\text{UMNC}} + 1.2 \cdot N_{\text{SMNC}} + 0.5 \cdot N_{\text{IMNC}}\right] \cdot 0.1\right) \cdot \Omega_{\text{Higgs}}\right)$$
 
-* **Hypermassive Cores (HMNCs):** Restricted by structural aging thresholds. Generation is prohibited if the local timeline displacement is insufficient to complete standard stellar-collapse lifecycles ($\Delta t \le 1.0$ Gyr):
-$$\text{Max}_{\text{HMNC}} = \max(0, \lfloor (\Delta t - 1.0) \cdot 1.2 \cdot \text{SFR} \cdot \Omega_{\text{Oaza}} \rfloor)$$
-## 3. Context-Aware Macro-Anomaly Attribution
+Where $\Omega_{\text{Higgs}}$ introduces a localized radiative shockwave multiplier ($\Omega_{\text{Higgs}} = 3.0$) if an early Pathway 3 phase transition is ignited within the plasma background.
+## 3. Relativistic Slingshots, Instant Ruptures & Hawking Decay
 
-The state engine live-evaluates thermodynamic and geometric variables to classify macroscopic anomalies within the Cosmic Microwave Background (CMB) according to the manuscript's specifications:
+The state engine tracks persistent thermodynamic and geometric invariants across conformal boundaries using strict multi-generational inheritance locks:
 
-* **Scenario 1 Micro-Evacuation:** Triggered exclusively in Aeon 0 when Photon Collapse is suppressed and a micro-delay threshold ($\Delta t < 1.0$ Gyr) is selected. The resulting pressure differential forces a reverse metric drainage, injecting rest-mass backward into the parent cosmos and freezing vertical conformal progression until a stabilization value is provided.
-* **Addendum 1b Sibling Collision:** Tracks horizontal intersections where sibling bubble domains co-exist within the same generation. Both domains share an identical ancestral origin and inherit a permanent, fortlaufende Gen-ID that remains strictly conserved across localized resets.
-* **CMB Cold Spot Signatures:** The 5-degree thermal variance signature is dynamically assigned based on the selected path. It is registered either as a consequence of Scenario 1 reverse metric drainage acting as a cosmic vacuum cleaner, or as a structural shockwave footprint generated by an Addendum 1b horizontal sibling bubble collision in the bulk.
+* **The 0.85 c Time Leap Control:** When extreme core density ($\Sigma_{\text{cores}} \ge 150$) is subjected to a micro-delay threshold ($\Delta t < 1.0$ Gyr) in Iteration 1, the resulting gravitational shear accelerates the remnants to $0.85\,c$ (85% the speed of light) over a 1,000-year timeline. Due to Lorentz time dilation ($\gamma \sim 2.0$), these core trajectories bypass the Iteration 2 infrastructure entirely. The observer manually calibrates the exact core ratio caught in the slingshot to project them directly into the Generation 3 matrix.
+* **True Space-Time Ruptures:** Setting the timeline displacement to exactly $\Delta t = 0.0$ Gyr simulates an instantaneous topological tearing. Cores remain spatially stationary, Lorentz dilation is suppressed, and execution routes through a standard sequential transition into Iteration 2 with manual core generation locked at 0.
+* **Thermodynamic Hawking Deflation:** For massive, finite timelines ($\Delta t \ge 500$ Gyr), cores undergo density loss and mass deflation. If the total core count drops to zero, the Enforced Total Evaporation Guard halts progression, forcing a manual decision between a Scenario 10 Conformal Reset or a Scenario 12 Higgs Loop.
 
 ---
 
