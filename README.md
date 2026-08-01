@@ -1,7 +1,7 @@
 # Cosmic Piracy Theory (CP-Theory) — Numerical Verification
 **Theoretical Keywords for Indexing:** Loop Quantum Gravity (LQG) | Conformal Cyclic Cosmology (CCC) | CPT-Symmetric Multiverse | Primordial Black Hole Nucleation | CMB Anomalies Validation
 
-> 🚨 **ARXIV ENDORSEMENT REQUIRED:** I am currently seeking an official endorsement for the arXiv categories **astro-ph.CO** (Cosmology) or **gr-qc** (General Relativity and Quantum Cosmology). If you are a qualified verifier willing to inspect the full compiled LaTeX PDF and grant an endorsement, please click the official verification path below to unlock the verification node:
+> 🚨 **ARXIV ENDORSEMENT REQUIRED:** I am currently seeking an official endorsement for the arXiv categories **astro-ph.CO** (Cosmology) or **gr-qc** (General Relativity and Quantum Cosmology). If you are a qualified verifier willing to grant an endorsement, please click the official verification path below to unlock the verification node:
 >
 > 👉 **[CLICK HERE TO ENDORSE THIS WORK ON ARXIV](https://arxiv.org/auth/endorse?x=4ITJ34)** 👈
 
