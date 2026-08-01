@@ -1,37 +1,40 @@
-# Multidimensional Architecture of the Causal Physics State Engine
+# Architectural Specification of the Multiverse State Sandbox Engine
 
-This document provides the formal technical specification for the advanced multi-aeon sandbox state engine inside `interactive.py` (v7.0). By tracking persistent thermodynamic and geometric invariants across conformal boundaries, the engine structurally validates multi-generational causal pathways defined in the Cosmic Piracy framework.
+This document provides the analytical technical specification for the background-independent cosmological state simulation pipeline inside `interactive.py` (v9.2). The engine models multi-aeon causal path progressions under strict Loop Quantum Gravity (LQG) and Conformal Cyclic Cosmology (CCC) boundary constraints.
 
-## 1. Automated Input Validation & Hard Boundary Guards
+## 1. Time-First Chronological Order & Accretion Scaling
 
-The state engine operates under strict physical conservation postulates. Any user-defined input combination that violates background-independent Loop Quantum Gravity (LQG) or global CPT-symmetry invariants is instantly rejected by the compiler to prevent unphysical execution branches:
+Unlike previous static iterations, the engine mandates that the Timeline Displacement value ($\Delta t$) is evaluated prior to secondary structural seeding. This architectural shift enforces two fundamental cosmological conservation laws derived from the manuscript:
 
-1. **Massless Non-Rupture Rejection:** Attempting to force a micro-delay timeline displacement ($\Delta t < 1.0$ Gyr) onto an unseeded, massless radiation background ($N_{\text{core}} = 0$) in multi-generational eras is prohibited. Localized topological graph disconnection requires extreme gravitational shear ($F_{\text{shear}} \ge \Sigma_{\text{max}}$), which cannot manifest without pre-existing core anomalies.
-2. **Sterile Accretion Rejection:** Initializing a multi-generational expanding cosmic timeline without a geometric Photon Collapse or structural core seeding is physically locked, as an empty expanding metric without anchors collapses sterile.
+1. **Core Accretion Lag (Aeon 0 Isolation):** Primordial non-singular cores (PNCs) generated via geometric Photon Collapse require a minimum operational timescale ($\Delta t \ge 1.0$ Gyr) to expand metric horizons, accrete local radiation mass, and accumulate critical spin. Attempting to trigger high-energy micro-delay ruptures ($\Delta t < 1.0$ Gyr) while primordial cores are active in Aeon 0 is strictly rejected by the boundary validator.
+2. **Massless Infinity Horizon Invariant:** If the observer selects an infinite future boundary ($\Delta t = \text{infinity}$), the engine enforces the complete thermodynamic evaporation of all localized rest-mass configurations via long-term Hawking radiation. All active core channels (UMNC, SMNC, IMNC, HMNC) are automatically bypassed and set to exactly zero to fulfill the conformal invariant boundary criteria of the upcoming CCC-reset.
 
-## 2. Dynamic Trapping & Causal Invariant Inheritance
+## 2. Dynamic Stellar-Process Black Hole Bounds
 
-The framework breaks standard linear cosmology by introducing bidirectional inheritance parameters between subsequent generations (Gen-ID matrices):
+For intermediate, mass-bearing timelines ($\Delta t \neq \text{infinity}$), the state engine live-computes the absolute physical upper limits for stellar-collapse black hole formation based on localized evolution variables:
 
-*   **Pathway 2 Core Inheritance:** If an asymmetric topological rupture is ignited in the preceding era, the exact number of non-singular cores is strictly pre-determined by the ancestry branch. The metric automatically anchors and locks the next iteration at a fixed saturation threshold (e.g., $N_{\text{core}} = 29$ or $110$) to simulate post-Newtonian slingshot dynamics.
-*   **Scenario 1 Gravitational Postponement:** If a micro-delay evacuation occurs in Aeon 0 on a massless background, the reverse metric drainage acts as a cosmic vacuum cleaner, pulling high-energy plasma backward into the parent cosmos. Because a standard Conformal Cyclic Cosmology (CCC) reset requires absolute masslessness, this mass import forces a structural postponement of the boundary scaling. The engine freezes vertical progression until a dedicated finite timeline stabilization value is manually injected.
-## 3. Context-Aware Macro-Anomaly & Addenda Recognition
+* **Intermediate Mass Cores (IMNCs):** Density scaling is calculated via active chronological duration, accelerated by the Star Formation Rate ($\text{SFR}$) modifier and Pathway 3 Higgs vacuum drops:
+$$\text{Max}_{\text{IMNC}} = \max(1, \lfloor \Delta t \cdot 8.5 \cdot \text{SFR} \cdot \Omega_{\text{Oaza}} \rfloor)$$
 
-The state engine cross-references the thermodynamic energy parameters live during runtime to classify macroscopic perturbations within the Cosmic Microwave Background (CMB) according to the manuscript's architectural specifications:
+* **Hypermassive Cores (HMNCs):** Restricted by structural aging thresholds. Generation is prohibited if the local timeline displacement is insufficient to complete standard stellar-collapse lifecycles ($\Delta t \le 1.0$ Gyr):
+$$\text{Max}_{\text{HMNC}} = \max(0, \lfloor (\Delta t - 1.0) \cdot 1.2 \cdot \text{SFR} \cdot \Omega_{\text{Oaza}} \rfloor)$$
+## 3. Context-Aware Macro-Anomaly Attribution
 
-*   **Addendum 1a (Vertical Coupling):** Tracks vertical Trans-Aeon boundary intersections between parent and child metrics across extreme scale limits.
-*   **Addendum 1b (Horizontal Intersections):** Triggered when a parallel sibling bubble universe co-exists within the same generation. Both domains share an identical ancestral origin and inherit a permanent, fortlaufende Gen-ID that remains strictly conserved across localized cyclic resets.
-*   **Dynamic CMB Cold Spot Attribution:** The 5-degree thermal variance signature is dynamically evaluated based on the active path. It is registered either as a consequence of Scenario 1 metric drainage (reverse plasma evacuation into an old-aeon giant void) or as a structural shockwave footprint generated by an Addendum 1b horizontal sibling bubble collision in the bulk.
+The state engine live-evaluates thermodynamic and geometric variables to classify macroscopic anomalies within the Cosmic Microwave Background (CMB) according to the manuscript's specifications:
+
+* **Scenario 1 Micro-Evacuation:** Triggered exclusively in Aeon 0 when Photon Collapse is suppressed and a micro-delay threshold ($\Delta t < 1.0$ Gyr) is selected. The resulting pressure differential forces a reverse metric drainage, injecting rest-mass backward into the parent cosmos and freezing vertical conformal progression until a stabilization value is provided.
+* **Addendum 1b Sibling Collision:** Tracks horizontal intersections where sibling bubble domains co-exist within the same generation. Both domains share an identical ancestral origin and inherit a permanent, fortlaufende Gen-ID that remains strictly conserved across localized resets.
+* **CMB Cold Spot Signatures:** The 5-degree thermal variance signature is dynamically assigned based on the selected path. It is registered either as a consequence of Scenario 1 reverse metric drainage acting as a cosmic vacuum cleaner, or as a structural shockwave footprint generated by an Addendum 1b horizontal sibling bubble collision in the bulk.
 
 ---
 
-## 📬 International Peer-Review & Call for Contributions
+## International Peer-Review & Call for Contributions
 
 This framework is built upon rigorous, background-independent open-source logic. To accelerate the resolution of contemporary cosmological anomalies and maintain absolute mathematical completeness, the international physics community is explicitly invited to stress-test the state engine.
 
 If you encounter any logical inconsistencies, structural boundary vulnerabilities, or mathematical feedback regarding the execution matrix of `interactive.py`, please submit your evaluation directly via encrypted communication:
 
-*   **Contact Registry:** jakubczaderski.cinnamon@proton.me
-*   **Required Subject Tag:** `#interactive code#`
+* **Contact Registry:** jakubczaderski.cinnamon@proton.me
+* **Required Subject Tag:** `#interactive code#`
 
 *Note: Submissions utilizing the specified tag will be queued automatically for algorithmic validation and integrated into subsequent generational updates of the 12-scenario cosmological matrix.*
