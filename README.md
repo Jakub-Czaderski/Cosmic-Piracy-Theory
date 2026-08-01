@@ -58,34 +58,28 @@ Crucially, this architecture resolves the paradox of time perception via **Timel
 
 ## Technical Appendix: Structural Code Blueprint Mapping
 
-The open-source numerical verification pipeline (`cosmic_piracy_simulation.py`) live-evaluates the continuous thermodynamic and geometric variables to map continuous cosmic trajectories directly to the official manuscript blueprints. The mathematical community is invited to utilize this foundational framework to develop multi-branch timeline logs or macro-geometric projection sheets atop these physics criteria:
+The open-source numerical verification pipeline (`cosmic_piracy_simulation.py`) live-evaluates the continuous thermodynamic and geometric variables to map cosmic trajectories directly to the official manuscript blueprints:
 
-*   **Scenario 0:** Global CPT Crossover Baseline. Perfect zero-sum energy preservation at the symmetric Ur-Genesis boundary node ($\hat{Q} |\Psi_{\text{Multiversum}}\rangle = 0$).
-*   **Scenario 1:** Primeval Topological Deflation Interface. Micro-delay evacuation triggering severe reverse metric drainage back into the parent cosmos. Locked via a mass-dependent suppression filter if Photon Collapse is absent.
-*   **Scenario 2:** Solitary/Isotropic Hierarchical Accretion. Metric progression driven by standalone, high-mass primordial nucleation seeds.
-*   **Scenario 3a:** Direct Conformal Protection Branch. Baseline stabilization path without radiative Higgs phase transitions.
-*   **Scenario 3b:** Advanced Conformal Protection under high-energy chiral torsion, forcing a localized charge-inversion cascade ($-t$) to generate an expanding antimatter universe.
-*   **Scenario 5:** Solitary Anchor Matrix with an active, expanding Pathway 3 Higgs phase-transition shockwave.
-*   **Scenario 6:** Multi-Core Cluster evolution via purely kinematic and relativistic slingshot dynamics ($v \approx 0.85\ c$).
-*   **Scenario 7.1:** Multi-Core Cluster with initial Oasis-density accumulation prior to high-energy core theft.
-*   **Scenario 7.2a:** Multi-Core Cluster tracking transitional relativistic slingshot metrics within localized pockets.
-*   **Scenario 7.2b / 7:** Multi-Core Cluster (High-tensile saturation). Triggers an omnidirectional thermodynamic repulsion forcing plasma into ultra-massive primordial "Oasis-Galaxies" ($\eta = 2.5 \cdot 10^{-9}$).
-*   **Scenario 8a:** Multi-Core Cluster experiencing symmetric, non-disruptive gravitational merging thresholds.
-*   **Scenario 8b:** Multi-Core Cluster undergoing asymmetric accretion collapse, generating localized topological metric tears.
-*   **Scenario 9:** Multi-Core Cluster with Radiative Perimeter Walls. Links a localized Scenario 1 metric drainage with a dynamic Higgs phase-transition shockwave footprint.
-*   **Scenario 10:** Massless Conformal Cyclic Reset. Sterile baseline progression where empty radiation fields without Photon Collapse collapse into a sterile pocket.
-*   **Scenario 12:** Sterile Dynamic Vacuum Phase / Infinite Reset Loop. Quantum tunneling activated at absolute zero-mass limit, injecting spectral baryon asymmetry.
-*   **Scenario 1 + other Scenario Confluence:** Tracks alternative hybrid trajectories with an observational mass profile error tolerance of $\pm 15\%$.
+*   **Scenario 0:** Global CPT-Conservation Boundary.
+*   **Scenario 1:** Primeval Topological Deflation Interface.
+*   **Scenario 3b:** Advanced Conformal Protection Branch.
+*   **Scenario 5:** Solitary Anchor Matrix.
+*   **Scenario 6:** Multi-Core Cluster Baseline.
+*   **Scenario 7.2b:** High-Tensile Saturation Boundary.
+*   **Scenario 9:** Modular Hybrid Macro-Anomaly.
+*   **Scenario 1 + Scenario 6 Confluence:** Hybrid Trajectory Matrix.
+*   **Addendum 1 Configurations:** Non-Mandatory Alternative Evolutionary Paths.
 
 ---
 
 ## Formal Glossary of the Cosmic Piracy Framework
 
-*   **UMNC (Ultramassive Non-Singular Core):** Primordial anchoring structures formed during the geometric Photon Collapse at the boundary layer of Iteration 0, possessing a saturated holographic spin-density limit ($\Sigma \to \Sigma_{\text{max}}$).
-*   **SMNC (Supermassive Non-Singular Core):** Secondary mass-bearing anomalies manifesting via direct primordial nucleation or high-tensile shear mutations under Pathway 2.
-*   **IMNC (Intermediate Mass Non-Singular Core):** Dynamic, time-dependent black hole configurations generated primarily through stellar-collapse pathways, requiring a minimum timeline scale ($\Delta t \ge 1.0$ Gyr) to accumulate critical mass via core accretion scaling.
-*   **HMNC (Hypermassive Non-Singular Core):** Advanced cosmological merger profiles representing ultra-dense clusters requiring prolonged chronological aging intervals and accelerated Star Formation Rates.
-*   **Gen-ID (Generational Identifier):** A strictly conserved, algebraic tracker that monitors the absolute ancestral progression of the cosmos across linear crossovers and branching events.
-*   **0.85 c Slingshot Leap Control:** A localized kinematic anomaly where extreme core density ($\Sigma_{\text{cores}} \ge 150$) under a micro-delay threshold induces a Lorentz time dilation factor ($\gamma \sim 2.0$), forcing co-moving trajectories to bypass Iteration 2 and project directly into Generation 3 via calibrated structural cluster distributions.
-*   **Chronology Override Holonomy:** An algebraic intersection node within the state kernel, allowing the simulation to actively layer subsequent perturbations directly into an active generation branch ("Add and follow consecutive event") or execute a smooth standard cyclic shift.
-*   **Thermodynamic Hawking Deflation:** For massive, finite timelines ($\Delta t \ge 500$ Gyr), cores undergo mass deflation and core density loss. If total active cores reach zero, the Enforced Total Evaporation Guard halts progression to force an absolute metric path correction matrix.
+This appendix establishes the strict, analytical definitions for the thermodynamic, geometric, and algebraic parameters of the framework:
+
+*   **UMNC (Ultramassive Non-Singular Core):** Highest-order primordial anchoring structures formed during the geometric Photon Collapse at the boundary layer of Iteration 0, characterized by a saturated holographic spin-density limit.
+*   **SMNC (Supermassive Non-Singular Core):** Lighter satellite cores expelled out of the central cluster throat at exactly $0.85\ c$ via a semi-classical quantum bounce.
+*   **Pathway 1:** Standard Conformal Reset. A smooth, continuous cosmic transition at the future boundary preserving global scale-invariance.
+*   **Pathway 2:** Localized Topological Detachment. The slicing of an autonomous 4D sub-manifold into a newborn bubble universe via a non-continuous topological holonomy boundary interface.
+*   **Pathway 3:** Higgs-Induced Conformal Phase Transition. A geometrically triggered vacuum drop unleashing an isotropic radiative shockwave that redefines local mass-coupling constants.
+*   **$\Omega_{\text{Oaza}}$ (Oasis Density Scaling Factor):** Scale-invariant thermodynamic compression factor fixated at exactly $2.5$.
+*   **Timeline Displacement:** A localized macro-collision that forcefully displaces matter purely via kinetic and mechanical compression during mature macro-expansion eras.
