@@ -21,8 +21,8 @@ The attached Python script (`cosmic_piracy_simulation.py`) models the multi-gene
 1. **Scenario 0 (Global CPT-Conservation Boundary):** Validates the net-zero energy preservation condition at the symmetric Ur-Genesis crossover via Equation (1). The global quantum state remains a perfect zero-sum equation, ensuring that energy deflation in one sector balances the CPT-conjugate domain:
 $$\hat{Q} |\Psi_{\text{Multiversum}}\rangle = \hat{Q} (|\psi_{+\text{t}}\rangle + |\psi^{-\text{t}}\rangle) = 0$$
 
-2. **Relativistic Slingshot Velocity (Pathway 2 via Event 2):** Models the effective semi-classical quantum bounce that expels lighter satellite cores (SMNCs) out of the central cluster throat at exactly $0.85\ c$ via Equation (4), accounting for a $\gamma \approx 1.90$ Lorentz mass inflation dynamically balanced by Active Core Metric auxiliary shielding anchors:
-$$v = \sqrt{\frac{2 \cdot G \cdot M_{\text{UMNC}}}{R_{\text{Krit}}}} \approx 0.85\ c$$
+2. **Relativistic Slingshot Velocity (Pathway 2 via Event 2):** Models the effective semi-classical quantum bounce that expels lighter satellite cores (SMNCs) out of the central cluster throat at exactly $0.85\ c$ via Equation (4), incorporating the invariant LQG auxiliary shielding metric modifier ($\zeta \approx 0.9031$) to dynamically balance the $\gamma \approx 1.90$ Lorentz mass inflation:
+$$v = \sqrt{\zeta \cdot \frac{2 \cdot G \cdot M_{\text{UMNC}}}{R_{\text{Krit}}}} \approx 0.85\ c$$
 
 3. **Baryon-Asymmetry Oasis Density & Coupled Filtering (Pathway 3):** Evaluates the scale-invariant thermodynamic compression factor ($\Omega_{\text{Oaza}} = 2.5$). The model eliminates anthropic fine-tuning by introducing a dual-stage filter: the mechanical LQG tensile limit ($\Sigma_{\text{max}}$) dictates the minimum plasma capture, while the rigid, invariant energy threshold of the Higgs vacuum decay locks the subsequent shockwave compression, yielding a true integrated density of $2.5 \times 10^{-9}$:
 $$\eta = \frac{n_B - n_{\bar{B}}}{n_\gamma} = 10^{-9} \cdot \Omega_{\text{Oaza}} = 2.5 \cdot 10^{-9}$$
@@ -39,7 +39,6 @@ Validates the Axis of Evil (chiral rotation axis via extremal Kerr spin $a_* \ap
 
 ### 3. Trans-Cosmic Resonance and Structural Boundary Vulnerabilities
 Proves that newly isolated spin-network domains capture an instantaneous, high-density plasma injection precisely at the temporal node of separation, remaining mathematically bound via permanent quantum boundary entanglement across coordinates surviving global conformal resets.
-
 ### 4. Primordial Hyper-Acceleration and the JWST Growth Paradox
 Compresses the timeline down to several million years via an omnidirectional thermodynamic repulsion within Scenario 7.1, Scenario 7.2a, and Scenario 7.2b. This forces plasma into a dense co-moving ring of ultra-massive primordial "Oasis-Galaxies."
 
@@ -53,3 +52,38 @@ This framework proves that localized vacuum transitions triggered at the event h
 Crucially, via the global CPT state equation (Eq. 1), this mechanism permits a localized charge-inversion cascade within the boundaries of all high-energy trajectories utilizing the Pathway 3 thermodynamic filter (specifically **Scenario 3b, Scenario 5, Scenario 7.2b, and Scenario 9**). Extreme chiral torsion within the active core metric funnels an antimatter-dominated fraction across the temporary boundary node, forcing the newborn sub-manifold to invert its temporal vector ($-t$). This generates an expanding antimatter daughter universe carrying the exact structural "genetic" scars inherited from the parent matter aeon, rendering the process structurally non-destructive and perfectly balanced.
 
 Crucially, this architecture resolves the paradox of time perception via **Timeline Displacement**. In a completely mass-free cosmos, the lack of operational scale reduces eternity to an instantaneous transition. Via persistent quantum boundary entanglement, the non-local link across the ancestral coordinate intersection survives global CCC resets. The LQG spin-network coordinates remain structurally phase-locked across generations, operating as a permanent causal anchor that allows Addendum 1 to trigger without breaking macro-causality, maintaining a perfect equilibrium between opposite temporal vectors.
+
+---
+
+## Technical Appendix: Structural Code Blueprint Mapping
+
+The open-source numerical verification pipeline (`cosmic_piracy_simulation.py`) live-evaluates the continuous thermodynamic and geometric variables to map cosmic trajectories directly to the official manuscript blueprints:
+
+*   **Scenario 0:** Global CPT-Conservation Boundary.
+*   **Scenario 1:** Primeval Topological Deflation Interface.
+*   **Scenario 3b:** Advanced Conformal Protection Branch.
+*   **Scenario 5:** Solitary Anchor Matrix.
+*   **Scenario 6:** Multi-Core Cluster Baseline.
+*   **Scenario 7.2b:** High-Tensile Saturation Boundary.
+*   **Scenario 9:** Modular Hybrid Macro-Anomaly.
+*   **Scenario 1 + Scenario 6 Confluence:** Hybrid Trajectory Matrix.
+*   **Addendum 1 Configurations:** Non-Mandatory Alternative Evolutionary Paths.
+
+---
+
+## Formal Glossary of the Cosmic Piracy Framework
+
+This appendix establishes the strict, analytical definitions for the thermodynamic, geometric, and algebraic parameters of the framework:
+
+*   **UMNC (Ultramassive Non-Singular Core):** Highest-order primordial anchoring structures formed during the geometric Photon Collapse at the boundary layer of Iteration 0, characterized by a saturated holographic spin-density limit.
+*   **SMNC (Supermassive Non-Singular Core):** Lighter satellite cores expelled out of the central cluster throat at exactly $0.85\ c$ via a semi-classical quantum bounce.
+*   **Pathway 1:** Standard Conformal Reset. A smooth, continuous cosmic transition at the future boundary preserving global scale-invariance.
+*   **Pathway 2:** Localized Topological Detachment. The slicing of an autonomous 4D sub-manifold into a newborn bubble universe via a non-continuous topological holonomy boundary interface.
+*   **Pathway 3:** Higgs-Induced Conformal Phase Transition. A geometrically triggered vacuum drop unleashing an isotropic radiative shockwave that redefines local mass-coupling constants.
+*   **$\Omega_{\text{Oaza}}$ (Oasis Density Scaling Factor):** Scale-invariant thermodynamic compression factor fixated at exactly $2.5$.
+*   **Timeline Displacement:** A localized macro-collision that forcefully displaces matter purely via kinetic and mechanical compression during mature macro-expansion eras.
+
+### Peer-Review Contact Registry
+If you encounter mathematical inconsistencies, structural boundary vulnerabilities, or theoretical contradictions within the framework or its underlying matrix, please submit your full evaluation directly via encrypted communication:
+*   **Contact Address:** jakubczaderski.cinnamon@proton.me
+*   **Mandatory Subject Tag:** `#manuscript review#`
