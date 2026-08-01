@@ -1,3 +1,36 @@
+# Formal Glossary of the Cosmological State Kernel
+
+This document establishes the strict thermodynamic, geometric, and algebraic definitions for the invariant parameters utilized within the `interactive.py` state machine. All metrics are grounded in background-independent Loop Quantum Gravity (LQG) holonomies and Conformal Cyclic Cosmology (CCC) boundary crossovers.
+
+## 1. Primordial and Stellar-Collapse Core Invariants
+
+The framework categorizes non-singular core configurations (PNCs) into four distinct mass-bearing profiles based on their chronological nucleation mechanics and spin-saturation thresholds:
+
+*   **UMNC (Ultramassive Non-Singular Core):** The highest-order primordial anchoring structures. Formed during the early quantum-geometric Photon Collapse at the absolute boundary layer of Iteration 0. UMNCs possess a saturated holographic spin-density limit ($\Sigma \to \Sigma_{\text{max}}$) and act as primary gravitational stabilizers that withstand high-tensile conformal shear stress during cosmic crossovers.
+*   **SMNC (Supermassive Non-Singular Core):** Secondary mass-bearing metric anomalies. SMNCs manifest either through direct primordial nucleation or as a consequence of high-tensile shear mutations via Pathway 2. During a micro-delay timeline displacement ($\Delta t < 1.0$ Gyr), co-moving stellar-process cores are compressed and forced into the Supermassive SMNC matrix due to the localized collapse of the surrounding LQG network.
+*   **IMNC (Intermediate Mass Non-Singular Core):** Dynamic, time-dependent black hole configurations generated primarily through stellar-collapse pathways. IMNC density requires a minimum operational timescale ($\Delta t \ge 1.0$ Gyr) to accumulate critical mass via the core accretion scaling laws. IMNC formation is physically suppressed during rapid space-time ruptures.
+*   **HMNC (Hypermassive Non-Singular Core):** Advanced cosmological merger profiles. HMNCs represent ultra-dense core clusters that require prolonged chronological aging intervals and accelerated Star Formation Rates to complete standard stellar-collapse lifecycles and subsequent hierarchy mergers.
+## 2. Kinetic and Kinematic Process Variables
+
+*   **SFR (Star Formation Rate):** A dynamically calculated environmental parameter within the state machine. The rate of stellar-collapse core generation is mathematically driven by active core-density stress fractions and accelerated by radiative shockwaves from early Pathway 3 Higgs vacuum drops.
+*   **Conformal Crossover:** The background-independent transition boundary between subsequent cosmic generations. At this junction, the geometric metric rescales, local rest-mass configurations evaporate, and invariant gravitational stems are transferred into the next iteration layer.
+*   **0.85 c Relativistic Slingshot:** A localized kinematic anomaly triggered when high core density is subjected to a micro-delay threshold. The immense gravitational shear forces accelerate the core network to 85% the speed of light, inducing a Lorentz time dilation factor ($\gamma \sim 2.0$) that forces the co-moving trajectories to bypass the immediate chronological iteration infrastructure and project directly into Generation 3.
+
+---
+
+## Technical Appendix: Structural Code Blueprint Mapping
+
+For cross-referencing during core validation runs, the state engine maps user execution routes directly to the official manuscript blueprints:
+*   **Scenario 0:** Global CPT Crossover Baseline (Stable long-term expansion).
+*   **Scenario 1:** Primeval Topological Deflation Interface (Mass drainage backflow).
+*   **Scenario 2:** Solitary/Isotropic Hierarchical Accretion.
+*   **Scenario 3b:** Conformal Protection Branch.
+*   **Scenario 5:** Solitary Anchor with Active Higgs Shockwave.
+*   **Scenario 6:** Multi-Core Cluster via Pure Relativistic Slingshot.
+*   **Scenario 7:** Multi-Core Cluster (High-tensile saturation).
+*   **Scenario 9:** Multi-Core Cluster with Radiative Perimeter Walls.
+*   **Scenario 10:** Massless Conformal Cyclic Reset (Sterile baseline progression).
+*   **Scenario 12:** Sterile Dynamic Vacuum Phase / Infinite Reset Loop.
 # Architectural Specification of the Cosmological State Simulation Kernel
 
 This document provides the analytical technical specification for the background-independent cosmological state simulation kernel inside `interactive.py. The core pipeline models multi-aeon causal path progressions under strict Loop Quantum Gravity (LQG) and Conformal Cyclic Cosmology (CCC) boundary constraints.
