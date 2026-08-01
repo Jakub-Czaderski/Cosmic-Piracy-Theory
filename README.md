@@ -27,8 +27,9 @@ $$v = \sqrt{\frac{2 \cdot G \cdot M_{\text{UMNC}}}{R_{\text{Krit}}}} \approx 0.8
 3. **Baryon-Asymmetry Oasis Density & Coupled Filtering (Pathway 3):** Evaluates the scale-invariant thermodynamic compression factor ($\Omega_{\text{Oaza}} = 2.5$). The model eliminates anthropic fine-tuning by introducing a dual-stage filter: the mechanical LQG tensile limit ($\Sigma_{\text{max}}$) dictates the minimum plasma capture, while the rigid, invariant energy threshold of the Higgs vacuum decay locks the subsequent shockwave compression, yielding a true integrated density of $2.5 \times 10^{-9}$:
 $$\eta = \frac{n_B - n_{\bar{B}}}{n_\gamma} = 10^{-9} \cdot \Omega_{\text{Oaza}} = 2.5 \cdot 10^{-9}$$
 
-## Theoretical Extensions and Falsifiable Predictions (5-Fold Architecture)
-The full theoretical manuscript structures the cosmological implications across five core sub-sections, completely verified within this repository's logical pipeline:
+## Discussions and Falsifiable Predictions
+
+The full theoretical manuscript structures the cosmological implications and observational footprints across five core sub-sections:
 
 ### 1. Mathematical Ideas Behind the Theory
 Integrates the discrete spin-network fabric of LQG with CPT-Symmetric Multiverse Topology. Metric drainage is resolved via a non-continuous topological holonomy boundary interface linking the participating manifolds.
@@ -38,11 +39,12 @@ Validates the Axis of Evil (chiral rotation axis via extremal Kerr spin $a_* \ap
 
 ### 3. Trans-Cosmic Resonance and Structural Boundary Vulnerabilities
 Proves that newly isolated spin-network domains capture an instantaneous, high-density plasma injection precisely at the temporal node of separation, remaining mathematically bound via permanent quantum boundary entanglement across coordinates surviving global conformal resets.
+
 ### 4. Primordial Hyper-Acceleration and the JWST Growth Paradox
 Compresses the timeline down to several million years via an omnidirectional thermodynamic repulsion within Scenario 7.1, Scenario 7.2a, and Scenario 7.2b. This forces plasma into a dense co-moving ring of ultra-massive primordial "Oasis-Galaxies."
 
 ### 5. The Evolution of Primordial Seeding & Preserved Error Tolerances
-Details alternative benchmarks for hybrid trajectories (Scenario X): a Scenario 1 + Scenario 6 confluence tracks an observational mass profile error tolerance of $\pm 15\%$. Conversely, Addendum 1 evolutionary paths are non-mandatory: a configuration utilizing the last non-singular cores enforces an instant CCC footprint ($\pm 1\%$ tolerance), whereas a late aeon configuration generates a delayed CCC footprint during mature macro-expansion eras (evaluated exemplarily at $\Delta t \sim 13.8$ Gyr for active observer horizons) via mechanical **Timeline Displacement** compression without a secondary Higgs transition, forcefully displacing matter and imprinting the $5^{\circ}$ CMB Cold Spot anomaly.
+Details alternative benchmarks for hybrid trajectories (Scenario X): a Scenario 1 + Scenario 6 confluence tracks an observational mass profile error tolerance of $\pm 15\%$. Conversely, Addendum 1 evolutionary paths are non-mandatory: a configuration utilizing the last non-singular cores enforces an instant CCC footprint ($\pm 1\%$ tolerance), whereas late aeon paths generate a delayed CCC footprint during mature macro-expansion eras (evaluated exemplarily at $\Delta t \sim 13.8$ Gyr for active observer horizons) via mechanical **Timeline Displacement** compression without a secondary Higgs transition, forcefully displacing matter and imprinting the $5^{\circ}$ CMB Cold Spot anomaly.
 
 ## Relativistic Horizon Safety and Conformal Stability
 
