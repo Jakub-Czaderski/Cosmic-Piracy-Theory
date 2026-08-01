@@ -11,7 +11,7 @@ def launch_ultimate_multiverse():
     print("    |  |____ |  `--'  |     |  |     |  `--'  | |  |____ |  |____ ")
     print("     \\______| \\______/      |__|      \\______/  |_______| \\______|")
     print("=====================================================================")
-    print("          COSMIC PIRACY MULTIVERSE STATE ENGINE - v11.2")
+    print("          COSMIC PIRACY MULTIVERSE STATE KERNEL - v11.3")
     print("          Mass-Dependent Scenario 1 Suppression & Invariant Guards")
     print("=====================================================================\n")
 
@@ -38,16 +38,16 @@ def launch_ultimate_multiverse():
     while current_aeon < total_aeons:
         
         # ===========================================================================
-        # ISOLATED NODE FOR AEON 0 INITIALIZATION (WITH RIGOROUS SUPPRESSION LAWS)
+        # ISOLATED NODE FOR AEON 0 INITIALIZATION (STRICT ENGLISH STATE ENGINE)
         # ===========================================================================
         if current_aeon == 0:
             print("\n" + "="*75)
             print(f"ITERATION 0 (GEN-ID: {aeon_generation_number}) - INITIAL UR-GENESIS BOUNDARY LAYER")
             print("="*75)
             
-            # Gravitational lock triggers ONLY if real mass backflow exists
             if cold_spot_active_from_previous:
                 print("\n⏳ [GRAVITATIONAL LOCK] Reverse Metric Drainage active from Scenario 1 plasma backflow.")
+                print("   The parent cosmos requires stabilization before Ur-Genesis can re-initialize.")
                 while True:
                     drainage_input = input("   -> Enter finite stabilization displacement (in Gyr, e.g., 13.8): ")
                     try:
@@ -78,7 +78,6 @@ def launch_ultimate_multiverse():
                     is_low_value = False
                     numeric_value = None
 
-                # Massless background has NO accretion lag constraint
                 if photon_collapse and is_low_value and numeric_value != 0.0:
                     print("\n[REJECTION] Core Accretion Lag: Primordial seeds require minimum operational timescales.\n")
                     continue
@@ -90,7 +89,6 @@ def launch_ultimate_multiverse():
             else:
                 higgs_probability_aeon0 = 1.0 if (is_infinity and input("-> Insert intermediate Higgs vacuum decay during transition? (y/n, Default=n): ").lower().strip() == 'y') else 0.0
 
-            # SEED EXTRACTION: Forced to absolute zero if no photon collapse occurred
             if is_infinity or not photon_collapse:
                 if is_infinity and photon_collapse:
                     print("[NOTICE] Future infinity boundary reached. All localized cores completely evaporated.")
@@ -98,7 +96,7 @@ def launch_ultimate_multiverse():
                     print("[NOTICE] Pure massless radiation background locked. Core counts forced to 0.")
                 umnc_aeon0, smnc_aeon0, imnc_aeon0, hmnc_aeon0 = 0, 0, 0, 0
             else:
-                time_factor = numeric_value if numeric_value_value is not None else 13.8
+                time_factor = numeric_value if numeric_value is not None else 13.8
                 higgs_boost = 2.5 if higgs_probability_aeon0 >= 0.5 else 1.0
                 max_aeon0_umnc = max(1, int(time_factor * 0.15 * higgs_boost))
                 max_aeon0_smnc = max(2, int(time_factor * 0.35 * higgs_boost))
@@ -122,7 +120,6 @@ def launch_ultimate_multiverse():
             print(f"\n[TIMELINE] Target parameter locked at: {displacement_input}")
             print(f"[METRIC] Active grid processing total of {total_cores_aeon0} cores.")
             
-            # KORREKTUR: Scenario 1 wird NUR getriggert, wenn Photon Collapse AKTIV war und echte Kerne existieren!
             if photon_collapse and is_low_value:
                 print("[ALERT] Micro-delay event matching active mass seeds. Scenario 1 triggered!")
                 cold_spot_active_from_previous = True
@@ -142,7 +139,6 @@ def launch_ultimate_multiverse():
 
             print("\n[EVOLUTION] Aeon 0 terminates via Conformal Crossover.")
             
-            # KORREKTUR: Der Rücksturz-Guard greift ebenfalls nur bei echten Massen-Scherkräften!
             if photon_collapse and is_low_value:
                 print("\n[RE-ROUTING] Conformal progression denied due to mass drain backflow. Re-executing Aeon 0...\n")
                 current_aeon = 0  
@@ -403,7 +399,7 @@ def launch_ultimate_multiverse():
         time.sleep(0.4)
 
     print("\n=====================================================================")
-    print(" STATE ENGINE RUN COMPLETE: ALL SCENARIOS AND KAUSAL-PATHS VALIDATED")
+    print(" STATE KERNEL RUN COMPLETE: ALL SCENARIOS AND KAUSAL-PATHS VALIDATED")
     print("=====================================================================\n")
 
 if __name__ == "__main__":
