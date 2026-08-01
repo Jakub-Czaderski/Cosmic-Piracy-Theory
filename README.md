@@ -75,7 +75,7 @@ The open-source numerical verification pipeline (`cosmic_piracy_simulation.py`) 
 *   **Scenario 9:** Multi-Core Cluster with Radiative Perimeter Walls. Links a localized Scenario 1 metric drainage with a dynamic Higgs phase-transition shockwave footprint.
 *   **Scenario 10:** Massless Conformal Cyclic Reset. Sterile baseline progression where empty radiation fields without Photon Collapse collapse into a sterile pocket.
 *   **Scenario 12:** Sterile Dynamic Vacuum Phase / Infinite Reset Loop. Quantum tunneling activated at absolute zero-mass limit, injecting spectral baryon asymmetry.
-*   **Scenario 1 + Scenario 6 Confluence:** Tracks alternative hybrid trajectories with an observational mass profile error tolerance of $\pm 15\%$.
+*   **Scenario 1 + other Scenario Confluence:** Tracks alternative hybrid trajectories with an observational mass profile error tolerance of $\pm 15\%$.
 
 ---
 
