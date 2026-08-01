@@ -1,6 +1,6 @@
 # Architectural Specification of the Cosmological State Simulation Kernel
 
-This document provides the analytical technical specification for the background-independent cosmological state simulation kernel inside `interactive.py` (v11.2). The core pipeline models multi-aeon causal path progressions under strict Loop Quantum Gravity (LQG) and Conformal Cyclic Cosmology (CCC) boundary constraints.
+This document provides the analytical technical specification for the background-independent cosmological state simulation kernel inside `interactive.py. The core pipeline models multi-aeon causal path progressions under strict Loop Quantum Gravity (LQG) and Conformal Cyclic Cosmology (CCC) boundary constraints.
 
 ## 1. Modular Kernel Design & Open-Source Fork Invitation
 
