@@ -38,16 +38,16 @@ def run_interactive_sandbox():
     print(" |  |____ |  `--'  | |  |  |  | |  | |  |____   |  `--'  | |  | ")
     print("  \\______| \\______/  |__|  |__| |__|  \\______|   \\______/  |__| ")
     print("=====================================================================")
-    print("        COSMIC PIRACY SIMULATION - STATE ENGINE v26.4 (REFINED)")
-    print("        ASCII Core Layout & Zero-Constraint Developer Overrides")
+    print("        COSMIC PIRACY SIMULATION - STATE ENGINE v26.9 (ABSOLUTE ZERO)")
+    print("        ASCII Core Layout & Dynamic Zero-Invariants Triggered")
     print("=====================================================================\n")
     
-    # Astrophysical initialization: No stars or mergers exist in the initial infant phase
+    # Astrophysical initialization: ALL fields dynamically start at absolute zero baseline
     current_generation = 0
-    n_umnc = 5      # Inherited primordial anchor seeds
-    n_smnc = 120    # Inherited primordial satellite seeds
-    n_imnc = 0      # Dynamic stellar collapse cores (generated over time via SFR)
-    n_hmnc = 0      # Hypermassive merger anchors (generated via consecutive slicing)
+    n_umnc = 0      # NO hardcoded anchors inherited by default
+    n_smnc = 0      # NO ghost satellites
+    n_imnc = 0      
+    n_hmnc = 0      
     
     # Boundary gate flags initialized for Aeon 0 routing
     pathway_2_allowed = False
@@ -56,59 +56,118 @@ def run_interactive_sandbox():
     addendum_1_ccc_exchange_allowed = False
     cpt_chiral_inversion_active = False
     timeline_displacement_risk = False
-
-    # 1. SCENARIO 0 INITIALIZATION PROFILE
-    print("[INPUT] Initialize at Scenario 0 (Global CPT Crossover Node)?")
-    genesis_reply = input("        Trigger Ur-Genesis Phase (y/N): ").strip().lower()
     
-    if genesis_reply == 'y':
+    genesis_reply_loop = True
+
+    # 1. SCENARIO 0 INITIALIZATION PROFILE & INFINITE CCC RESET LOOP
+    while genesis_reply_loop:
+        print("[INPUT] Initialize at Scenario 0 (Global CPT Crossover Node)?")
+        genesis_reply = input("        Trigger Ur-Genesis Phase (Y/n): ").strip().lower()
+        
+        # If user denies or glitches (n / z / anything else), the massless vacuum collapses
+        if genesis_reply != 'y':
+            print("\n[CRITICAL RESET] Enforcing Conformal Cyclic Reset for a massless vacuum!")
+            print("                 No primordial condensation triggered. Rest-mass profile collapsed.")
+            print("                 -> Result: Instant metric scale loss. Scenario 0 re-triggered.\n")
+            time.sleep(0.4)
+            # Hard reset of baseline memory back to structural zero conditions
+            n_umnc, n_smnc, n_imnc, n_hmnc = 5, 120, 0, 0
+            continue # Loops back directly to the Scenario 0 prompt
+
+        # If user accepts (y), the regulated condensation and multi-body matrix initiates
         print("\n[PHASE 0] AEON 0 - PRIMORDIAL SEEDING AND BOUNDARY GATES")
         print("---------------------------------------------------------------------")
         try:
             print("[INPUT] Enter target timescale for Aeon 0 PNC growth phase:")
             t_genesis = float(input("        Delta t_0 (in Gyr, e.g. 0.2 or 90.0): "))
             
-            # Refined Ur-Condensation: Radiation collapses into ALL three native satellite/stellar classes
-            smnc_spawned = int((2.5 * n_umnc + 0.8 * n_smnc) * t_genesis * 15)
-            imnc_spawned = int((4.0 * n_umnc + 1.5 * n_smnc) * t_genesis * 25) # IMNCs materialize as key light-born satellites
+            # FIXED: Condensation scales purely from the high-energy vacuum field over time
+            # Pure field-dependent condensation without artificial time blockades
+            if t_genesis < 40.0:
+                umnc_spawned = int(0.005 * (t_genesis ** 1.1)) 
+                smnc_spawned = int(12.5 * t_genesis)
+                imnc_spawned = int(450.0 * t_genesis)
+            else:
+                umnc_spawned = int(0.45 * (t_genesis ** 1.8))
+                smnc_spawned = int(8.5 * (t_genesis ** 1.4))
+                imnc_spawned = int(1200.0 * t_genesis)
             
+            n_umnc += umnc_spawned
             n_smnc += smnc_spawned
             n_imnc += imnc_spawned
             
-            # Chronological check for deep eras: Enforce multi-body mergers (HMNC) after prolonged aging
+            # Time-dependent Hawking evaporation processed before crossover
+            imnc_evaporated = int(n_imnc * (1.0 - math.exp(-0.04 * t_genesis)))
+            smnc_evaporated = int(n_smnc * (1.0 - math.exp(-0.008 * t_genesis)))
+            
+            n_imnc = max(0, n_imnc - imnc_evaporated)
+            n_smnc = max(0, n_smnc - smnc_evaporated)
+            
+            hmnc_fused = 0
+            umnc_consumed = 0
+            
             if t_genesis >= 50.0:
-                # Dense environments over deep timescales inevitably generate the first hypermassive anchors
-                hmnc_fused = int((n_smnc * 0.005) * (t_genesis / 50.0))
-                n_hmnc += hmnc_fused
-                n_smnc -= hmnc_fused * 2 # Mergers consume standard satellite seeds
                 print(f"[PRE-BURST] Deep chronological aging detected ({t_genesis} Gyr).")
-                print(f"            Multi-body kinematics successfully fused {hmnc_fused} HMNC core anchors.")
+                print("            Processing regulated multi-body merger kinetics inside the cluster...")
+                hmnc_fused = int(1.8e-5 * (n_smnc ** 2) * (t_genesis / 50.0))
+                max_fused = int(n_smnc * 0.40 / 3)
+                if hmnc_fused > max_fused: hmnc_fused = max_fused
+                n_hmnc += hmnc_fused
+                n_smnc -= (hmnc_fused * 3) 
+                umnc_consumed = int(n_umnc * 0.04)
+                n_umnc -= umnc_consumed
+                n_hmnc += umnc_consumed
+                print(f"            Multi-body kinematics successfully fused {hmnc_fused + umnc_consumed} HMNC core anchors.")
             
             print("\n[SUCCESS] High-energy radiation fields collapsed stochastically.")
-            print(f"          Current Pool: UMNC={n_umnc} | SMNC={n_smnc} | IMNC={n_imnc} | HMNC={n_hmnc}")
+            print(f"          Current Pool: UMNC={n_umnc:,} | SMNC={n_smnc:,} | IMNC={n_imnc:,} | HMNC={n_hmnc:,}")
             
             print("\n[LQG] Evaluating Baseline Metric Shear Force...")
-            active_umnc = int(input(f"        Enter active preparing UMNC cores (1-{n_umnc}): "))
-            active_umnc = max(1, min(active_umnc, n_umnc))
             
-            # Baseline shear prepared by the cores (sub-critical on its own)
-            baseline_shear = active_umnc * 1.85
-            lqg_tensile_limit = 10.0  # Invariant structural threshold (Sigma_max)
-            print(f" -> Prepared Metric Baseline Shear (Sub-Critical): {baseline_shear:.2f} / {lqg_tensile_limit:.2f}")
+            # Reset sub-class input fields safely
+            active_umnc = 0
+            active_smnc = 0
+            active_imnc = 0
             
-            # Stochastic peak trigger: The definitive high-energy boost
+            total_active_horizons = n_umnc + n_smnc + n_imnc
+            
+            if total_active_horizons > 0:
+                print(f"        Available assets: {n_umnc} UMNC | {n_smnc} SMNC | {n_imnc} IMNC cores.")
+                print("        ---------------------------------------------------------------------")
+                
+                # Channel 1: Ultramassive Core Anchors
+                if n_umnc > 0:
+                    active_umnc = int(input(f"        >> Enter active preparing UMNC anchors (0-{n_umnc}): "))
+                    active_umnc = max(0, min(active_umnc, n_umnc))
+                
+                # Channel 2: Supermassive Satellite Cores
+                if n_smnc > 0:
+                    active_smnc = int(input(f"        >> Enter active slinging SMNC satellites (0-{n_smnc}): "))
+                    active_smnc = max(0, min(active_smnc, n_smnc))
+                
+                # Channel 3: Intermediate Mass Core Seeds (Crucial for Scenario 6 Shielding)
+                if n_imnc > 0:
+                    active_imnc = int(input(f"        >> Enter active peripheral IMNC shields (0-{n_imnc}): "))
+                    active_imnc = max(0, min(active_imnc, n_imnc))
+                
+                # Refined Invariant Shear Formula: Hierarchically weighted by mass-class efficiency
+                baseline_shear = (active_umnc * 2.50) + (active_smnc * 1.25) + (active_imnc * 0.05)
+            else:
+                print("        [CRITICAL] Massless vacuum state reached. No active horizons exist.")
+                print("                   Baseline mechanical shear force collapses identically to 0.0.")
+                baseline_shear = 0.0
+            
+            print("        ---------------------------------------------------------------------")
+            print(f" -> Prepared Metric Baseline Shear (Hierarchical): {baseline_shear:.2f} / 10.00")
+            
             print("\n[TRIGGER] Simulating stochastic Planck-scale quantum fluctuation...")
             time.sleep(0.1)
-            
-            # Single, frozen quantum spike calculation to maintain mathematical coherence
             quantum_fluctuation_peak = random.uniform(1.5, 8.5)
             print(f" -> Generated Quantum Fluctuation Energy Peak: +{quantum_fluctuation_peak:.4f}")
             
             total_shear_force = baseline_shear + quantum_fluctuation_peak
             print(f" -> Total Combined Shear Force at Horizon Boundary: {total_shear_force:.2f}")
-            
-            # Enforce the logical gate boundaries and set the Pathway 2 allowance flag
-            if total_shear_force >= lqg_tensile_limit:
+            if total_shear_force >= 10.0:
                 print("[CRITICAL] Quantum fluctuation successfully breached the LQG tensile threshold!")
                 print("[SUCCESS] Localized topological rupture verified (Pathway 2 Unleashed).")
                 pathway_2_allowed = True
@@ -116,12 +175,11 @@ def run_interactive_sandbox():
                 print("[SUPPRESSED] Combined fluctuation amplitude insufficient to tear filaments.")
                 print("[WARNING] Metric remains smoothly embedded. Pathway 2 blocked.")
                 pathway_2_allowed = False
-
-            # Added missing chirality and gate combinations to close Phase 0 cleanly
+            # Evaluate chirality and boundary track options under active ruptures
             if pathway_2_allowed:
                 print("\n[INPUT] Evaluate Rotating Kerr Horizon Geometry Bounds:")
-                print("        [m] - Standard Materie Domain (Symmetric Baryon Average / +t)")
-                print("        [a] - Antimaterie Domain (CPT Chiral Inversion Enforced / -t)")
+                print("        [m] - Standard Matter Domain (Symmetric Baryon Average / +t)")
+                print("        [a] - Antimatter Domain (CPT Chiral Inversion Enforced / -t)")
                 print("        [s] - Stochastic Quantum Bifurcation (Probability-based roll)")
                 kerr_choice = input("        Select Kerr Boundary Mode (m/a/S): ").strip().lower()
                 
@@ -134,29 +192,27 @@ def run_interactive_sandbox():
                     print("[SYS-GATE] Stochastic roll triggered Ergosphere Chiral Inversion! (-t)")
                 
                 print("\n[INPUT] Define Evolution Track Mode for Addendum 1 & Scenario 1:")
-                print("        - Scenario 1 Metric Drainage (Absorbs mass into parent aeon -> Blocks immediate Reset)")
-                print("        [c] - Addendum 1 Macro-Collision Track (Physical boundary intersection later in time)")
-                print("        [e] - Addendum 1 Immediate CCC Information Exchange (Conformal invariants crossover)")
+                print("        - Scenario 1 Metric Drainage (Delays/Blocks CCC Reset)")
+                print("        [c] - Addendum 1 Macro-Collision Track (Physical boundary intersection)")
+                print("        [e] - Addendum 1 Immediate CCC Information Exchange (Conformal crossover)")
                 track_choice = input("        Select Track (1/c/e): ").strip().lower()
                 
                 if track_choice == '1':
                     scenario_1_drainage_active = True
-                    print("[SYS-GATE] Mass injected into old universe. Parent Hawking deflation delayed.")
                 elif track_choice == 'c':
                     addendum_1_collision_allowed = True
-                    print("[SYS-GATE] Kinematic boundary intersection primed for later epoch evaluations.")
                 elif track_choice == 'e':
                     addendum_1_ccc_exchange_allowed = True
-                    print("[SYS-GATE] Invariant tensor perturbations aligned across the crossover.")
             
             execute_automated_logging("0_Seeding", 2.5e-9, True, 0.0, f"Aeon0 Seeding t={t_genesis}")
             print("\n[KERNEL] Phase 0 complete. Progressing...\n" + "="*65 + "\n")
             
+            genesis_reply_loop = False # Breaks the infinite reset loop cleanly upon successful creation
+            
         except ValueError:
             print("[FAIL] Numerical validation aborted. Defaulting bounds.")
             pathway_2_allowed = False
-    else:
-        pathway_2_allowed = True
+            genesis_reply_loop = False
     # 2. RUNTIME SIMULATION ENVIRONMENT CONFIGURATION
     print("[INPUT] Select Simulation Routing Mode:")
     print("        [m] - Manual Freedom (Reference Matrix Selection)")
@@ -204,7 +260,7 @@ def run_interactive_sandbox():
         if cpt_chiral_inversion_active:
             print(" -> Metric Vector Domain: ANTIMATTER METRIC METRIC ACTIVE (-t)")
         else:
-            print(" -> Metric Vector Domain: STANDARD MATERIE METRIC ACTIVE (+t)")
+            print(" -> Metric Vector Domain: STANDARD Matter METRIC ACTIVE (+t)")
         print("---------------------------------------------------------------------")
 
         # Dynamic star formation kinetics scaling directly with current core counts
@@ -340,12 +396,19 @@ def run_interactive_sandbox():
             if choice == 'c':
                 print(f"\n[SYS] Slicing consecutive event path over {t_input} Gyr.")
                 
-                # CONTINUOUS HAWKING RADIATION THERMAL EVAPORATION (hierarchical mass leakage)
+                # REFINED HAWKING RADIATION: Mathematically accurate hierarchical mass leakage
+                # Implements long-term stability according to the cube of the mass (tau pro M^3)
                 print("[HAWKING-RADIATION] Processing active mass evaporation leakage...")
-                n_imnc_evap = int(n_imnc * (1.0 - math.exp(-0.05 * t_input)))   # Fast stellar core decay
-                n_smnc_evap = int(n_smnc * (1.0 - math.exp(-0.01 * t_input)))   # Moderate satellite decay
-                n_hmnc_evap = int(n_hmnc * (1.0 - math.exp(-0.001 * t_input)))  # Highly resilient merger decay
-                n_umnc_evap = int(n_umnc * (1.0 - math.exp(-0.0001 * t_input))) # Saturated metric anchor stability
+                
+                # Small stellar cores decay noticebly over deep cosmic eras
+                n_imnc_evap = int(n_imnc * (1.0 - math.exp(-0.04 * t_input)))   
+                # Supermassive satellite cores experience minimal mass loss
+                n_smnc_evap = int(n_smnc * (1.0 - math.exp(-0.0001 * t_input))) 
+                
+                # Hypermassive and Ultramassive anchors have lifetimes up to 10^100 years.
+                # Over standard Gyr scales, their evaporation leakage collapses to absolute zero.
+                n_hmnc_evap = int(n_hmnc * (1.0 - math.exp(-1e-12 * t_input)))  
+                n_umnc_evap = int(n_umnc * (1.0 - math.exp(-1e-15 * t_input)))  
                 
                 if (n_imnc_evap + n_smnc_evap) > 0:
                     print(f"                    Thermal Evaporation: -{n_imnc_evap} IMNC, -{n_smnc_evap} SMNC seeds.")
