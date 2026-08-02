@@ -38,8 +38,8 @@ def run_interactive_sandbox():
     print(" |  |____ |  `--'  | |  |  |  | |  | |  |____   |  `--'  | |  | ")
     print("  \\______| \\______/  |__|  |__| |__|  \\______|   \\______/  |__| ")
     print("=====================================================================")
-    print("        COSMIC PIRACY SIMULATION - STATE ENGINE v26.2 (UNRESTRICTED)")
-    print("        ASCII Core Layout & Stochastic Additive Quantum Peak Online")
+    print("        COSMIC PIRACY SIMULATION - STATE ENGINE v26.3 (REFINED)")
+    print("        ASCII Core Layout & Zero-Constraint Developer Overrides")
     print("=====================================================================\n")
     
     # Astrophysical initialization: No stars or mergers exist in the initial infant phase
@@ -198,11 +198,12 @@ def run_interactive_sandbox():
         print(f" -> Computed Star Formation Rate (SFR): {sfr_kinetic:.4f} M_sun/yr")
         
         # Lorentz metrics computed for the semi-classical 0.85c escape limits
-        effective_acceleration_factor = 1.8983 / (1.0 / math.sqrt(1.0 - 0.8505**2))
+        v_ratio = 0.8505
+        effective_acceleration_factor = 1.8983 / (1.0 / math.sqrt(1.0 - v_ratio**2))
         print(f" -> Active Core Metric Shielding Lock:  {effective_acceleration_factor:.4f}x")
 
         try:
-            print("\n[INPUT] Enter target evolution timescale for this event:")
+            print("\n[INPUT] Enter target timescale for this event:")
             t_input = float(input("        Delta t (in Gyr, e.g. 0.5 or 13.8): "))
 
             # Enforce absolute timeline collapse across hyper-mature eras if dev mode is inactive
@@ -215,17 +216,17 @@ def run_interactive_sandbox():
             eval_umnc, eval_smnc, eval_imnc, eval_hmnc = n_umnc, n_smnc, n_imnc, n_hmnc
             eval_total = total_cores
 
-            # UNRESTRICTED ASSET OVERRIDES (Always open in Dev, optional in manual)
-            if dev_mode or (not auto_mode):
-                prompt_text = "        [DEV] Modify active core counts? (Y/n): " if dev_mode else "        Override active seeds? (y/N): "
-                if input(prompt_text).strip().lower() in ['y', '']:
+            # FIXED CORE MANIPULATION ENGINE: Strictly and safely locked to Developer Mode only
+            if dev_mode:
+                override_choice = input("        [DEV] Modify active core counts? (Y/n): ").strip().lower()
+                if override_choice != 'n':
                     impact = input("        Select Override Scope ([t]emp run setup / [p]ermanent global line): ").strip().lower()
                     eval_umnc = int(input("        >> Enter UMNC count: "))
                     eval_smnc = int(input("        >> Enter SMNC count: "))
                     eval_imnc = int(input("        >> Enter IMNC count: "))
                     eval_hmnc = int(input("        >> Enter HMNC count: "))
                     
-                    if impact == 'p' and not (dev_mode and impact == 't'):
+                    if impact == 'p':
                         # Apply permanent baseline shifts to the universal chronology
                         n_umnc, n_smnc, n_imnc, n_hmnc = eval_umnc, eval_smnc, eval_imnc, eval_hmnc
                         sfr_kinetic = max(0.1, (0.5 + (2.0 * n_umnc + 1.2 * n_smnc + 0.5 * n_imnc) * 0.1))
@@ -325,7 +326,7 @@ def run_interactive_sandbox():
             if choice == 'c':
                 print(f"\n[SYS] Slicing consecutive event path over {t_input} Gyr.")
                 
-                # 1. CONTINUOUS HAWKING RADIATION THERMAL EVAPORATION (hierarchical mass leakage)
+                # CONTINUOUS HAWKING RADIATION THERMAL EVAPORATION (hierarchical mass leakage)
                 print("[HAWKING-RADIATION] Processing active mass evaporation leakage...")
                 n_imnc_evap = int(n_imnc * (1.0 - math.exp(-0.05 * t_input)))   # Fast stellar core decay
                 n_smnc_evap = int(n_smnc * (1.0 - math.exp(-0.01 * t_input)))   # Moderate satellite decay
@@ -340,7 +341,7 @@ def run_interactive_sandbox():
                 n_hmnc = max(0, n_hmnc - n_hmnc_evap)
                 n_umnc = max(0, n_umnc - n_umnc_evap)
 
-                # 2. ADVANCED NON-LINEAR MULTI-BODY MERGER KINETICS (HMNC Generation Profile)
+                # ADVANCED NON-LINEAR MULTI-BODY MERGER KINETICS (HMNC Generation Profile)
                 print("[MERGER-KINETICS] Computing non-linear multi-body cluster distribution...")
                 a_star = 0.9983  # Dimensionless extremal Kerr spin parameter from manuscript saturation
                 alpha_cross_section = 1.2e-4  # Gravitational capture scaling factor
@@ -365,14 +366,14 @@ def run_interactive_sandbox():
                 if spawned_hmnc > 0:
                     print(f"                  Merger Success: Synthesized {spawned_hmnc} HMNCs. Consumed {consumed_smnc} SMNC assets.")
 
-                # 3. ACCELERATED STAR AND SATELLITE CORE NUCLEATION (SFR metrics)
+                # ACCELERATED STAR AND SATELLITE CORE NUCLEATION (SFR metrics)
                 spawned_stars = int(sfr_kinetic * t_input * 1.5)
                 n_imnc += int(spawned_stars * 0.70)
                 n_smnc += int(spawned_stars * 0.25) + int(n_umnc * 0.05 * t_input)
                 
                 n_smnc, n_imnc, n_hmnc = max(0, n_smnc), max(0, n_imnc), max(0, n_hmnc)
                 print(f"[SUCCESS] Core population advanced. Generated {spawned_stars} fresh anchors via SFR kinetics.")
-
+                
             elif choice == 'r':
                 print("\n[RESET] Enforcing Conformal Cyclic Reset across the 3-surface horizon...")
                 time.sleep(0.1)
