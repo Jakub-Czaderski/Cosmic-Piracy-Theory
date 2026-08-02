@@ -325,7 +325,7 @@ def run_interactive_sandbox():
             if choice == 'c':
                 print(f"\n[SYS] Slicing consecutive event path over {t_input} Gyr.")
                 
-                # CONTINUOUS HAWKING RADIATION THERMAL EVAPORATION (hierarchical mass leakage)
+                # 1. CONTINUOUS HAWKING RADIATION THERMAL EVAPORATION (hierarchical mass leakage)
                 print("[HAWKING-RADIATION] Processing active mass evaporation leakage...")
                 n_imnc_evap = int(n_imnc * (1.0 - math.exp(-0.05 * t_input)))   # Fast stellar core decay
                 n_smnc_evap = int(n_smnc * (1.0 - math.exp(-0.01 * t_input)))   # Moderate satellite decay
@@ -340,15 +340,39 @@ def run_interactive_sandbox():
                 n_hmnc = max(0, n_hmnc - n_hmnc_evap)
                 n_umnc = max(0, n_umnc - n_umnc_evap)
 
-                # ACCELERATED STAR AND MERGER CORE NUCLEATION (SFR metrics)
+                # 2. ADVANCED NON-LINEAR MULTI-BODY MERGER KINETICS (HMNC Generation Profile)
+                print("[MERGER-KINETICS] Computing non-linear multi-body cluster distribution...")
+                a_star = 0.9983  # Dimensionless extremal Kerr spin parameter from manuscript saturation
+                alpha_cross_section = 1.2e-4  # Gravitational capture scaling factor
+                beta_slingshot_dump = 0.05    # Kinetic ejection damping constant
+                
+                # Relativistic collision frequency scales quadratically with SMNC density squared
+                collision_frequency = alpha_cross_section * (n_smnc ** 2) * a_star * t_input
+                # Relativistic slingshot velocity (0.8505c) evacuates satellite assets before collision
+                slingshot_escape_damping = 1.0 + (beta_slingshot_dump * v_ratio * t_input)
+                
+                # Net hypermassive anchors synthesized during this temporal slice
+                spawned_hmnc = int(collision_frequency / slingshot_escape_damping)
+                
+                # Cores consumed by the merger (each HMNC absorbs a fraction of local satellite clusters)
+                consumed_smnc = spawned_hmnc * 3
+                if consumed_smnc > n_smnc:
+                    spawned_hmnc = int(n_smnc / 3)
+                    consumed_smnc = spawned_hmnc * 3
+                
+                n_hmnc += spawned_hmnc
+                n_smnc -= consumed_smnc
+                if spawned_hmnc > 0:
+                    print(f"                  Merger Success: Synthesized {spawned_hmnc} HMNCs. Consumed {consumed_smnc} SMNC assets.")
+
+                # 3. ACCELERATED STAR AND SATELLITE CORE NUCLEATION (SFR metrics)
                 spawned_stars = int(sfr_kinetic * t_input * 1.5)
                 n_imnc += int(spawned_stars * 0.70)
                 n_smnc += int(spawned_stars * 0.25) + int(n_umnc * 0.05 * t_input)
-                n_hmnc += int(n_smnc * 0.02 * t_input)
                 
                 n_smnc, n_imnc, n_hmnc = max(0, n_smnc), max(0, n_imnc), max(0, n_hmnc)
-                print(f"[SUCCESS] Core population advanced. Generated {spawned_stars} fresh anchors.")
-                
+                print(f"[SUCCESS] Core population advanced. Generated {spawned_stars} fresh anchors via SFR kinetics.")
+
             elif choice == 'r':
                 print("\n[RESET] Enforcing Conformal Cyclic Reset across the 3-surface horizon...")
                 time.sleep(0.1)
