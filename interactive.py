@@ -30,75 +30,100 @@ def run_interactive_sandbox():
     print(" |  |____ |  `--'  | |  |  |  | |  | |  |____   |  `--'  | |  | ")
     print("  \\______| \\______/  |__|  |__| |__|  \\______|   \\______/  |__| ")
     print("=====================================================================")
-    print("        COSMIC PIRACY SIMULATION - STATE ENGINE v18.0 (HYBRID)")
-    print("        Stochastic Planck-Scale Fluctuation Trigger Framework")
+    print("        COSMIC PIRACY SIMULATION - STATE ENGINE v25.0 (DEVELOPER)")
+    print("        Stochastic Chiral Bifurcation & Timeline Displacement Engine")
     print("=====================================================================\n")
     
     current_generation = 0
-    n_umnc = 5      
-    n_smnc = 120    
-    n_imnc = 0      
-    n_hmnc = 0      
+    n_umnc, n_smnc, n_imnc, n_hmnc = 5, 120, 0, 0
+    
+    scenario_1_drainage_active = False
+    addendum_1_collision_allowed = False
+    addendum_1_ccc_exchange_allowed = False
+    
+    # Zustandsschalter für das stochastische Zeitachsenverschiebungsproblem
+    cpt_chiral_inversion_active = False
+    timeline_displacement_risk = False
 
     print("[INPUT] Initialize at Scenario 0 (Global CPT Crossover Node)?")
     genesis_reply = input("        Trigger Ur-Genesis Phase (y/N): ").strip().lower()
     
     if genesis_reply == 'y':
-        print("\n" + "="*65)
-        print(" [PHASE 0] AEON 0 - PRIMORDIAL SEEDING AND NUCLEATION")
-        print("="*65)
+        print("\n[PHASE 0] AEON 0 - PRIMORDIAL SEEDING AND BOUNDARY GATES")
+        print("---------------------------------------------------------------------")
         try:
             print("[INPUT] Enter target timescale for Aeon 0 PNC growth phase:")
             t_genesis = float(input("        Delta t_0 (in Gyr, e.g. 0.2 or 1.5): "))
+            n_smnc += int((2.5 * n_umnc + 0.8 * n_smnc) * t_genesis * 15)
             
-            pnc_spawned = int((2.5 * n_umnc + 0.8 * n_smnc) * t_genesis * 15)
-            n_smnc += pnc_spawned
-            print(f"[SUCCESS] High-energy radiation fields collapsed stochastically.")
-            print(f"          Current Pool: UMNC={n_umnc} | SMNC={n_smnc}")
-            
-            print("\n[QUANTUM PREPARATION] Evaluating Baseline Metric Shear Force...")
-            print(f"        Available frame-dragging anchors: {n_umnc} UMNC Cores.")
-            active_cores = int(input(f"        Enter number of active preparing UMNC cores (1-{n_umnc}): "))
+            print("\n[LQG] Evaluating Baseline Metric Shear Force...")
+            active_cores = int(input(f"        Enter active preparing UMNC cores (1-{n_umnc}): "))
             active_cores = max(1, min(active_cores, n_umnc))
             
-            # Basis-Scherkraft präpariert das Feld sub-kritisch (Kerne schaffen es nie allein)
-            baseline_shear = active_cores * 1.85
-            lqg_tensile_limit = 10.0  # Sigma_max
-            print(f" -> Prepared Metric Baseline Shear (Sub-Critical): {baseline_shear:.2f} / {lqg_tensile_limit:.2f}")
+            total_shear_force = (active_cores * 1.85) * random.uniform(1.2, 2.5)
             
-            # STOCHASTISCHER QUANTENFLUKTUATION TRIGGER (Kritischer Impuls)
-            print("\n[TRIGGER] Simulating stochastic Planck-scale quantum fluctuation...")
-            time.sleep(0.1)
-            quantum_fluctuation_amplitude = random.uniform(1.2, 2.5)
-            print(f" -> Generated Fluctuation Amplitude Factor: x{quantum_fluctuation_amplitude:.4f}")
-            
-            # Totale Scherkraft = Basis-Scherung + stochastischer Quanten-Impuls
-            total_shear_force = baseline_shear * quantum_fluctuation_amplitude
-            print(f" -> Total Combined Shear Force at Horizon Boundary: {total_shear_force:.2f}")
-            
-            if total_shear_force >= lqg_tensile_limit:
-                print("[CRITICAL] Quantum fluctuation successfully breached the LQG tensile threshold!")
-                print("[SUCCESS] Localized topological rupture verified (Pathway 2 Unleashed).")
-                pathway_2_allowed = True
-            else:
-                print("[SUPPRESSED] Combined fluctuation amplitude insufficient to tear filaments.")
-                print("[WARNING] Metric remains smoothly embedded. Pathway 2 blocked.")
-                pathway_2_allowed = False
+            if total_shear_force >= 10.0:
+                print("[SUCCESS] Localized topological rupture verified (Pathway 2 Active).")
                 
-            execute_automated_logging("0_Seeding", 2.5e-9, True, 0.0, f"Aeon0 Seeding t={t_genesis}Gyr, Fluctuation={quantum_fluctuation_amplitude:.2f}")
-            print("\n[KERNEL] Phase 0 complete. Progressing...\n" + "="*65 + "\n")
+                # DIE NEUE DREISTUFIGE CHIRALITÄTS-BIFURKATION
+                print("\n[INPUT] Evaluate Rotating Kerr Horizon Geometry Bounds:")
+                print("        [m] - Standard Materie-Domain (Symmetric Baryon Average / +t)")
+                print("        [a] - Antimaterie-Domain (CPT Chiral Inversion Enforced / -t)")
+                print("        [s] - Stochastic Quantum Bifurcation (Evaluates profile dynamically)")
+                kerr_choice = input("        Select Kerr Boundary Mode (m/a/S): ").strip().lower()
+                
+                if kerr_choice == 'a':
+                    cpt_chiral_inversion_active = True
+                    timeline_displacement_risk = True
+                    print("[SYS-GATE] CPT-Chiral inversion enforced. Domain flipped to Antimatter (-t).")
+                elif kerr_choice == 'm':
+                    print("[SYS-GATE] Standard Materie continuum preserved (+t). Alignment stable.")
+                else:
+                    # Stochastische Auswertung auf Basis quanten-geometrischer Sättigung
+                    bifurcation_roll = random.random()
+                    if bifurcation_roll > 0.5:
+                        cpt_chiral_inversion_active = True
+                        timeline_displacement_risk = True
+                        print(f"[SYS-GATE] Quantum Bifurcation Roll ({bifurcation_roll:.4f}) triggered Chiral Inversion!")
+                        print("            Domain flipped to Antimatter (-t). Timeline Displacement active.")
+                    else:
+                        print(f"[SYS-GATE] Quantum Bifurcation Roll ({bifurcation_roll:.4f}) preserved Materie Domain (+t).")
+                
+                print("\n[INPUT] Define Evolution Track Mode for Addendum 1 & Scenario 1:")
+                print("        - Scenario 1 Metric Drainage (Delays/Blocks CCC Reset)")
+                print("        [c] - Addendum 1 Macro-Collision Track (Physical boundary intersection)")
+                print("        [e] - Addendum 1 Immediate CCC Information Exchange (Conformal invariants crossover)")
+                track_choice = input("        Select Track (1/c/e): ").strip().lower()
+                
+                if track_choice == '1':
+                    scenario_1_drainage_active = True
+                elif track_choice == 'c':
+                    addendum_1_collision_allowed = True
+                elif track_choice == 'e':
+                    addendum_1_ccc_exchange_allowed = True
+            else:
+                print("[WARNING] Metric remains smoothly embedded. Pathway 2 blocked.")
         except ValueError:
             print("[FAIL] Numerical validation aborted.")
-            pathway_2_allowed = False
-    else:
-        pathway_2_allowed = True
 
-    print("[INPUT] Select Simulation Routing Mode:")
+    print("\n[INPUT] Select Simulation Routing Mode:")
     print("        [m] - Manual Freedom (Reference Matrix Selection)")
     print("        [a] - Automatic Detection (Dynamic Runtime Context Matrix)")
-    mode_choice = input("        Select Mode (m/A): ").strip().lower()
-    auto_mode = (mode_choice != 'm')
+    print("        [d] - DEVELOPER MODE (Absolute Control & Zero Bounds Override)")
+    mode_choice = input("        Select Mode (m/a/D): ").strip().lower()
+    
+    dev_mode = (mode_choice == 'd')
+    auto_mode = (mode_choice == 'a' and not dev_mode)
+
+    if dev_mode:
+        print("[SYS] DEVELOPER MODE ACTIVE: ALL GATES OPEN. CHIRAL OPTION BYPASSED.")
+        scenario_1_drainage_active = True
+        addendum_1_collision_allowed = True
+        addendum_1_ccc_exchange_allowed = True
+        cpt_chiral_inversion_active = True
+        timeline_displacement_risk = True
     manuscript_scenarios = {
+        "1":   {"name": "Primeval Topological Deflation Interface (Scenario 1)", "tolerance": 15.0, "target": 0.0, "centered": True},
         "2":   {"name": "Solitary Isotropic Hierarchical Accretion", "tolerance": 15.0, "target": 1.0e-9, "centered": True},
         "3a":  {"name": "Direct Conformal Protection Branch", "tolerance": 0.0, "target": 2.5e-9, "centered": True},
         "3b":  {"name": "Advanced Conformal Protection Antimatter Domain", "tolerance": 15.0, "target": 2.5e-9, "centered": False},
@@ -120,64 +145,50 @@ def run_interactive_sandbox():
     running = True
     while running:
         total_cores = n_umnc + n_smnc + n_imnc + n_hmnc
-        print(f"\n⚡ ACTIVE TIMELINE MATRIX | GENERATION: {current_generation}")
+        print(f"\n[STATE] ACTIVE TIMELINE MATRIX | GENERATION: {current_generation}")
         print(f" -> Active Core Population: {total_cores:,} Seeds")
         print(f"    >> UMNC (Anchors): {n_umnc} | SMNC (Satellite): {n_smnc}")
         print(f"    >> IMNC (Stellar): {n_imnc} | HMNC (Merger):    {n_hmnc}")
-        print("-" * 65)
+        if cpt_chiral_inversion_active:
+            print(" -> Metric Vector Domain: ANTIMATTER METRIC METRIC ACTIVE (-t)")
+        else:
+            print(" -> Metric Vector Domain: STANDARD MATERIE METRIC ACTIVE (+t)")
+        print("---------------------------------------------------------------------")
 
         sfr_kinetic = max(0.1, (0.5 + (2.0 * n_umnc + 1.2 * n_smnc + 0.5 * n_imnc) * 0.1))
-        print(f" -> Computed Star Formation Rate (SFR): {sfr_kinetic:.4f} M_sun/yr")
-        effective_acceleration_factor = 1.8983 / (1.0 / math.sqrt(1.0 - 0.8505**2))
-        print(f" -> Active Core Metric Shielding Lock:  {effective_acceleration_factor:.4f}x")
+        eval_umnc, eval_smnc, eval_imnc, eval_hmnc = n_umnc, n_smnc, n_imnc, n_hmnc
+        eval_total = total_cores
 
         try:
-            print("\n[INPUT] Enter target evolution timescale for this event:")
+            print("[INPUT] Enter target evolution timescale for this event:")
             t_input = float(input("        Delta t (in Gyr, e.g. 0.5 or 13.8): "))
 
-            if t_input >= 500.0:
-                print(f"\n [EVAPORATION] Enforcing massive Hawking deflation...")
+            if t_input >= 500.0 and not dev_mode:
+                print(f"\n[SYS] Enforcing massive Hawking deflation...")
                 n_umnc, n_smnc, n_imnc, n_hmnc = 0, 0, 0, 0
-                execute_automated_logging("10 (Sterile)", 0.0, True, -100.0, f"Hawking Deflation at {t_input} Gyr")
                 continue
 
-            eval_umnc, eval_smnc, eval_imnc, eval_hmnc = n_umnc, n_smnc, n_imnc, n_hmnc
-            eval_total = total_cores
-            eval_sfr = sfr_kinetic
+            if dev_mode or (not auto_mode):
+                prompt_text = "        [DEV] Modify active core counts? (Y/n): " if dev_mode else "        Override active seeds? (y/N): "
+                if input(prompt_text).strip().lower() in ['y', '']:
+                    impact = input("        Select Impact ([t]emp/[p]erm): ").strip().lower()
+                    eval_umnc = int(input("        >> Enter UMNC count: "))
+                    eval_smnc = int(input("        >> Enter SMNC count: "))
+                    eval_imnc = int(input("        >> Enter IMNC count: "))
+                    eval_hmnc = int(input("        >> Enter HMNC count: "))
+                    if impact == 'p' and not (dev_mode and impact == 't'):
+                        n_umnc, n_smnc, n_imnc, n_hmnc = eval_umnc, eval_smnc, eval_imnc, eval_hmnc
+                    eval_total = eval_umnc + eval_smnc + eval_imnc + eval_hmnc
 
-            if not auto_mode:
-                print("\n[INPUT] Do you want to manually override the core population counts?")
-                override_choice = input("        Override active seeds? (y/N): ").strip().lower()
-                if override_choice == 'y':
-                    print("        Select Override Impact: [t] - Temporary / [p] - Permanent")
-                    impact = input("        Select Impact (t/P): ").strip().lower()
-                    in_umnc = int(input("        >> Enter new UMNC count: "))
-                    in_smnc = int(input("        >> Enter new SMNC count: "))
-                    in_imnc = int(input("        >> Enter new IMNC count: "))
-                    in_hmnc = int(input("        >> Enter new HMNC count: "))
-                    
-                    if impact == 't':
-                        eval_umnc, eval_smnc, eval_imnc, eval_hmnc = in_umnc, in_smnc, in_imnc, in_hmnc
-                        eval_total = eval_umnc + eval_smnc + eval_imnc + eval_hmnc
-                        eval_sfr = max(0.1, (0.5 + (2.0 * eval_umnc + 1.2 * eval_smnc + 0.5 * eval_imnc) * 0.1))
-                    else:
-                        n_umnc, n_smnc, n_imnc, n_hmnc = in_umnc, in_smnc, in_imnc, in_hmnc
-                        total_cores = n_umnc + n_smnc + n_imnc + n_hmnc
-                        sfr_kinetic = max(0.1, (0.5 + (2.0 * n_umnc + 1.2 * n_smnc + 0.5 * n_imnc) * 0.1))
-                        eval_umnc, eval_smnc, eval_imnc, eval_hmnc = n_umnc, n_smnc, n_imnc, n_hmnc
-                        eval_total, eval_sfr = total_cores, sfr_kinetic
-
-            # SCENARIO BIFURCATION MATRIX (Prüft stochastische Berechtigung)
+            # SCENARIO RUNTIME ROUTING
             if auto_mode:
-                print("\n[KERNEL] Running automatic scenario detection matrix...")
-                if math.isclose(t_input, 13.8, rel_tol=1e-2) and eval_total >= 100 and pathway_2_allowed:
+                print("\n[SYS] Running automatic scenario detection matrix...")
+                if cpt_chiral_inversion_active:
+                    user_choice = "3b"  # Bevorzugt Antimaterie-Zweige bei Inversion
+                elif scenario_1_drainage_active and t_input < 1.0:
+                    user_choice = "1"
+                elif addendum_1_collision_allowed and math.isclose(t_input, 13.8, rel_tol=1e-2):
                     user_choice = "6_add1_delay"
-                elif t_input < 1.0 and 50 <= eval_total < 150 and pathway_2_allowed:
-                    user_choice = "6_add1_same"
-                elif t_input < 1.0 and eval_total < 50:
-                    user_choice = "7.2b"
-                elif eval_total >= 150 and t_input < 1.0:
-                    user_choice = "6"
                 else:
                     user_choice = "9"
                 print(f"        >> Auto-Detected Trajectory: {user_choice}")
@@ -185,64 +196,61 @@ def run_interactive_sandbox():
                 print("\n[INPUT] Enter target scenario to execute from the reference matrix:")
                 user_choice = input("        Select Scenario: ").strip()
                 
-                if user_choice in ["10", "12"] and t_input < 100.0:
-                    print(f"\n[BLOCKED] Physics Violation! Early Event-3 scenarios blocked. Fallback to 9.")
-                    user_choice = "9"
-                
-                pathway_2_scenarios = ["3a", "3b", "4", "7.2b", "8b", "9", "6_add1_same", "6_add1_delay"]
-                if user_choice in pathway_2_scenarios and not pathway_2_allowed:
-                    print(f"\n[BLOCKED] No Quantum Fluctuation triggered the rupture! Pathway 2 Scenario '{user_choice}' is impossible.")
-                    print("          Spin-network filaments remained unbroken. Fallback to unperturbed Scenario 6.")
-                    user_choice = "6"
+                if not dev_mode:
+                    if user_choice == "1" and not scenario_1_drainage_active:
+                        user_choice = "9"
+                    if user_choice in ["6_add1_same", "6_add1_delay"] and not addendum_1_collision_allowed:
+                        user_choice = "6"
+                    if user_choice in ["10", "12"] and t_input < 100.0:
+                        user_choice = "9"
 
-                if user_choice not in manuscript_scenarios:
-                    user_choice = "9"
+            # EVALUATION DES SIND-ODER-NICHT SIND DISPLACEMENT PROBLEMS
+            high_energy_chiral_cascades = ["3b", "5", "7.2b", "9"]
+            if user_choice in high_energy_chiral_cascades and timeline_displacement_risk:
+                print("\n[CAUSAL CRITICAL] TIMELINE DISPLACEMENT DETECTED!")
+                print("                  Mass-free boundary condition lost scale-invariance.")
+                chronological_phase_shift = (t_input * eval_umnc * 3.14159) / 100.0
+                print(f"                  -> Computed Chronological Vector Phase Shift: {chronological_phase_shift:.4f} rad")
+                print("                  [SUCCESS] Subsection 4.3 Quantum Entanglement anchors the link.")
+                print("                            CPT-conserving equilibrium stabilized across generations.")
+            elif user_choice in high_energy_chiral_cascades and not timeline_displacement_risk:
+                print("\n[EVAL] Trajectory is running within a standard Materie Domain (+t).")
+                print("       Scale-invariance preserved via symmetric baseline parameters. No vector drift.")
 
-            # BOUNDARY EVALUATION
+            # EVALUATION OUTPUT
             params = manuscript_scenarios[user_choice]
-            print(f"\n [EVAL] Executing Boundary State Evaluation for Scenario {user_choice}:")
+            print(f"\n[EVAL] Executing Boundary State Evaluation for Scenario {user_choice}:")
             print(f"   >> Blueprint Name: {params['name']}")
 
             target_eta = params["target"]
-            tolerance_val = params["tolerance"]
-
-            if tolerance_val == 15.0:
-                eta_calc = target_eta * random.uniform(0.85, 1.15)
-            elif tolerance_val == 1.0:
-                eta_calc = target_eta * random.uniform(0.99, 1.01)
-            else:
-                eta_calc = target_eta
-
-            spot_centered = params["centered"]
+            eta_calc = target_eta * random.uniform(0.85, 1.15) if params["tolerance"] == 15.0 else target_eta
             deviation_percent = ((eta_calc - target_eta) / target_eta) * 100.0 if target_eta > 0 else 0.0
-            print(f"   >> Calculated Oasis Density (eta):    {eta_calc:.6e}")
 
-            details_str = f"Gen: {current_generation}, Cores: {eval_total}, Mode: {'Auto' if auto_mode else 'Manual'}"
-            execute_automated_logging(user_choice, eta_calc, spot_centered, deviation_percent, details_str)
+            execute_automated_logging(user_choice, eta_calc, params["centered"], deviation_percent, f"Displacement_Risk: {timeline_displacement_risk}")
 
             # PROCESS CONTROL INTERFACE
             print("\n" + "="*65)
-            print(" PROCESS CONTROL INTERFACE")
-            print("="*65)
             choice = input("        Select Action Control ([c]/[r]/[q]): ").strip().lower()
 
             if choice == 'c':
-                print(f"\n[KERNEL] Slicing consecutive event path over {t_input} Gyr.")
+                print(f"\n[SYS] Slicing consecutive event path over {t_input} Gyr.")
                 spawned_stars = int(sfr_kinetic * t_input * 1.5)
                 n_imnc += int(spawned_stars * 0.70)
                 n_smnc += int(spawned_stars * 0.25) + int(n_umnc * 0.05 * t_input)
                 n_hmnc += int(n_smnc * 0.02 * t_input)
                 n_smnc, n_imnc, n_hmnc = max(0, n_smnc), max(0, n_imnc), max(0, n_hmnc)
-                print(f"[SUCCESS] Core population advanced. Generated {spawned_stars} new anchors.")
             elif choice == 'r':
                 print("\n[RESET] Enforcing Conformal Cyclic Reset...")
+                if scenario_1_drainage_active and not dev_mode:
+                    print("[WARNING] Mass drainage delayed parent Hawking evaporation. Reset sterile.")
+                elif addendum_1_ccc_exchange_allowed or dev_mode:
+                    print("[ADDENDUM 1 - CROSSOVER] GW Spectra transferred safely.")
+
                 current_generation += 1
                 n_umnc, n_smnc, n_imnc, n_hmnc = int(n_umnc * 0.15), int(n_smnc * 0.15), int(n_imnc * 0.15), int(n_hmnc * 0.15)
-                print(f" -> Conformal Rescaling Complete. Welcome to Generation {current_generation}!")
             elif choice == 'q':
                 running = False
         except ValueError:
-            print("\n[FAIL] Numerical inputs required.")
             running = False
 
 if __name__ == "__main__":
