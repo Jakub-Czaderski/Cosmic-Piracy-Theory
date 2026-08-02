@@ -1,4 +1,4 @@
-# Technical Specification of the Cosmological State Simulation Kernel (v26.0)
+# Technical Specification of the Cosmological State Simulation Kernel (v26.2)
 
 This document structures the analytical runtime mechanics, state loops, and automated logging layers operational within the background-independent, multi-generational hybrid state engine (`multiverse_kernel.py`).
 
@@ -19,7 +19,7 @@ Upon initialization, the kernel isolates the primordial seeding phase (Phase 0) 
 
 *   **Scenario 0 Invariant Bounds:** Scenario 0 is treated as a fundamental, non-repeatable boundary axiom that codes net-zero energy ($\hat{Q} |\Psi\rangle = 0$) exclusively at the birth of the multiverse. Because it describes the unique initial crossover node, it operates as an external, flexible matrix initialization layer and cannot be re-injected as a standard runtime scenario during mature generational aeons.
 *   **The Paradigm of Core-Induced Tearing:** In strict compliance with loop quantum gravity constraints, rotating Kerr-de Sitter cores *cannot* mechanically rupture the spacetime fabric on their own, as this would require an unphysical light-speed rotation ($a_* > 1$). Active Ultramassive Non-Singular Cores (UMNCs) act strictly as preparing agents, generating massive holonomic shear force to precondition the metric loop coordinates.
-*   **The Stochastic Fluctuation Trigger:** The definitive topological rupture required for a **Pathway 2 Transition** (Independent Spacetime Isolation) is *always* driven by a stochastically generated, Planck-scale quantum fluctuation. If the combined amplitude breaches the LQG maximum tensile limit ($\Sigma_{\max}$), a localized rupture manifests, establishing the boundary conditions for subsequent daughter universes.
+*   **The Stochastic Fluctuation Peak Trigger:** The definitive topological rupture required for a **Pathway 2 Transition** (Independent Spacetime Isolation) is *always* driven by a stochastically generated, Planck-scale quantum fluctuation peak. The engine processes a non-linear additive energy spike ($+ \Delta E_{\text{quantum}}$) atop the baseline core preparation. If this combined impulse breaches the LQG maximum tensile limit ($\Sigma_{\max} = 10.0$), a localized rupture manifests, establishing the boundary conditions for subsequent daughter universes.
 
 ## 3. Stochastic Chiral Bifurcation & Timeline Displacement
 
@@ -33,18 +33,16 @@ The engine incorporates the non-mandatory nature of Ergosphere CPT inversions vi
 
 ## 4. Fully Flexible Addendum Modifiers & Topographical Profiles
 
-Instead of strictly confining cosmological anomalies to single scenario baselines, version 26.0 introduces a **Modular Modifier Layer System**. Advanced boundaries defined in Addendum 1 and Addendum 2 act as dynamic physical filters applicable atop *any* chosen base scenario, regulating topography directly via their specific causal history:
+Instead of strictly confining cosmological anomalies to single scenario baselines, version 26.2 introduces a **Modular Modifier Layer System**. Advanced boundaries defined in Addendum 1 and Addendum 2 act as dynamic physical filters applicable atop *any* chosen base scenario, regulating topography directly via their specific causal history:
 
 *   **Addendum 1 - Same-Aeon Lateral Collision Layer:** Applicable to any active base scenario at early timescales ($\Delta t < 1.0$ Gyr). Simulates a lateral collision between two independently expanding sub-manifolds within the same epoch. Because this macro-collision manifests stochastically at the outer boundaries, it is completely independent of the center coordinate, forcefully displacing baryonic gas to generate the highly anomalous, **de-centered CMB Cold Spot profile** (`spot_centered = False`).
 *   **Addendum 1 - Delayed Mother-Child Layer:** Applicable to any active base scenario at mature timescales ($\Delta t \approx 13.8$ Gyr). Simulates a delayed causal entanglement with the ancestral parent metric. Because the child universe remains bound to its original detachment node, this trans-cosmic feedback loop is geometrically fixed and manifests **exclusively at the exact center of the universe** (`spot_centered = True`), overriding baseline fluctuations to enforce a rigid statistical boundary tolerance of $\pm1\%$.
 *   **Addendum 2 - Conformal Information Crossover:** Evaluates the transition during a Conformal Cyclic Reset (`[r]`). If the preceding universe did *not* suffer a massive metric drainage (Scenario 1), the residual mass distribution converts into high-frequency Gravitational Wave Spectra, embedding the permanent geometric footprint of the past directly into the new baseline without violating boundary masslessness.
 
-## 5. The Unrestricted Developer Mode Engine (`[d]`)
+## 5. Continuous Hawking Evaporation & Unrestricted Developer Engine
 
-For advanced stress-testing and boundary evaluation of unphysical extremes, the kernel hosts a completely unrestricted **Developer Mode**. When active, the system acts as an omnipotent administrative override:
-
-*   **Unlimited Core Manipulation:** Prompted at every single event slice, the developer can freely alter active seed populations (`UMNC`, `SMNC`, `IMNC`, `HMNC`) permanently or temporarily, bypassing time-dependent star formation rate (SFR) kinetics.
-*   **Bypass of Causal Blockades:** Forcing the simultaneous activation of mutually exclusive pathways, the Developer Mode unlocks Scenario 1 (Mass Drainage) and all Addendum modifers concurrently. Early Event-3 constraints are suppressed, and the **Materie-Mitnahme-Gatter** (the rigid Binary Gate of Section 4.4) is completely bypassed to prevent administrative fallback loops.
+*   **Continuous Hawking Radiation Matrix:** Timeline loops advanced via consecutive event slicing (`[c]`) compute real-time exponential mass decay channels mapping directly onto standalone black hole thermal dynamics ($N_{t + \Delta t} = N_t \cdot e^{-\kappa \cdot \Delta t}$). Evaporation constants are hierarchically bounded according to geometric mass classes ($\kappa_{\text{IMNC}} = 0.05$, $\kappa_{\text{SMNC}} = 0.01$, $\kappa_{\text{HMNC}} = 0.001$, $\kappa_{\text{UMNC}} = 0.0001$).
+*   **The Unrestricted Developer Mode (`[d]`):** For advanced stress-testing and boundary evaluation of unphysical extremes, the kernel hosts a completely unrestricted administrative override. It grants full manual core modifications at every slice, forces the simultaneous activation of mutually exclusive pathways (Scenario 1 and all Addendum modifiers concurrently), and suppresses early Event-3 blocks ($\Delta t < 100$ Gyr) or synchronization errors via direct administrative holonomy overwrites (`[DEV-BYPASS]`).
 
 ---
 
@@ -61,13 +59,9 @@ The operational state kernel maps all localized cosmic trajectories according to
 *   **Scenario 7.1:** Multi-Core Initial Oasis Density Core Theft. High-density era phase transition capturing a significant baryonic rest-mass fraction.
 *   **Scenario 7.2a:** Multi-Core Transitional Relativistic Slingshot Pockets. Multi-body dynamics forcing temporary satellite core ejections.
 *   **Scenario 7.2b:** Multi-Core Cluster High-Tensile Repulsion Oasis. Triggers an omnidirectional thermodynamic repulsion forcing plasma into ultra-massive primordial "Oasis-Galaxies" ($\eta = 2.444449 \cdot 10^{-9}$).
-*   **Scenario 8a:** Multi-Core Symmetric Non-Disruptive Merging. Balanced core cluster merging without severe local spacetime dilation.
-*   **Scenario 8b:** Multi-Core Asymmetric Accretion Metric Tears. Extreme angular momentum inducing local network failure and macroscopic conical defects (Axis of Evil).
 *   **Scenario 9:** Multi-Core Cluster Radiative Perimeter Void Walls. Confluences a localized, transient Scenario 1 metric drainage (topological perforation) with a dynamic Higgs phase-transition footprint.
 *   **Scenario 10:** Massless Conformal Cyclic Reset Sterile Pocket. Sterile baseline progression where empty radiation fields collapse into a sterile pocket.
 *   **Scenario 12:** Sterile Dynamic Vacuum Phase Infinite Reset Loop. Pure geometric phase transition of the empty spacetime metric permanently recalibrating the Higgs VEV.
 
 ### Peer-Review Contact Registry
 If you encounter runtime inconsistencies, structural boundary vulnerabilities, or mathematical bugs within the state kernel execution, please submit your evaluation directly via encrypted communication:
-*   **Contact Address:** jakubczaderski.cinnamon@proton.me
-*   **Mandatory Subjectclass:** #interactive_code#
