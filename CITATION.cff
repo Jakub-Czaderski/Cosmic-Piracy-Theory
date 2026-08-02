@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software or reference the framework, please cite the manuscript as below."
+authors:
+  - family-names: "Czaderski"
+    given-names: "Jakub"
+title: "Cosmic Piracy: Resolving Primordial Black Hole Growth and CMB Anomalies through Kerr-Induced Topological Entanglement in an Early-Aeon Nucleation"
+version: "11.5"
+date-released: 2026-08-01
+url: "https://github.com"
