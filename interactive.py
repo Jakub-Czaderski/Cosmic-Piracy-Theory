@@ -38,8 +38,8 @@ def run_interactive_sandbox():
     print(" |  |____ |  `--'  | |  |  |  | |  | |  |____   |  `--'  | |  | ")
     print("  \\______| \\______/  |__|  |__| |__|  \\______|   \\______/  |__| ")
     print("=====================================================================")
-    print("        COSMIC PIRACY SIMULATION - STATE ENGINE v26.0 (MODULAR)")
-    print("        ASCII Core Layout & Zero-Constraint Developer Overrides")
+    print("        COSMIC PIRACY SIMULATION - STATE ENGINE v26.2 (UNRESTRICTED)")
+    print("        ASCII Core Layout & Stochastic Additive Quantum Peak Online")
     print("=====================================================================\n")
     
     # Astrophysical initialization: No stars or mergers exist in the initial infant phase
@@ -75,21 +75,29 @@ def run_interactive_sandbox():
             print(f"          Current Pool: UMNC={n_umnc} | SMNC={n_smnc}")
             
             print("\n[LQG] Evaluating Baseline Metric Shear Force...")
-            active_cores = int(input(f"        Enter active preparing UMNC cores (1-{n_umnc}): "))
-            active_cores = max(1, min(active_cores, n_umnc))
+            active_umnc = int(input(f"        Enter active preparing UMNC cores (1-{n_umnc}): "))
+            active_umnc = max(1, min(active_umnc, n_umnc))
             
-            # Baseline shear pre-conditions the metric loops sub-critically
-            baseline_shear = active_cores * 1.85
+            # Baseline shear prepared by the cores (sub-critical on its own)
+            baseline_shear = active_umnc * 1.85
             lqg_tensile_limit = 10.0  # Invariant structural threshold (Sigma_max)
+            print(f" -> Prepared Metric Baseline Shear (Sub-Critical): {baseline_shear:.2f} / {lqg_tensile_limit:.2f}")
             
-            # Stochastic trigger: Kerr rotation requires a Planck fluctuation to breach bounds
-            quantum_fluctuation_amplitude = random.uniform(1.2, 2.5)
-            total_shear_force = baseline_shear * quantum_fluctuation_amplitude
+            # STOCHASTIC PEAK TRIGGER: The quantum fluctuation provides the definitive high-energy boost
+            print("\n[TRIGGER] Simulating stochastic Planck-scale quantum fluctuation...")
+            time.sleep(0.1)
+            
+            # A highly energetic fluctuation roll injects a massive additive energy spike to breach the 10.0 limit
+            quantum_fluctuation_peak = random.uniform(1.5, 8.5)
+            print(f" -> Generated Quantum Fluctuation Energy Peak: +{quantum_fluctuation_peak:.4f}")
+            
+            # Total combined force is the baseline preparation plus the sudden quantum peak
+            total_shear_force = baseline_shear + quantum_fluctuation_peak
             print(f" -> Total Combined Shear Force at Horizon Boundary: {total_shear_force:.2f}")
             
             if total_shear_force >= lqg_tensile_limit:
-                print("[CRITICAL] Planck-scale fluctuation breached the LQG tensile threshold!")
-                print("[SUCCESS] Localized topological rupture verified (Pathway 2 Active).")
+                print("[CRITICAL] Quantum fluctuation successfully breached the LQG tensile threshold!")
+                print("[SUCCESS] Localized topological rupture verified (Pathway 2 Unleashed).")
                 pathway_2_allowed = True
                 
                 # Three-tier chiral bifurcation gate (Section 3.2 mapping)
@@ -116,7 +124,7 @@ def run_interactive_sandbox():
                 
                 if track_choice == '1':
                     scenario_1_drainage_active = True
-                    print("[SYS-GATE] Mass injected into old universe. Parent Hawking deflation delayed.")
+                    print("[SYS-GATE] Mass injected into old universe. Parent Hawking evaporation delayed.")
                 elif track_choice == 'c':
                     addendum_1_collision_allowed = True
                     print("[SYS-GATE] Kinematic boundary intersection primed for later epoch evaluations.")
@@ -124,7 +132,7 @@ def run_interactive_sandbox():
                     addendum_1_ccc_exchange_allowed = True
                     print("[SYS-GATE] Invariant tensor perturbations aligned across the crossover.")
             else:
-                print("[SUPPRESSED] Combined fluctuation insufficient to rupture filaments.")
+                print("[SUPPRESSED] Combined fluctuation amplitude insufficient to tear filaments.")
                 print("[WARNING] Metric remains smoothly embedded. Pathway 2 blocked.")
                 pathway_2_allowed = False
                 
@@ -135,7 +143,6 @@ def run_interactive_sandbox():
             pathway_2_allowed = False
     else:
         pathway_2_allowed = True
-
     # 2. RUNTIME SIMULATION ENVIRONMENT CONFIGURATION
     print("[INPUT] Select Simulation Routing Mode:")
     print("        [m] - Manual Freedom (Reference Matrix Selection)")
@@ -155,6 +162,7 @@ def run_interactive_sandbox():
         addendum_1_ccc_exchange_allowed = True
         cpt_chiral_inversion_active = True
         timeline_displacement_risk = True
+
     # Standalone unperturbed evolutionary scenarios defined in the manuscript
     manuscript_scenarios = {
         "2":   {"name": "Solitary Isotropic Hierarchical Accretion", "tolerance": 15.0, "target": 1.0e-9, "centered": True},
@@ -166,8 +174,6 @@ def run_interactive_sandbox():
         "7.1": {"name": "Multi-Core Initial Oasis Density Core Theft", "tolerance": 15.0, "target": 2.5e-9, "centered": False},
         "7.2a":{"name": "Multi-Core Transitional Relativistic Slingshot Pockets", "tolerance": 15.0, "target": 2.444449e-09, "centered": False},
         "7.2b":{"name": "Multi-Core Cluster High-Tensile Repulsion Oasis", "tolerance": 15.0, "target": 2.444449e-09, "centered": False},
-        "8a":  {"name": "Multi-Core Symmetric Non-Disruptive Merging", "tolerance": 0.0, "target": 2.5e-9, "centered": True},
-        "8b":  {"name": "Multi-Core Asymmetric Accretion Metric Tears", "tolerance": 15.0, "target": 2.5e-9, "centered": False},
         "9":   {"name": "Multi-Core Cluster Radiative Perimeter Void Walls", "tolerance": 0.0, "target": 2.5e-9, "centered": True},
         "10":  {"name": "Massless Conformal Cyclic Reset Sterile Pocket", "tolerance": 0.0, "target": 0.0, "centered": True},
         "12":  {"name": "Sterile Dynamic Vacuum Phase Infinite Reset Loop", "tolerance": 15.0, "target": 0.0, "centered": True}
@@ -228,7 +234,7 @@ def run_interactive_sandbox():
             if auto_mode:
                 print("\n[SYS] Running automatic scenario detection matrix...")
                 if scenario_1_drainage_active and t_input < 1.0:
-                    user_choice = "1"  # Forced instant metric evacuation (Scenario 1)
+                    user_choice = "1"
                 elif eval_total < 50:
                     user_choice = "7.2b"
                 elif eval_total >= 150 and t_input < 1.0:
@@ -238,7 +244,7 @@ def run_interactive_sandbox():
                 print(f"        >> Auto-Detected Trajectory: {user_choice}")
             else:
                 print("\n[INPUT] Enter target BASE scenario to execute from the reference matrix:")
-                print("        Options: 2, 3a, 3b, 4, 5, 6, 7.1, 7.2a, 7.2b, 8a, 8b, 9, 10, 12")
+                print("        Options: 2, 3a, 3b, 4, 5, 6, 7.1, 7.2a, 7.2b, 9, 10, 12")
                 user_choice = input("        Select Base Scenario: ").strip()
                 
                 # Administrative block bypass guards active under Dev mode
@@ -259,17 +265,17 @@ def run_interactive_sandbox():
             spot_centered = manuscript_scenarios[user_choice]["centered"] if user_choice != "1" else True
 
             if addendum_1_collision_allowed:
-                # Differentiate modifier constraints solely based on current timescales
+                # Topographical profiling: Enforce spatial centering based on chronological history
                 if math.isclose(t_input, 13.8, rel_tol=1e-2):
                     active_modifier = "Addendum 1 (Delayed Hybrid)"
-                    active_tolerance = 1.0  # Rigid 1% statistical filter overrides scenario targets
-                    spot_centered = True    # Causal attachment node fixes alignment exactly at the center
+                    active_tolerance = 1.0  
+                    spot_centered = True    # Ancestral link fixes causal feedback directly at the center
                     print(f"\n[LAYER] Injecting {active_modifier} into Scenario {user_choice}!")
                     print("        Enforcing centered trans-cosmic link with +/-1% tolerance boundaries.")
                 elif t_input < 1.0 and eval_total >= 50:
                     active_modifier = "Addendum 1 (Same-Aeon Hybrid)"
-                    active_tolerance = 15.0 # Unlocks large parent plasma flutuations (+/-15%)
-                    spot_centered = False   # Exterior lateral impact forces a de-centered CMB Cold Spot profile
+                    active_tolerance = 15.0 
+                    spot_centered = False   # Lateral stochastic collision forces a de-centered Cold Spot profile
                     print(f"\n[LAYER] Injecting {active_modifier} into Scenario {user_choice}!")
                     print("        Enforcing de-centered lateral macro-collision bounds.")
 
