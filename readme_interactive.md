@@ -1,4 +1,4 @@
-# Technical Specification of the Cosmological State Simulation Kernel (v18.0)
+# Technical Specification of the Cosmological State Simulation Kernel (v26.0)
 
 This document structures the analytical runtime mechanics, state loops, and automated logging layers operational within the background-independent, multi-generational hybrid state engine (`multiverse_kernel.py`).
 
@@ -6,40 +6,51 @@ This document structures the analytical runtime mechanics, state loops, and auto
 
 This repository operates as an advanced, background-independent **Cosmological State Backend**. The underlying Python architecture strictly enforces the thermodynamic conservation laws, mass-accretion limits, and geometric invariants derived in the primary framework manuscript.
 
+To maximize multiversal compatibility and guarantee seamless rendering across all Unix/Linux servers, cloud-native deployments, and headless Docker instances, this engine utilizes a standardized ASCII terminal interface standard, completely avoiding graphical emoji dependencies.
+
 The international software engineering and astrophysics community is invited to **fork this repository** to develop high-utility extensions atop this core engine, including:
 * Graphical 3D spacetime topology visualizers (WebGL / OpenGL / Pygame canvas integrations).
 * Multi-branch timeline graphing dashboards tracking core deflation.
 * Conformal diagram projection and Penrose causal boundary modules.
 
-## 2. Invariant Aeon 0 Seeding & Stochastic Rupture Guards
+## 2. Unrestricted Phase 0 Seeding & Non-Linear LQG Rupture
 
-Upon initialization, the kernel isolates the symmetric Ur-Genesis Node (Scenario 0) to process the primordial seeding phase before any standard evolutionary cycles can manifest:
+Upon initialization, the kernel isolates the primordial seeding phase (Phase 0) to process the initial nucleation thresholds before any standard evolutionary cycles can manifest:
 
-*   **Scenario 0 Invariant Bounds:** Scenario 0 is treated as a fundamental, non-repeatable boundary axiom that codes net-zero energy ($\hat{Q} |\Psi\rangle = 0$) exclusively at the birth of the multiverse. It cannot be injected as a standard runtime scenario during mature generational aeons.
-*   **The Paradigm of Core-Induced Tearing:** In strict compliance with loop quantum gravity constraints, rotating Kerr-de Sitter cores *cannot* mechanically rupture the spacetime fabric on their own, as this would violate physical saturation thresholds (requiring an unphysical light-speed rotation, $a_* > 1$). 
-    *   **The Mechanism:** Active Ultramassive Non-Singular Cores (UMNCs) act strictly as preparing agents, generating massive holonomic shear force to precondition the metric.
-    *   **The Trigger:** The definitive topological rupture required for a **Pathway 2 Transition** (Independent Spacetime Isolation) is *always* driven by a stochastically generated, Planck-scale quantum fluctuation. If the combined amplitude fails to breach the LQG maximum tensile limit ($\Sigma_{\max}$), the manifold remains smoothly embedded, and all dependent daughter-universe paths are dynamically blocked.
+*   **Scenario 0 Invariant Bounds:** Scenario 0 is treated as a fundamental, non-repeatable boundary axiom that codes net-zero energy ($\hat{Q} |\Psi\rangle = 0$) exclusively at the birth of the multiverse. Because it describes the unique initial crossover node, it operates as an external, flexible matrix initialization layer and cannot be re-injected as a standard runtime scenario during mature generational aeons.
+*   **The Paradigm of Core-Induced Tearing:** In strict compliance with loop quantum gravity constraints, rotating Kerr-de Sitter cores *cannot* mechanically rupture the spacetime fabric on their own, as this would require an unphysical light-speed rotation ($a_* > 1$). Active Ultramassive Non-Singular Cores (UMNCs) act strictly as preparing agents, generating massive holonomic shear force to precondition the metric loop coordinates.
+*   **The Stochastic Fluctuation Trigger:** The definitive topological rupture required for a **Pathway 2 Transition** (Independent Spacetime Isolation) is *always* driven by a stochastically generated, Planck-scale quantum fluctuation. If the combined amplitude breaches the LQG maximum tensile limit ($\Sigma_{\max}$), a localized rupture manifests, establishing the boundary conditions for subsequent daughter universes.
 
-## 3. Dual-Mode Config & Custom Asset Allocation Matrix
+## 3. Stochastic Chiral Bifurcation & Timeline Displacement
 
-The engine provides dual operational tracks to simulate cosmic trajectories:
-*   **Automatic Detection Mode (`[a]`):** Activates a context-aware routing matrix that dynamically evaluates intervals ($\Delta t$) and active core thresholds to predict the resulting evolutionary branch (e.g., triggering Addendum 1 hybrids).
-*   **Manual Freedom Mode (`[m]`):** Unlocks full user control over the reference matrix with two specific sub-version mechanics:
-    1.  **Astronomical Asset Overrides:** Grants the observer the freedom to manually overwrite all four core classes (`UMNC`, `SMNC`, `IMNC`, `HMNC`) either *temporarily* (as an isolated test setup for the upcoming evaluation) or *permanently* (altering the real baseline chronology of the universe).
-    2.  **Temporal Event-3 Guards:** Implements rigid physical filters. Scenarios requiring advanced thermodynamic dilution and a massless vacuum threshold (such as Scenario 10 and Scenario 12) are blocked and fall back if executed at early timescales ($\Delta t < 100$ Gyr).
+The engine incorporates the non-mandatory nature of Ergosphere CPT inversions via a three-tier geometric branching gate during the Phase 0 threshold:
 
-## 4. Accelerated SFR Kinetics & Conformal Evaporation
+*   **Chiral Trajectory Selection:** Traverses through the rotating Kerr horizon geometry bounds allow the user to select or stochastically calculate the resulting domain property:
+    1. **Standard Materie-Domain (`[m]`):** Symmetric baryon-photon average evolution where the newborn manifold retains a positive time vector ($+t$).
+    2. **Antimaterie-Domain (`[a]`):** Enforces a complete CPT-chiral inversion within the spinning ergosphere, flipping the domain vector to pure antimatter Rest-Mass configurations ($-t$).
+    3. **Stochastic Quantum Bifurcation (`[s]`):** Dynamically rolls a probability check on the SU(2) area operator saturation. A successful roll triggers a spontaneous chiral flip.
+*   **The Timeline Displacement Problem:** If an Antimaterie-Domain is established, the mass-free boundary condition loses scale-invariance and operational clocks. High-energy chiral cascades (Scenarios 3b, 5, 7.2b, and 9) subsequently enforce a **Synchronization Dilemma** due to the chronological vector phase shift between the vorwärts-gerichtete ($+t$) and rückwärts-gerichtete ($-t$) domains. The kernel elegantly resolves this via Subsection 4.3 holonomies, demonstrating that persistent quantum boundary entanglement maintains a stable equilibrium without breaking macro-causality.
 
-State progressions inside active aeons are governed by sequential thermodynamic filters:
-*   **Astrophysical Initial Conditions:** At Generation 0, the engine enforces strict initial bounds. The universe contains no pre-existing stars or mergers ($N_{\text{IMNC}} = 0, N_{\text{HMNC}} = 0$). These configurations must be synthesized over time through star formation rate (SFR) kinetics.
-*   **Time-Dependent Asset Accretion (`[c]`):** Slices consecutive event paths. High-order core densities drive a time-dependent star-collapse factor ($\text{SFR} \cdot \Delta t \cdot 1.5$), collapsing gas into stellar cores and processing multi-body slingshot mergers into hypermassive anchors.
-*   **Conformal Cyclic Reset (`[r]`):** Progresses the system to Generation + 1. Models the crossover boundary via a massive Hawking-evaporation rescaling matrix, evaporating 85% of all active rest-mass configurations into radiative tensors across the 3-surface horizon.
+## 4. Fully Flexible Addendum Modifiers & Topographical Profiles
+
+Instead of strictly confining cosmological anomalies to single scenario baselines, version 26.0 introduces a **Modular Modifier Layer System**. Advanced boundaries defined in Addendum 1 and Addendum 2 act as dynamic physical filters applicable atop *any* chosen base scenario, regulating topography directly via their specific causal history:
+
+*   **Addendum 1 - Same-Aeon Lateral Collision Layer:** Applicable to any active base scenario at early timescales ($\Delta t < 1.0$ Gyr). Simulates a lateral collision between two independently expanding sub-manifolds within the same epoch. Because this macro-collision manifests stochastically at the outer boundaries, it is completely independent of the center coordinate, forcefully displacing baryonic gas to generate the highly anomalous, **de-centered CMB Cold Spot profile** (`spot_centered = False`).
+*   **Addendum 1 - Delayed Mother-Child Layer:** Applicable to any active base scenario at mature timescales ($\Delta t \approx 13.8$ Gyr). Simulates a delayed causal entanglement with the ancestral parent metric. Because the child universe remains bound to its original detachment node, this trans-cosmic feedback loop is geometrically fixed and manifests **exclusively at the exact center of the universe** (`spot_centered = True`), overriding baseline fluctuations to enforce a rigid statistical boundary tolerance of $\pm1\%$.
+*   **Addendum 2 - Conformal Information Crossover:** Evaluates the transition during a Conformal Cyclic Reset (`[r]`). If the preceding universe did *not* suffer a massive metric drainage (Scenario 1), the residual mass distribution converts into high-frequency Gravitational Wave Spectra, embedding the permanent geometric footprint of the past directly into the new baseline without violating boundary masslessness.
+
+## 5. The Unrestricted Developer Mode Engine (`[d]`)
+
+For advanced stress-testing and boundary evaluation of unphysical extremes, the kernel hosts a completely unrestricted **Developer Mode**. When active, the system acts as an omnipotent administrative override:
+
+*   **Unlimited Core Manipulation:** Prompted at every single event slice, the developer can freely alter active seed populations (`UMNC`, `SMNC`, `IMNC`, `HMNC`) permanently or temporarily, bypassing time-dependent star formation rate (SFR) kinetics.
+*   **Bypass of Causal Blockades:** Forcing the simultaneous activation of mutually exclusive pathways, the Developer Mode unlocks Scenario 1 (Mass Drainage) and all Addendum modifers concurrently. Early Event-3 constraints are suppressed, and the **Materie-Mitnahme-Gatter** (the rigid Binary Gate of Section 4.4) is completely bypassed to prevent administrative fallback loops.
 
 ---
 
 ## Technical Appendix: Structural Code Blueprint Mapping
 
-The operational state kernel maps all localized cosmic trajectories and simulation execution branches according to the official manuscript blueprints:
+The operational state kernel maps all localized cosmic trajectories according to the official manuscript blueprints:
 
 *   **Scenario 2:** Solitary Isotropic Hierarchical Accretion. Metric progression driven by standalone, high-mass primordial nucleation seeds.
 *   **Scenario 3a:** Direct Conformal Protection Branch. Pure gravitational trap rendering the local domain sterile before nucleosynthesis can initiate.
@@ -55,10 +66,8 @@ The operational state kernel maps all localized cosmic trajectories and simulati
 *   **Scenario 9:** Multi-Core Cluster Radiative Perimeter Void Walls. Confluences a localized, transient Scenario 1 metric drainage (topological perforation) with a dynamic Higgs phase-transition footprint.
 *   **Scenario 10:** Massless Conformal Cyclic Reset Sterile Pocket. Sterile baseline progression where empty radiation fields collapse into a sterile pocket.
 *   **Scenario 12:** Sterile Dynamic Vacuum Phase Infinite Reset Loop. Pure geometric phase transition of the empty spacetime metric permanently recalibrating the Higgs VEV.
-*   **Scenario 6 + Addendum 1 (Same-Aeon Hybrid):** A lateral collision between two independently expanding sub-manifolds within the same epoch, establishing a macro-cosmological intersection that forces a $15\%$ fluid fluctuation (CMB Cold Spot).
-*   **Scenario 6 + Addendum 1 (Delayed Hybrid):** A delayed entanglement with the ancestral parent metric manifesting after approximately 13.8 billion years, enforcing a rigid statistical boundary tolerance of $\pm1\%$.
 
 ### Peer-Review Contact Registry
 If you encounter runtime inconsistencies, structural boundary vulnerabilities, or mathematical bugs within the state kernel execution, please submit your evaluation directly via encrypted communication:
 *   **Contact Address:** jakubczaderski.cinnamon@proton.me
-*   **Mandatory Subject Tag:** `#interactive code#`
+*   **Mandatory Subjectclass:** #interactive_code#
