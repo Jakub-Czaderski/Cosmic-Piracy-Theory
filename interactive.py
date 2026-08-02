@@ -38,7 +38,7 @@ def run_interactive_sandbox():
     print(" |  |____ |  `--'  | |  |  |  | |  | |  |____   |  `--'  | |  | ")
     print("  \\______| \\______/  |__|  |__| |__|  \\______|   \\______/  |__| ")
     print("=====================================================================")
-    print("        COSMIC PIRACY SIMULATION - STATE ENGINE v26.3 (REFINED)")
+    print("        COSMIC PIRACY SIMULATION - STATE ENGINE v26.4 (REFINED)")
     print("        ASCII Core Layout & Zero-Constraint Developer Overrides")
     print("=====================================================================\n")
     
@@ -66,13 +66,26 @@ def run_interactive_sandbox():
         print("---------------------------------------------------------------------")
         try:
             print("[INPUT] Enter target timescale for Aeon 0 PNC growth phase:")
-            t_genesis = float(input("        Delta t_0 (in Gyr, e.g. 0.2 or 1.5): "))
+            t_genesis = float(input("        Delta t_0 (in Gyr, e.g. 0.2 or 90.0): "))
             
-            # Seed propagation during the early unperturbed nucleation era
-            pnc_spawned = int((2.5 * n_umnc + 0.8 * n_smnc) * t_genesis * 15)
-            n_smnc += pnc_spawned
-            print("[SUCCESS] High-energy radiation fields collapsed stochastically.")
-            print(f"          Current Pool: UMNC={n_umnc} | SMNC={n_smnc}")
+            # Refined Ur-Condensation: Radiation collapses into ALL three native satellite/stellar classes
+            smnc_spawned = int((2.5 * n_umnc + 0.8 * n_smnc) * t_genesis * 15)
+            imnc_spawned = int((4.0 * n_umnc + 1.5 * n_smnc) * t_genesis * 25) # IMNCs materialize as key light-born satellites
+            
+            n_smnc += smnc_spawned
+            n_imnc += imnc_spawned
+            
+            # Chronological check for deep eras: Enforce multi-body mergers (HMNC) after prolonged aging
+            if t_genesis >= 50.0:
+                # Dense environments over deep timescales inevitably generate the first hypermassive anchors
+                hmnc_fused = int((n_smnc * 0.005) * (t_genesis / 50.0))
+                n_hmnc += hmnc_fused
+                n_smnc -= hmnc_fused * 2 # Mergers consume standard satellite seeds
+                print(f"[PRE-BURST] Deep chronological aging detected ({t_genesis} Gyr).")
+                print(f"            Multi-body kinematics successfully fused {hmnc_fused} HMNC core anchors.")
+            
+            print("\n[SUCCESS] High-energy radiation fields collapsed stochastically.")
+            print(f"          Current Pool: UMNC={n_umnc} | SMNC={n_smnc} | IMNC={n_imnc} | HMNC={n_hmnc}")
             
             print("\n[LQG] Evaluating Baseline Metric Shear Force...")
             active_umnc = int(input(f"        Enter active preparing UMNC cores (1-{n_umnc}): "))
@@ -83,24 +96,29 @@ def run_interactive_sandbox():
             lqg_tensile_limit = 10.0  # Invariant structural threshold (Sigma_max)
             print(f" -> Prepared Metric Baseline Shear (Sub-Critical): {baseline_shear:.2f} / {lqg_tensile_limit:.2f}")
             
-            # STOCHASTIC PEAK TRIGGER: The quantum fluctuation provides the definitive high-energy boost
+            # Stochastic peak trigger: The definitive high-energy boost
             print("\n[TRIGGER] Simulating stochastic Planck-scale quantum fluctuation...")
             time.sleep(0.1)
             
-            # A highly energetic fluctuation roll injects a massive additive energy spike to breach the 10.0 limit
+            # Single, frozen quantum spike calculation to maintain mathematical coherence
             quantum_fluctuation_peak = random.uniform(1.5, 8.5)
             print(f" -> Generated Quantum Fluctuation Energy Peak: +{quantum_fluctuation_peak:.4f}")
             
-            # Total combined force is the baseline preparation plus the sudden quantum peak
             total_shear_force = baseline_shear + quantum_fluctuation_peak
             print(f" -> Total Combined Shear Force at Horizon Boundary: {total_shear_force:.2f}")
             
+            # Enforce the logical gate boundaries and set the Pathway 2 allowance flag
             if total_shear_force >= lqg_tensile_limit:
                 print("[CRITICAL] Quantum fluctuation successfully breached the LQG tensile threshold!")
                 print("[SUCCESS] Localized topological rupture verified (Pathway 2 Unleashed).")
                 pathway_2_allowed = True
-                
-                # Three-tier chiral bifurcation gate (Section 3.2 mapping)
+            else:
+                print("[SUPPRESSED] Combined fluctuation amplitude insufficient to tear filaments.")
+                print("[WARNING] Metric remains smoothly embedded. Pathway 2 blocked.")
+                pathway_2_allowed = False
+
+            # Added missing chirality and gate combinations to close Phase 0 cleanly
+            if pathway_2_allowed:
                 print("\n[INPUT] Evaluate Rotating Kerr Horizon Geometry Bounds:")
                 print("        [m] - Standard Materie Domain (Symmetric Baryon Average / +t)")
                 print("        [a] - Antimaterie Domain (CPT Chiral Inversion Enforced / -t)")
@@ -115,7 +133,6 @@ def run_interactive_sandbox():
                     timeline_displacement_risk = True
                     print("[SYS-GATE] Stochastic roll triggered Ergosphere Chiral Inversion! (-t)")
                 
-                # Topological track mapping for ancestral metric interactions
                 print("\n[INPUT] Define Evolution Track Mode for Addendum 1 & Scenario 1:")
                 print("        - Scenario 1 Metric Drainage (Absorbs mass into parent aeon -> Blocks immediate Reset)")
                 print("        [c] - Addendum 1 Macro-Collision Track (Physical boundary intersection later in time)")
@@ -124,20 +141,17 @@ def run_interactive_sandbox():
                 
                 if track_choice == '1':
                     scenario_1_drainage_active = True
-                    print("[SYS-GATE] Mass injected into old universe. Parent Hawking evaporation delayed.")
+                    print("[SYS-GATE] Mass injected into old universe. Parent Hawking deflation delayed.")
                 elif track_choice == 'c':
                     addendum_1_collision_allowed = True
                     print("[SYS-GATE] Kinematic boundary intersection primed for later epoch evaluations.")
                 elif track_choice == 'e':
                     addendum_1_ccc_exchange_allowed = True
                     print("[SYS-GATE] Invariant tensor perturbations aligned across the crossover.")
-            else:
-                print("[SUPPRESSED] Combined fluctuation amplitude insufficient to tear filaments.")
-                print("[WARNING] Metric remains smoothly embedded. Pathway 2 blocked.")
-                pathway_2_allowed = False
-                
+            
             execute_automated_logging("0_Seeding", 2.5e-9, True, 0.0, f"Aeon0 Seeding t={t_genesis}")
             print("\n[KERNEL] Phase 0 complete. Progressing...\n" + "="*65 + "\n")
+            
         except ValueError:
             print("[FAIL] Numerical validation aborted. Defaulting bounds.")
             pathway_2_allowed = False
@@ -203,7 +217,7 @@ def run_interactive_sandbox():
         print(f" -> Active Core Metric Shielding Lock:  {effective_acceleration_factor:.4f}x")
 
         try:
-            print("\n[INPUT] Enter target timescale for this event:")
+            print("\n[INPUT] Enter target evolution timescale for this event:")
             t_input = float(input("        Delta t (in Gyr, e.g. 0.5 or 13.8): "))
 
             # Enforce absolute timeline collapse across hyper-mature eras if dev mode is inactive
@@ -344,7 +358,7 @@ def run_interactive_sandbox():
                 # ADVANCED NON-LINEAR MULTI-BODY MERGER KINETICS (HMNC Generation Profile)
                 print("[MERGER-KINETICS] Computing non-linear multi-body cluster distribution...")
                 a_star = 0.9983  # Dimensionless extremal Kerr spin parameter from manuscript saturation
-                alpha_cross_section = 1.2e-4  # Gravitational capture scaling factor
+                alpha_cross_section = 1.2e-4  # Gravitational capture cross-section
                 beta_slingshot_dump = 0.05    # Kinetic ejection damping constant
                 
                 # Relativistic collision frequency scales quadratically with SMNC density squared
