@@ -25,6 +25,72 @@ def execute_automated_logging(assigned_scenario, eta_calc, spot_centered, deviat
     except IOError:
         print("[FAIL] File-Writer buffer blocked. Check folder write permissions.")
 
+def evaluate_cluster_stability(active_umnc, active_smnc, active_imnc, current_hmnc, total_pnc_pool):
+    """
+    SECTION 4.1 REFINED SUB-PROGRAM: Generalized Relational Dynamics Monitor.
+    Treats ALL core mass classes as dual-vector entities contributing simultaneously
+    to both inward gravitational retention and outward kinetic escape fields.
+    """
+    print("\n[MONITOR] Running Generalized Relational Multi-Body Vector Analysis...")
+    
+    # Dimensionless scale-invariant mass coefficients mapped from manuscript hierarchy
+    mass_weights = {
+        "umnc": 50.0,
+        "hmnc": 25.0,
+        "smnc": 10.0,
+        "imnc": 0.5,
+        "pnc":  0.01
+    }
+    
+    # Relativistic expansion factor (Lorentz traction profile)
+    lorentz_gamma = 1.9015
+    
+    # 1. COMPUTE TOTAL INWARD VECTOR (Gravitational Collapse Potential)
+    # Every mass asset in the coordinate space contributes to the central potential well
+    f_inward = (
+        (active_umnc * mass_weights["umnc"]) +
+        (current_hmnc * mass_weights["hmnc"]) +
+        (active_smnc * mass_weights["smnc"]) +
+        (active_imnc * mass_weights["imnc"]) +
+        (total_pnc_pool * mass_weights["pnc"])
+    )
+    
+    # 2. COMPUTE TOTAL OUTWARD VECTOR (Kinetic Slingshot & Thermodynamic Expansion)
+    # Models how multi-body chaos, frame-dragging, and pressure push assets outward
+    # Lighter classes accelerate faster (higher factor), heavier classes scale with spin coupling
+    f_outward = (
+        (active_smnc * mass_weights["smnc"] * (lorentz_gamma - 1.0) * 1.5) +
+        (active_imnc * mass_weights["imnc"] * (1.0 / lorentz_gamma) * 3.0) +
+        (current_hmnc * mass_weights["hmnc"] * 0.15) + # HMNCs stabilizing via mutual orbital torque
+        (active_umnc * mass_weights["umnc"] * 0.02)     # Minimal centrifugal drift from fast anchors
+    )
+    
+    # Prevent division by zero inside pure vacuum transitions
+    if f_inward == 0.0:
+        if f_outward > 0.0:
+            print(" -> Dynamic Balance Ratio (R_stabil): INF (Unbounded Metric Expansion)")
+            return "Explosion"
+        else:
+            print(" -> Dynamic Balance Ratio (R_stabil): 0.00 (Massless Symmetric State)")
+            return "Massless"
+            
+    # Calculate the net dynamic Stability Ratio (R_stabil)
+    r_stabil = f_outward / f_inward
+    print(f" -> Aggregate Inward Gravitational Pull Vector: {f_inward:.2f}")
+    print(f" -> Aggregate Outward Relativistic Escape Vector: {f_outward:.2f}")
+    print(f" -> Computed Dynamic Balance Ratio (R_stabil):  {r_stabil:.4f}")
+    
+    # Broad topological boundary windows to keep the prediction non-specific and fluid
+    if r_stabil < 0.25:
+        print(" -> [DOMINANT TRAJECTORY]: GRAVITATIONAL INFLUX (System trends toward central core consolidation)")
+        return "Collapse"
+    elif r_stabil > 0.85:
+        print(" -> [DOMINANT TRAJECTORY]: ISOLATED EXPANSION (System trends toward dispersed void-wall structures)")
+        return "Explosion"
+    else:
+        print(" -> [DOMINANT TRAJECTORY]: STABLE OASIS EQUILIBRIUM (Balanced multi-body interaction sustains a long-term cluster)")
+        return "Stable"
+
 def run_interactive_sandbox():
     """
     Main state engine executing multi-generational cosmological cascade models.
@@ -77,17 +143,19 @@ def run_interactive_sandbox():
         # If user accepts (y), the regulated condensation and multi-body matrix initiates
         print("\n[PHASE 0] AEON 0 - PRIMORDIAL SEEDING AND BOUNDARY GATES")
         print("---------------------------------------------------------------------")
+        # --- PART 1A: PRIMORDIAL SEEDING & QUADRATIC CONDENSATION LOOP ---
         try:
             print("[INPUT] Enter target timescale for Aeon 0 PNC growth phase:")
-            t_genesis = float(input("        Delta t_0 (in Gyr, e.g. 0.2 or 90.0): "))
+            t_genesis = float(input("        Delta t_0 (in Gyr, e.g. 4.0 or 90.0): "))
             
-            # FIXED: Condensation scales purely from the high-energy vacuum field over time
-            # Pure field-dependent condensation without artificial time blockades
+            # FIXED: Quadratic Time-Scaling Law (N pro t^2) for infant eras (t_genesis < 40.0)
+            # Enforces high-density photon collision rates exactly matching the 4 Gyr third-scale baseline
             if t_genesis < 40.0:
                 umnc_spawned = int(0.005 * (t_genesis ** 1.1)) 
-                smnc_spawned = int(12.5 * t_genesis)
-                imnc_spawned = int(450.0 * t_genesis)
+                smnc_spawned = int(0.65 * (t_genesis ** 2.0)) # QUADRATIC INVARIANT FIELD SWEAT
+                imnc_spawned = int(18.5 * (t_genesis ** 2.0)) # QUADRATIC STELLAR SEED EXPLOSION
             else:
+                # High-energy deep era runaway trigger for highly evolved ancestral seeding
                 umnc_spawned = int(0.45 * (t_genesis ** 1.8))
                 smnc_spawned = int(8.5 * (t_genesis ** 1.4))
                 imnc_spawned = int(1200.0 * t_genesis)
@@ -121,44 +189,32 @@ def run_interactive_sandbox():
             
             print("\n[SUCCESS] High-energy radiation fields collapsed stochastically.")
             print(f"          Current Pool: UMNC={n_umnc:,} | SMNC={n_smnc:,} | IMNC={n_imnc:,} | HMNC={n_hmnc:,}")
-            
+            # --- PART 1B: HIERARCHICAL METRIC SHEAR & COLD SPOT RESET GATE ---
             print("\n[LQG] Evaluating Baseline Metric Shear Force...")
-            
-            # Reset sub-class input fields safely
-            active_umnc = 0
-            active_smnc = 0
-            active_imnc = 0
-            
+            active_umnc, active_smnc, active_imnc = 0, 0, 0
             total_active_horizons = n_umnc + n_smnc + n_imnc
             
             if total_active_horizons > 0:
                 print(f"        Available assets: {n_umnc} UMNC | {n_smnc} SMNC | {n_imnc} IMNC cores.")
                 print("        ---------------------------------------------------------------------")
-                
-                # Channel 1: Ultramassive Core Anchors
                 if n_umnc > 0:
                     active_umnc = int(input(f"        >> Enter active preparing UMNC anchors (0-{n_umnc}): "))
                     active_umnc = max(0, min(active_umnc, n_umnc))
-                
-                # Channel 2: Supermassive Satellite Cores
                 if n_smnc > 0:
                     active_smnc = int(input(f"        >> Enter active slinging SMNC satellites (0-{n_smnc}): "))
                     active_smnc = max(0, min(active_smnc, n_smnc))
-                
-                # Channel 3: Intermediate Mass Core Seeds (Crucial for Scenario 6 Shielding)
                 if n_imnc > 0:
                     active_imnc = int(input(f"        >> Enter active peripheral IMNC shields (0-{n_imnc}): "))
                     active_imnc = max(0, min(active_imnc, n_imnc))
                 
-                # Refined Invariant Shear Formula: Hierarchically weighted by mass-class efficiency
                 baseline_shear = (active_umnc * 2.50) + (active_smnc * 1.25) + (active_imnc * 0.05)
             else:
                 print("        [CRITICAL] Massless vacuum state reached. No active horizons exist.")
-                print("                   Baseline mechanical shear force collapses identically to 0.0.")
                 baseline_shear = 0.0
             
+            lqg_tensile_limit = 10.0
             print("        ---------------------------------------------------------------------")
-            print(f" -> Prepared Metric Baseline Shear (Hierarchical): {baseline_shear:.2f} / 10.00")
+            print(f" -> Prepared Metric Baseline Shear (Hierarchical): {baseline_shear:.2f} / {lqg_tensile_limit:.2f}")
             
             print("\n[TRIGGER] Simulating stochastic Planck-scale quantum fluctuation...")
             time.sleep(0.1)
@@ -167,14 +223,69 @@ def run_interactive_sandbox():
             
             total_shear_force = baseline_shear + quantum_fluctuation_peak
             print(f" -> Total Combined Shear Force at Horizon Boundary: {total_shear_force:.2f}")
-            if total_shear_force >= 10.0:
+            
+            if total_shear_force >= lqg_tensile_limit:
                 print("[CRITICAL] Quantum fluctuation successfully breached the LQG tensile threshold!")
                 print("[SUCCESS] Localized topological rupture verified (Pathway 2 Unleashed).")
-                pathway_2_allowed = True
+                
+                total_pnc_pool = n_imnc + n_smnc
+                topology_fate = evaluate_cluster_stability(active_umnc, active_smnc, active_imnc, n_hmnc, total_pnc_pool)
+                print("---------------------------------------------------------------------")
+                
+                is_developer = False
+                try:
+                    if dev_mode: is_developer = True
+                except UnboundLocalError:
+                    is_developer = False
+
+                if topology_fate == "Stable" or is_developer:
+                    if is_developer and topology_fate != "Stable":
+                        print("[DEV-BYPASS] Administrative holonomy overwrite: Ignoring cluster instability.")
+                    print("[CAUSAL-LOCK] Spacetime geometry stabilized. Processing coordinate transfer...")
+                    pathway_2_allowed = True
+                    genesis_reply_loop = False
+                else:
+                    pathway_2_allowed = False
+                    
+                    # STRICT PHYSICS CONSERVATION: Calculate remaining mass assets left in Aeon 0
+                    n_umnc = max(0, n_umnc - active_umnc)
+                    n_smnc = max(0, n_smnc - active_smnc)
+                    n_imnc = max(0, n_imnc - active_imnc)
+                    total_remaining_mass = n_umnc + n_smnc + n_imnc + n_hmnc
+                    
+                    # --- INTERACTIVE MASSLESS VACUUM RESET GATE FOR AEON 0 ---
+                    if total_remaining_mass == 0 and not is_developer:
+                        print("\n[AUTOMATIC RESET] Total asset extraction! Aeon 0 is left completely massless.")
+                        print("                  Conformal metric scale loss forces an instant global CCC Reset of Aeon 0!")
+                        print("[INPUT] Do you want this violent energy drainage to manifest a permanent CMB Cold Spot anomaly inside the newly decoupled pocket?")
+                        coldspot_choice = input("        Manifest Addendum 1 CMB Cold Spot scar in the new universe? (Y/n): ").strip().lower()
+                        
+                        if coldspot_choice != 'n':
+                            print("\n[ADDENDUM 1] Vacuum drainage scar injected directly into the newborn metric matrix!")
+                            print("             Enforcing de-centered lateral macro-anomaly footprint for the new independent manifold.")
+                            execute_automated_logging("NewManifold_ColdSpot", 2.444449e-09, False, 15.0, "Massless Aeon 0 Drainage Scar")
+                            addendum_1_collision_allowed = True # Injects the scar property into the runtime matrix
+                        else:
+                            print("\n[SMOOTH RESET] Scar bypassed. Metric drainage potential expanded into isotropic background fields.")
+                            execute_automated_logging("NewManifold_Smooth", 1.0e-9, True, 0.0, "Massless Aeon 0 Drainage Smooth")
+                        
+                        # The failed pocket template transitions safely into the regular timeline matrix
+                        print("\n -> Coordination transfer completed. Forwarding to timeline matrix.\n")
+                        pathway_2_allowed = True
+                        genesis_reply_loop = False
+                    else:
+                        # Standard fallback if mass remains on the old timeline
+                        current_generation += 1
+                        print(f"\n[CRITICAL ERROR] Core instability without complete drainage. Forcing forward Gen flip to {current_generation}...")
+                        n_umnc = int(n_umnc * 0.15); n_smnc = int(n_smnc * 0.15); n_imnc = int(n_imnc * 0.15); n_hmnc = int(n_hmnc * 0.15)
+                        pathway_2_allowed = True; genesis_reply_loop = False
             else:
                 print("[SUPPRESSED] Combined fluctuation amplitude insufficient to tear filaments.")
                 print("[WARNING] Metric remains smoothly embedded. Pathway 2 blocked.")
                 pathway_2_allowed = False
+        except ValueError:
+            print("[FAIL] Numerical validation aborted. Defaulting bounds.")
+            pathway_2_allowed = False; genesis_reply_loop = False
             # Evaluate chirality and boundary track options under active ruptures
             if pathway_2_allowed:
                 print("\n[INPUT] Evaluate Rotating Kerr Horizon Geometry Bounds:")
