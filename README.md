@@ -58,7 +58,7 @@ The open-source numerical verification pipeline live-evaluates the continuous th
 *   **Scenario 5:** Solitary Anchor Matrix with an active, expanding Pathway 3 Higgs phase-transition shockwave.
 *   **Scenario 6:** Multi-Core Cluster Baseline Kinematics stabilized by a distributed peripheral IMNC shielding network.
 *   **Scenario 7.1/7.2a/7.2b:** Core Theft and Relativistic Slingshot Pockets leading to massive time-compressed "Oasis-Galaxies."
-*   **Scenario 8.5:** Stable Horizon Shadow Non-Singular Transition Track balanced via partial accretion disk energy drainage.
+*   **Scenario 8:** Stable Horizon Shadow Non-Singular Transition Track, potentially with additional mass gained via the accretion discs of participating cores.
 *   **Scenario 9:** Radiative Perimeter Void Walls confluencing transient Scenario 1 drainage with a Higgs phase footprint.
 *   **Scenario 10/12:** Massless Conformal Cyclic Reset collapsing empty fields into slow-nucleating sterile pockets or infinite VEV loops.
 
