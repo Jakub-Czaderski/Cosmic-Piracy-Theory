@@ -1,6 +1,6 @@
 # Technical Specification: Cosmological State Simulation Kernel (v33.0)
 
-This repository hosts the background-independent, multi-generational cosmological hybrid state engine (`multiverse_kernel.py`). The programmatic backend strictly models the thermodynamic filters, mass-accretion channels, and geometric invariants derived in the primary framework manuscript.
+This repository hosts a background-independent, multi-generational cosmological hybrid state engine. The programmatic backend strictly models the thermodynamic filters, mass-accretion channels, and geometric invariants derived in the primary framework manuscript.
 
 > ⚠️ **DISCLAIMER / RUNTIME NOTICE:** Please note that this simulation script operates as an active, cutting-edge numerical testbed for background-independent quantum gravity and cyclic manifolds. Due to the high complexity of fluid quantum-metrical parameters, non-linear multi-body kinetics, and multi-manifold synchronization loops, **the script is potentially faulty or subject to stochastic runtime anomalies.** It should be treated as an experimental environment for hypothesis testing.
 
