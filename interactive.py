@@ -6,10 +6,6 @@ import os
 import sys
 
 def execute_automated_logging(log_id, density, is_smooth, anomaly_score, descriptor):
-    """
-    Saves runtime cosmological matrices, boundary footprints, 
-    and invariant profiles safely into local audit fields.
-    """
     try:
         with open("causal_matrix_output.txt", "a") as f:
             f.write(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] ID: {log_id} | "
@@ -19,11 +15,6 @@ def execute_automated_logging(log_id, density, is_smooth, anomaly_score, descrip
         pass
 
 def evaluate_cluster_stability(active_umnc, active_smnc, active_imnc, n_hmnc, total_pnc_pool):
-    """
-    SECTION 4.1 MONITOR: Relativistic Lorentz Mass Inflation Framework.
-    Evaluates dual-vector interactions driving the decoupled manifold.
-    Tracks whether external boundary conditions sustain an Oasis equilibrium.
-    """
     print("\n[MONITOR] Running Refined Relativistic Multi-Body Vector Analysis...")
     
     mass_weights = {
@@ -52,10 +43,8 @@ def evaluate_cluster_stability(active_umnc, active_smnc, active_imnc, n_hmnc, to
     )
     
     if f_inward == 0.0:
-        if f_outward > 0.0: 
-            return "Explosion"
-        else: 
-            return "Massless"
+        if f_outward > 0.0: return "Explosion"
+        else: return "Massless"
             
     r_stabil = f_outward / f_inward
     print(f" -> Aggregate Inward Gravitational Pull Vector: {f_inward:.2f}")
@@ -72,31 +61,25 @@ def evaluate_cluster_stability(active_umnc, active_smnc, active_imnc, n_hmnc, to
         print(" -> [DOMINANT TRAJECTORY]: STABLE OASIS EQUILIBRIUM (JWST Oasis formed)")
         return "Stable"
 def run_interactive_sandbox():
-    """
-    Main state engine executing multi-generational cosmological cascade models.
-    Enforces dynamic timeline perturbations, overrides, and fluid fluctuations.
-    """
     print("=====================================================================")
     print("   ______   ______   .___  ___.  __    ______     ______    __  ")
-    print("  /  ____| /  __  \  |   \\/   | |  |  /  ____|   /  __  \\  |  | ")
-    print(" |  |     |  |  |  | |  \\  /  | |  | |  |       |  |  |  | |  | ")
-    print(" |  |     |  |  |  | |  |\\/|  | |  | |  |       |  |  |  | |  | ")
+    print(r"  /  ____| /  __  \  |   \/   | |  |  /  ____|   /  __  \  |  |")
+    print(r" |  |     |  |  |  | |  \  /  | |  | |  |       |  |  |  | |  |")
+    print(r" |  |     |  |  |  | |  |\/|  | |  | |  |       |  |  |  | |  |")
     print(" |  |____ |  `--'  | |  |  |  | |  | |  |____   |  `--'  | |  | ")
-    print("  \\______| \\______/  |__|  |__| |__|  \\______|   \\______/  |__| ")
+    print(r"  \______| \______/  |__|  |__| |__|  \______|   \______/  |__|")
     print("=====================================================================")
     print("        COSMIC PIRACY SIMULATION - STATE ENGINE v32.0 (ASCII MATRIX)")
     print("        Background-Independent Quantum-Geometric Graph Evaluator")
     print("=====================================================================\n")
     
     current_generation = 0
-    n_umnc = 0      
-    n_hmnc = 0      
-    n_smnc = 0      
-    n_imnc = 0      
+    n_umnc, n_hmnc, n_smnc, n_imnc = 0, 0, 0, 0
     
     pathway_2_allowed = False
     scenario_1_drainage_active = False
-    addendum_1_collision_allowed = False
+    addendum_1_scar_active = False
+    addendum_1_dynamic_collision = False
     addendum_1_ccc_exchange_allowed = False
     cpt_chiral_inversion_active = False
     timeline_displacement_risk = False
@@ -110,7 +93,6 @@ def run_interactive_sandbox():
         
         if genesis_reply != 'y':
             print("\n[CRITICAL RESET] Enforcing Conformal Cyclic Reset for a massless vacuum!")
-            print("                 No primordial condensation triggered. Rest-mass profile collapsed.")
             print("                 -> Result: Instant metric scale loss. Scenario 0 re-triggered.\n")
             time.sleep(0.4)
             n_umnc, n_hmnc, n_smnc, n_imnc = 0, 0, 0, 0
@@ -122,31 +104,18 @@ def run_interactive_sandbox():
             print("[INPUT] Enter target timescale for Aeon 0 PNC growth phase:")
             t_genesis = float(input("        Delta t_0 (in Gyr, e.g. 4.0 or 60.0): "))
             
-            # --- 1. PRIMORDIAL SEEDING LAW WITH DENSITY SATURATION ---
-            # Fresh PNC generation from the vacuum field terminates as the metrics expand.
-            pnc_saturation_factor = math.exp(-0.06 * t_genesis)
-            base_energy_density = (t_genesis ** 2.0) * pnc_saturation_factor
+            seeding_epoch = min(10.0, t_genesis)
+            umnc_spawned = int(0.005 * (seeding_epoch ** 1.1))
+            smnc_spawned = int(0.65 * (seeding_epoch ** 2.0))
+            imnc_spawned = int(18.5 * (seeding_epoch ** 2.0))
             
-            umnc_spawned = int(0.005 * (t_genesis ** 1.1) * pnc_saturation_factor)
-            smnc_spawned = int(0.65 * base_energy_density)
-            imnc_spawned = int(18.5 * base_energy_density)
-            
-            if t_genesis >= 40.0:
-                umnc_spawned = int(umnc_spawned * 0.05)
-                smnc_spawned = int(smnc_spawned * 0.05)
-                imnc_spawned = int(imnc_spawned * 0.02)
-                
             n_umnc += umnc_spawned
             n_smnc += smnc_spawned
             n_imnc += imnc_spawned
             initial_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
-            # --- 2. CONTINUOUS BOTTOM-UP RUNAWAY ACCRETION MATRIX ---
-            # Cores swallow energy from disks. Mass transforms sequentially
-            # through a real-time flow (IMNC -> SMNC -> HMNC -> UMNC).
             if t_genesis >= 15.0:
                 print(f"          [DISK-ACCRETION] Prolonged era depth ({t_genesis} Gyr) drives core growth...")
                 
-                # Tier 1: Light IMNCs absorb local plasma fields and shift into SMNC satellites
                 shifted_to_smnc = 0
                 if n_imnc > 0:
                     accretion_rate_t1 = min(0.85, t_genesis / 40.0)
@@ -156,7 +125,6 @@ def run_interactive_sandbox():
                         n_smnc += shifted_to_smnc
                         print(f"                            Accretion Tier 1: Matured {shifted_to_smnc} IMNCs to SMNC.")
                 
-                # Tier 2: Existing and newly arrived SMNCs undergo runaway accretion into HMNC mergers
                 shifted_to_hmnc = 0
                 if n_smnc > 0:
                     accretion_rate_t2 = min(0.75, t_genesis / 50.0)
@@ -166,7 +134,6 @@ def run_interactive_sandbox():
                         n_hmnc += shifted_to_hmnc
                         print(f"                            Accretion Tier 2: Matured {shifted_to_hmnc} SMNCs to HMNC.")
 
-                # Tier 3: Hypermassive HMNCs experience ultimate saturation into UMNC anchors
                 upgraded_umnc = 0
                 if n_hmnc > 0:
                     accretion_rate_t3 = min(0.65, t_genesis / 60.0)
@@ -176,15 +143,12 @@ def run_interactive_sandbox():
                         n_umnc += upgraded_umnc
                         print(f"                            Accretion Tier 3: Matured {upgraded_umnc} HMNCs to UMNC anchors.")
             
-            # --- 3. EXPONENTIAL HAWKING EVAPORATION TERMINATION ---
-            # Unprotected light cores leak mass into radiation over mature epochs
             imnc_evaporated = int(n_imnc * (1.0 - math.exp(-0.05 * t_genesis)))
             smnc_evaporated = int(n_smnc * (1.0 - math.exp(-0.01 * t_genesis)))
             
             n_imnc = max(0, n_imnc - imnc_evaporated)
             n_smnc = max(0, n_smnc - smnc_evaporated)
             
-            # --- 4. CENTRIFUGAL CLUSTER FUSION KINETICS (REDUCES NET OBJECT COUNT) ---
             hmnc_fused = 0
             umnc_consumed = 0
             if t_genesis >= 25.0:
@@ -201,53 +165,13 @@ def run_interactive_sandbox():
                 n_hmnc += umnc_consumed
                 print(f"            Multi-body kinematics fused and consumed {hmnc_fused * 2 + umnc_consumed} discrete horizons.")
             
-            # --- 5. STRICT NON-FISSION SAFETY GUARD ---
             current_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
             assert current_object_count <= initial_object_count, "PHYSICS CRASH: Unphysical core fission detected!"
             
             print("\n[SUCCESS] High-energy radiation fields collapsed stochastically.")
             print(f"          Current Pool: UMNC={n_umnc:,} | HMNC={n_hmnc:,} | SMNC={n_smnc:,} | IMNC={n_imnc:,}")
-            
-            # --- 6. FOUR-CHANNEL METRIC SHEAR FORCE EVALUATION ---
             print("\n[LQG] Evaluating Baseline Metric Shear Force...")
-            active_umnc = 0
-            active_hmnc = 0
-            active_smnc = 0
-            active_imnc = 0
-            
-            total_active_horizons = n_umnc + n_hmnc + n_smnc + n_imnc
-            
-            if total_active_horizons > 0:
-                print(f"        Available assets: {n_umnc} UMNC | {n_hmnc} HMNC | {n_smnc} SMNC | {n_imnc} IMNC cores.")
-                print("        ---------------------------------------------------------------------")
-                if n_umnc > 0:
-                    active_umnc = int(input(f"        >> Enter active preparing UMNC anchors (0-{n_umnc}): "))
-                    active_umnc = max(0, min(active_umnc, n_umnc))
-                if n_hmnc > 0:
-                    active_hmnc = int(input(f"        >> Enter active structural HMNC mergers (0-{n_hmnc}): "))
-                    active_hmnc = max(0, min(active_hmnc, n_hmnc))
-                if n_smnc > 0:
-                    active_smnc = int(input(f"        >> Enter active slinging SMNC satellites (0-{n_smnc}): "))
-                    active_smnc = max(0, min(active_smnc, n_smnc))
-                if n_imnc > 0:
-                    active_imnc = int(input(f"        >> Enter active peripheral IMNC shields (0-{n_imnc}): "))
-                    active_imnc = max(0, min(active_imnc, n_imnc))
-                
-                baseline_shear = (active_umnc * 2.50) + (active_hmnc * 1.85) + (active_smnc * 1.25) + (active_imnc * 0.05)
-            else:
-                print("        [CRITICAL] Massless vacuum state reached. No active horizons exist.")
-                baseline_shear = 0.0
-            
-            lqg_tensile_limit = 10.0
-            print("        ---------------------------------------------------------------------")
-            print(f" -> Prepared Metric Baseline Shear (Hierarchical): {baseline_shear:.2f} / {lqg_tensile_limit:.2f}")
-            # --- EVALUATING HIERARCHICAL METRIC SHEAR ---
-            print("\n[LQG] Evaluating Baseline Metric Shear Force...")
-            active_umnc = 0
-            active_hmnc = 0
-            active_smnc = 0
-            active_imnc = 0
-            
+            active_umnc, active_hmnc, active_smnc, active_imnc = 0, 0, 0, 0
             total_active_horizons = n_umnc + n_hmnc + n_smnc + n_imnc
             
             if total_active_horizons > 0:
@@ -275,7 +199,8 @@ def run_interactive_sandbox():
             print("        ---------------------------------------------------------------------")
             print(f" -> Prepared Metric Baseline Shear (Hierarchical): {baseline_shear:.2f} / {lqg_tensile_limit:.2f}")
             
-            print("\n[TRIGGER] Simulating stochastic Planck-scale quantum fluctuation...")
+            print("")
+            print("[TRIGGER] Simulating stochastic Planck-scale quantum fluctuation...")
             time.sleep(0.1)
             quantum_fluctuation_peak = random.uniform(1.5, 8.5)
             print(f" -> Generated Quantum Fluctuation Energy Peak: +{quantum_fluctuation_peak:.4f}")
@@ -325,14 +250,9 @@ def run_interactive_sandbox():
                             print("\n[SMOOTH RESET] Scar bypassed. Metric drainage potential expanded into isotropic background fields.")
                             addendum_1_scar_active = False
                         
-                        n_umnc = active_umnc
-                        n_smnc = active_smnc
-                        n_imnc = active_imnc
-                        n_hmnc = active_hmnc
-                        
+                        n_umnc, n_smnc, n_imnc, n_hmnc = active_umnc, active_smnc, active_imnc, active_hmnc
                         print(f"\n -> Coordination transfer completed. Forwarding {n_umnc + n_hmnc + n_smnc + n_imnc} cores to timeline matrix.\n")
-                        pathway_2_allowed = True
-                        genesis_reply_loop = False
+                        pathway_2_allowed = True; genesis_reply_loop = False
                     else:
                         current_generation += 1
                         print(f"\n[CRITICAL ERROR] Core instability without complete drainage. Forcing forward Gen flip to {current_generation}...")
@@ -353,11 +273,9 @@ def run_interactive_sandbox():
         print("        [s] - Stochastic Quantum Bifurcation (Probability-based roll)")
         chiral_choice = input("        Select Kerr Boundary Mode (m/a/S): ").strip().lower()
         
-        if chiral_choice == 'a':
-            cpt_chiral_inversion_active = True
+        if chiral_choice == 'a': cpt_chiral_inversion_active = True
         elif chiral_choice == 's':
             if random.random() > 0.5: cpt_chiral_inversion_active = True
-    # --- ADVANCED ROUTING LOOP INTERFACE ---
     sandbox_active = True
     while sandbox_active:
         print("\n=====================================================================")
@@ -386,25 +304,18 @@ def run_interactive_sandbox():
         print("\n[INPUT] Enter target evolution timescale for this event:")
         t_input = float(input("        Delta t (in Gyr, e.g. 0.5 or 13.8): "))
 
-        # --- REFINED AUTOMATIC SCENARIO DETECTOR MATRIX ---
         user_choice = "4"
         if auto_mode:
             print("\n[SYS] Running automatic scenario detection matrix...")
             eval_total = n_umnc + n_hmnc + n_smnc + n_imnc
             accretion_drainage_active = addendum_1_scar_active or addendum_1_dynamic_collision or addendum_1_ccc_exchange_allowed
             
-            if eval_total > 0 and accretion_drainage_active:
-                user_choice = "8.5"
-            elif eval_total > 0 and t_input < 1.0:
-                user_choice = "7.2b"
-            elif scenario_1_drainage_active and t_input < 1.0:
-                user_choice = "1"
-            elif eval_total >= 150 and t_input < 1.0:
-                user_choice = "6"
-            elif eval_total == 0 and t_input >= 50.0:
-                user_choice = "12"
-            else:
-                user_choice = "4"
+            if eval_total > 0 and accretion_drainage_active: user_choice = "8.5"
+            elif eval_total > 0 and t_input < 1.0: user_choice = "7.2b"
+            elif scenario_1_drainage_active and t_input < 1.0: user_choice = "1"
+            elif eval_total >= 150 and t_input < 1.0: user_choice = "6"
+            elif eval_total == 0 and t_input >= 50.0: user_choice = "12"
+            else: user_choice = "4"
             print(f"        >> Auto-Detected Trajectory: Scenario {user_choice}")
         else:
             user_choice = input("        >> Enter target Scenario ID from manuscript (1-12): ").strip()
@@ -425,7 +336,6 @@ def run_interactive_sandbox():
             print(" >> Calculated Oasis Density (eta):    1.000000e-09")
             print(" >> CMB Cold Spot Centered Alignment:   True")
 
-        # --- ISOLATED MENU: ADDENDUM 1 - VERSION A (STATIC TIMELINE SCAR) ---
         print("\n" + "-"*65)
         print(" [ADDENDUM 1 - VERSION A] PRIMORDIAL METRIC DRAINAGE INJECTOR")
         print("-"*65)
@@ -441,7 +351,6 @@ def run_interactive_sandbox():
             addendum_1_scar_active = False
             print(" [ADDENDUM 1 - VERSION A] Scar retracted. Metric background normalized.")
 
-        # --- ISOLATED MENU: ADDENDUM 1 - VERSION B (DYNAMIC MULTI-COLLISION TRACK) ---
         print("\n" + "-"*65)
         print(" [ADDENDUM 1 - VERSION B] MULTIVERSE COLLISION PROFILE ENGINE")
         print("-"*65)
@@ -451,7 +360,7 @@ def run_interactive_sandbox():
             addendum_1_dynamic_collision = True
             print("\n" + "="*65)
             print("[ADDENDUM 1 - VERSION B] RESOLVING MULTI-BODY INTERSECTION FIELDS")
-            print("="*65)
+            print("=" * 65)
             try:
                 num_collisions = int(input(" >> Enter total number of intersecting bubble universes (e.g. 1 or 5): "))
                 num_collisions = max(1, num_collisions)
@@ -460,9 +369,6 @@ def run_interactive_sandbox():
                     print(f"\n    --- Configuring Collision Node {i+1} of {num_collisions} ---")
                     t_collision = float(input(f"    >> Enter execution timeline for Collision {i+1} (in Gyr): "))
                     is_dense_env = input("    >> Is the local intersection domain a high-density plasma zone? (Y/n): ").strip().lower()
-                    
-                    print(f"    [COMPUTING] Resolving intermetric seam friction at t={t_collision} Gyr...")
-                    time.sleep(0.1)
                     
                     if is_dense_env != 'n':
                         star_formation_multiplier = random.uniform(2.5, 5.0)
@@ -494,3 +400,6 @@ def run_interactive_sandbox():
         elif action == 'q':
             print("\n[SHUTDOWN] Safely disconnecting Loop Quantum Gravity filaments. Offline.\n")
             sandbox_active = False; genesis_reply_loop = False
+
+if __name__ == "__main__":
+    run_interactive_sandbox()
