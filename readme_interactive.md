@@ -4,9 +4,6 @@ This repository hosts the background-independent, multi-generational cosmologica
 
 > ⚠️ **DISCLAIMER / RUNTIME NOTICE:** Please note that this simulation script operates as an active, cutting-edge numerical testbed for background-independent quantum gravity and cyclic manifolds. Due to the high complexity of fluid quantum-metrical parameters, non-linear multi-body kinetics, and multi-manifold synchronization loops, **the script is potentially faulty or subject to stochastic runtime anomalies.** It should be treated as an experimental environment for hypothesis testing.
 
-> 🚨 **ARXIV ENDORSEMENT REQUIRED:** I am currently seeking an official endorsement for the arXiv categories **astro-ph.CO** (Cosmology) or **gr-qc** (General Relativity and Quantum Cosmology). If you are a qualified verifier willing to grant an endorsement, please use the official path below to unlock the verification node:
-> 👉 **[CLICK HERE TO ENDORSE THIS WORK ON ARXIV](https://arxiv.org/auth/endorse?x=4ITJ34)** 👈
-
 ## 1. Seeding Termination Law ($t^2$) & Mass-Class Distribution
 Version 33.0 implements a non-linear, **Quadratic Seeding Profile** ($N \propto t^2$) for infant cosmic phases, capped strictly at the peak nucleation era (~10 Gyr). As geometric expansion cools and dilutes the primordial radiation field, the generation of fresh seeds terminates permanently, preventing unphysical core fission or infinite vacuum production.
 
