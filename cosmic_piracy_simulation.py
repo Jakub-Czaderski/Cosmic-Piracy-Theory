@@ -15,11 +15,12 @@ def verify_matrix(delta_t, parent_age, parent_disk):
     net_quantum_state = psi_matter + psi_antimatter
     print(f" -> Balance Operator: {net_quantum_state:.1e}")
     
-    # 2. Relativistic Slingshot Mechanics (Zeta Shield)
+# 2. Relativistic Slingshot Mechanics (Zeta Shield)
+    # Constants formally derived from LQG operators in Addendum C.1 & C.3
     G = 6.67430e-11
     c = 299792458
-    m_umnc = 3.64502e+41
-    r_krit = 6.75841e+14
+    m_umnc = 3.64502e+41  # Derived via Hamilton Constraint Eq (20)
+    r_krit = 6.75841e+14  # Derived via Periastron Separation Eq (20)
     zeta_shield = 0.903125
     
     v_raw = math.sqrt(zeta_shield * ((2.0*G*m_umnc) / r_krit))
