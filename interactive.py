@@ -51,7 +51,6 @@ def evaluate_cluster_stability(active_umnc, active_smnc, active_imnc, n_hmnc, to
     else:
         print(" -> [TRAJECTORY]: STABLE EQUILIBRIUM (Oasis formed)")
         return "Stable"
-
 def run_interactive_sandbox():
     print("=====================================================================")
     print("   ______   ______   .___  ___.  __    ______     ______    __  ")
@@ -122,295 +121,286 @@ def run_interactive_sandbox():
         except ValueError:
             agg_bubble_rate = 0.25
 
-        # --- INITIALIZE CORES USING THE MODIFIER FROM THE PREVIOUS GENERATION ---
-        # If it's Gen 0, star_formation_mod uses the baseline. If it's a Reset/Jump, it uses the inherited value.
         try:
             test_mod = star_formation_mod
         except NameError:
             star_formation_mod = 1.0 + (agg_bubble_rate * 0.5)
+
+        # --- DYNAMIC BOUNDED SEEDING MATRIX (NO BASELINES) ---
+        conformal_saturation = math.tanh(t_genesis / 15.0)
+        umnc_spawned = int(6.0 * conformal_saturation * star_formation_mod)
+        smnc_spawned = int(400.0 * conformal_saturation * (1.0 + math.log1p(t_genesis * 0.02)) * star_formation_mod)
+        imnc_spawned = int(1600.0 * conformal_saturation * (1.0 + math.log1p(t_genesis * 0.05)) * star_formation_mod)
             
-        pnc_saturation_factor = math.exp(-0.06 * t_genesis)
-        base_energy_density = (t_genesis ** 2.0) * pnc_saturation_factor * star_formation_mod
-        
-        umnc_spawned = int(0.005 * (t_genesis ** 1.1) * pnc_saturation_factor * star_formation_mod)
-        smnc_spawned = int(0.65 * base_energy_density)
-        imnc_spawned = int(18.5 * base_energy_density)
-            
-        n_umnc += umnc_spawned
-        n_smnc += smnc_spawned
-        n_imnc += imnc_spawned
+        n_umnc = umnc_spawned
+        n_hmnc = 0
+        n_smnc = smnc_spawned
+        n_imnc = imnc_spawned
         initial_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
-        primordial_spacetimes = 0
-        micro_cycles = max(1, int(t_genesis * 2))
         
-        for _ in range(micro_cycles):
-            if n_imnc > 0 or n_smnc > 0:
-                pull_imnc = random.randint(0, max(1, int(n_imnc * agg_bubble_rate * 0.15)))
-                pull_smnc = random.randint(0, max(1, int(n_smnc * agg_bubble_rate * 0.25)))
+        primordial_spacetimes = 0
+        micro_cycles = max(100, int(math.log1p(t_genesis) * 120.0)) if t_genesis > 1000.0 else max(1, int(t_genesis * 2))
+        flux_efficiency = 1.0 / (1.0 + math.log1p(1.0 / agg_bubble_rate))
+        
+        # --- SCALE-INVARIANCE GUARD ---
+        scale_invariance_breach = False
+        if t_genesis <= 0.0001:
+            print("\n           [WARNING]: CRITICAL PHASE LIMIT REACHED! DETECTING EXTREME SCALE SLIPPAGE.")
+            if initial_object_count > 0:
+                print("                      Primordial PNC density prevents complete Conformal Scale Invariance Collapse.")
+            else:
+                scale_invariance_breach = True
+                print("                      [METRIC EXITUS]: Scale Invariance Collapse uninhibited! System sterile.")
+        print(f"          [COSMOLOGICAL EVOLUTION]: Processing {micro_cycles} epochal matrix cycles...")
+        
+        for cycle in range(micro_cycles):
+            if scale_invariance_breach:
+                break
                 
-                if pull_imnc > (pull_smnc * 8) and pull_smnc > 0:
-                    pull_imnc = int(pull_smnc * 4.5)
-                    
-                local_exposure = (pull_smnc * (10.0**2.0)) + (pull_imnc * (0.5**2.0))
-                ignition_prob = min(0.85, (local_exposure * 8.5e-4) * agg_bubble_rate)
+            # 1. RIGID UPWARD MASS KINETICS (MASS CONSERVATION PRIOR TO EVACUATION)
+            if n_imnc > 0:
+                imnc_to_smnc = min(n_imnc, max(1, int(n_imnc * 0.05 * flux_efficiency)))
+                n_imnc -= imnc_to_smnc
+                n_smnc += imnc_to_smnc
                 
+            if n_smnc > 0:
+                smnc_to_umnc = min(n_smnc, max(1, int(n_smnc * 0.02 * flux_efficiency)))
+                n_smnc -= smnc_to_umnc
+                n_umnc += smnc_to_umnc
+                
+            if n_umnc > 0 and (t_genesis >= 120.0 or cycle > (micro_cycles * 0.4)):
+                umnc_to_hmnc = min(n_umnc, max(1, int(n_umnc * 0.005 * flux_efficiency)))
+                n_umnc -= umnc_to_hmnc
+                n_hmnc += umnc_to_hmnc
+
+            # 2. THE ORIGINAL MULTI-BUBBLE FLUX & PROBABILITY ENGINE
+            if n_imnc > 0 or n_smnc > 0 or n_umnc > 0 or n_hmnc > 0:
+                pull_imnc = random.randint(0, max(1, int(n_imnc * agg_bubble_rate * 0.15))) if n_imnc > 0 else 0
+                pull_smnc = random.randint(0, max(1, int(n_smnc * agg_bubble_rate * 0.25))) if n_smnc > 0 else 0
+                pull_umnc = random.randint(0, max(1, int(n_umnc * agg_bubble_rate * 0.05))) if n_umnc > 0 else 0
+                pull_hmnc = random.randint(0, max(1, int(n_hmnc * agg_bubble_rate * 0.01))) if n_hmnc > 0 else 0
+                
+                local_exposure = (pull_hmnc * (50.0**2.0)) + (pull_umnc * (25.0**2.0)) + (pull_smnc * (10.0**2.0)) + (pull_imnc * (0.5**2.0))
+                ignition_prob = min(0.95, (local_exposure * 8.5e-4) * agg_bubble_rate)
+                
+                # 3. SUCCESSFUL TRANSITION CONSUMES AND EVACUATES THE TRIGGER CORES
                 if random.random() <= ignition_prob:
                     primordial_spacetimes += 1
                     n_imnc = max(0, n_imnc - pull_imnc)
                     n_smnc = max(0, n_smnc - pull_smnc)
-                    
-        active_manifold_multiverse_counter = max(1, primordial_spacetimes)
+                    n_umnc = max(0, n_umnc - pull_umnc)
+                    n_hmnc = max(0, n_hmnc - pull_hmnc)
 
-        if n_smnc == 0 and n_imnc > 0 and t_genesis < 45.0:
-            density_reflow_factor = math.exp(-0.04 * t_genesis)
-            emergency_pool = int(n_imnc * 0.35 * density_reflow_factor)
+            # 4. DYNAMIC HAWKING RADIATION BALANCE CURVE FOR REMAINING CORES
+            r_imnc = 1.0 / ((1.0 + n_imnc * 0.05) ** 3.0) if n_imnc > 0 else 0
+            r_smnc = 1.0 / ((50.0 + n_smnc * 1.0) ** 3.0) if n_smnc > 0 else 0
+            r_umnc = 1.0 / ((1000.0 + n_umnc * 5.0) ** 3.0) if n_umnc > 0 else 0
+            r_hmnc = 1.0 / ((1e8 + n_hmnc * 100.0) ** 3.0) if n_hmnc > 0 else 0
             
-            if emergency_pool > 0:
-                n_imnc -= emergency_pool
-                fused_smnc = int(emergency_pool * 0.20)
-                fused_umnc = int(emergency_pool * 0.02)
-                
-                n_smnc += fused_smnc
-                n_umnc += fused_umnc
-                print(f"          [INDUCED-LOOP] Core theft triggered maternal instability!")
-                print(f"                         Emergency fusion materialized +{fused_smnc} SMNC and +{fused_umnc} UMNC fields.")
-                
-        initial_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
-        if t_genesis >= 15.0:
-            print(f"          [DISK-ACCRETION] Processing sequential mass cascade...")
-            viscous_inertia = 1.0 + math.log1p(t_genesis / 3.5) * 1.5
+            imnc_evap = min(n_imnc, int(n_imnc * (1.0 - math.exp(-r_imnc * (t_genesis / micro_cycles)))))
+            smnc_evap = min(n_smnc, int(n_smnc * (1.0 - math.exp(-r_smnc * (t_genesis / micro_cycles)))))
+            umnc_evap = min(n_umnc, int(n_umnc * (1.0 - math.exp(-r_umnc * (t_genesis / micro_cycles)))))
+            hmnc_evap = min(n_hmnc, int(n_hmnc * (1.0 - math.exp(-r_hmnc * (t_genesis / micro_cycles)))))
             
-            # --- MODEL BOTH COEXISTING PARALLEL LOOPS FOR STOCHASTIC MATRIX EQUILIBRIUM ---
-            # LOOP VERSION 1: BOUNDED STEPPED EVOLUTION
-            shifted_to_smnc_v1 = 0
-            if n_imnc > 0:
-                accretion_rate_t1 = (t_genesis / 45.0) / viscous_inertia
-                shifted_to_smnc_v1 = min(n_imnc, int(n_imnc * min(0.45, accretion_rate_t1)))
+            n_imnc -= imnc_evap
+            n_smnc -= smnc_evap
+            n_umnc -= umnc_evap
+            n_hmnc -= hmnc_evap
 
-            upgraded_umnc_v1 = 0
-            if n_smnc > 0:
-                accretion_rate_t2 = (t_genesis / 120.0) / viscous_inertia
-                upgraded_umnc_v1 = min(n_smnc, int(n_smnc * min(0.35, accretion_rate_t2)))
-
-            shifted_to_hmnc_v1 = 0
-            if n_umnc > 0 and t_genesis >= 120.0:
-                accretion_rate_t3 = (t_genesis / 350.0) / viscous_inertia
-                shifted_to_hmnc_v1 = min(n_umnc, int(n_umnc * min(0.15, accretion_rate_t3)))
-
-            # LOOP VERSION 2: PURE ACCRETION FLOW (THE INTENDED THEORETICAL MATRIX COEXISTENCE)
-            shifted_to_hmnc_v2 = 0
-            if n_umnc > 0:
-                accretion_rate_t3_v2 = (t_genesis / 350.0) / viscous_inertia
-                shifted_to_hmnc_v2 = int(n_umnc * accretion_rate_t3_v2)
-
-            upgraded_umnc_v2 = 0
-            if n_smnc > 0:
-                accretion_rate_t2_v2 = (t_genesis / 120.0) / viscous_inertia
-                upgraded_umnc_v2 = int(n_smnc * accretion_rate_t2_v2)
-
-            shifted_to_smnc_v2 = 0
-            if n_imnc > 0:
-                accretion_rate_t1_v2 = (t_genesis / 30.0) / viscous_inertia
-                shifted_to_smnc_v2 = int(n_imnc * accretion_rate_t1_v2)
-
-            # SYNCHRONIZING BOTH SCHEMES TO KEEP QUANTUM STATES STABLE
-            n_imnc -= shifted_to_smnc_v1
-            n_smnc += shifted_to_smnc_v1
-            n_smnc -= upgraded_umnc_v1
-            n_umnc += upgraded_umnc_v1
-            n_umnc -= shifted_to_hmnc_v1
-            n_hmnc += shifted_to_hmnc_v1
-
-            generation_booster = int((shifted_to_smnc_v1 * 0.05) + (upgraded_umnc_v1 * 0.15) + (shifted_to_hmnc_v1 * 1.5))
-            active_manifold_multiverse_counter += max(0, generation_booster)
-        
-        imnc_evaporated = int(n_imnc * (1.0 - math.exp(-0.05 * t_genesis)))
-        smnc_evaporated = int(n_smnc * (1.0 - math.exp(-0.01 * t_genesis)))
-        
-        n_imnc -= imnc_evaporated
-        n_smnc -= smnc_evaporated
-        
-        if t_genesis >= 25.0:
-            print("            Processing regulated multi-body merger kinetics inside the cluster...")
-            
-            # --- CHRONOLOGICAL BARRIER: NO ULTIMATE HMNC FORMATION UNDER 120 GYR ---
-            if t_genesis >= 120.0:
-                # Ultimate HMNCs are fed directly from the evolutionary precursor tier (UMNC)
-                hmnc_fused = int(2.5e-4 * (n_umnc ** 1.2) * (t_genesis / 25.0))
-                hmnc_fused = min(n_umnc, hmnc_fused)
-                
-                n_hmnc += hmnc_fused
-                n_umnc -= hmnc_fused
-                
-                # Consolidation of smaller satellites into the central hyper-tier
-                smnc_consumed = min(n_smnc, int(hmnc_fused * 2))
-                n_smnc -= smnc_consumed
-                print(f"            Multi-body kinetics fused and consumed {hmnc_fused + smnc_consumed} discrete horizons into ultimate HMNCs.")
-            else:
-                # In younger aeons (like 40 Gyr), kinetics only drive SMNC-to-UMNC precursor refinement
-                local_refinement = int(1.5e-4 * (n_smnc ** 1.1))
-                local_refinement = min(n_smnc, local_refinement)
-                
-                n_umnc += local_refinement
-                n_smnc -= local_refinement
-                print(f"            Multi-body kinetics driving local refinement: +{local_refinement} UMNC precursor constituted.")
-        
+        active_manifold_multiverse_counter = primordial_spacetimes
         current_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
-        assert current_object_count <= initial_object_count, "PHYSICS CRASH: Unphysical core fission detected!"
-        print("\n[SUCCESS] High-energy radiation fields collapsed stochastically.")
-
+        print("\n[SUCCESS] Universal quantum-geometric fields processed stochastically.")
         print("\n" + "="*65)
         print("        ASTROPHYSICAL TIMELINE INTEGRITY STATUS DISPLAY        ")
         print("="*65)
         print(f" -> TOTAL ACTIVE CORES CONSTITUTED: HMNC={n_hmnc} | UMNC={n_umnc} | SMNC={n_smnc} | IMNC={n_imnc}")
         print(f" -> SPACETIMES CREATED BY THIS AEON: {active_manifold_multiverse_counter}")
         print("---------------------------------------------------------------------")
-
-        print("[INPUT] Configure active Horizon Assets for Evacuation:")
-        active_umnc, active_hmnc, active_smnc, active_imnc = 0, 0, 0, 0
-        try:
-            if n_umnc > 0: active_umnc = min(n_umnc, int(input(f"        Active UMNC anchors (0-{n_umnc}): ")))
-            if n_hmnc > 0: active_hmnc = min(n_hmnc, int(input(f"        Active HMNC mergers (0-{n_hmnc}): ")))
-            if n_smnc > 0: active_smnc = min(n_smnc, int(input(f"        Active SMNC satellites (0-{n_smnc}): ")))
-            if n_imnc > 0: active_imnc = min(n_imnc, int(input(f"        Active IMNC shields (0-{n_imnc}): ")))
-        except ValueError:
-            print("        [INPUT ERROR] Core manual override failed. Keeping raw values.")
-        print("\n" + "-"*50)
-        print(" [PATHWAY 2] INDEPENDENT SPACETIME ISOLATION EVALUATOR (STERILE AEON 0)")
-        print("-"*50)
-        
-        total_remaining_cores = n_umnc + n_hmnc + n_smnc + n_imnc
-        pathway_2_isolation_efficiency = 0.0
-        if current_object_count > 0:
-            pathway_2_isolation_efficiency = (active_umnc + active_hmnc + active_smnc + active_imnc) / current_object_count
+        # --- CRITICAL LOCKOUT: RE-ENFORCING INDEPENDENT ADDENDA 1 A & B ---
+        if current_object_count == 0:
+            print("\n [WARNING]: TOTAL THERMODYNAMIC VACUUM DETECTED. ALL HORIZONS EVAPORATED.")
+            print("            Conformal scale unanchored. Space-time closure forces immediate holonomic sequence.")
             
-        core_mass_deficit_factor = math.exp(-0.06 * t_genesis)
-        remaining_energy_density = (t_genesis ** 2.0) * core_mass_deficit_factor * (1.0 - pathway_2_isolation_efficiency)
-        
-        # --- FIXED HAWKING SCALE: QUANTUM-GEOMETRIC COHEDRY PREVENTS UNPHYSICAL DECAY ---
-        # Massive precursor tiers (UMNC) are chronologically stable, resulting in near-zero decay scale
-        effective_evaporation_constant = 0.000001 * math.log1p(total_remaining_cores if total_remaining_cores > 0 else 1)
-        evaporation_rate = 1.0 - math.exp(-effective_evaporation_constant * t_genesis)
-        
-        # --- FREE TIMELINE DISPLACEMENT VECTOR WITHOUT RIGID MULTIPLIERS OR SNAPS ---
-        timeline_displacement_vector = (total_remaining_cores * 0.01) + (remaining_energy_density * (1.0 / (1.0 + (t_genesis / 3.5) ** 2.5)))
-        calculated_delay_gyr = max(0.01, timeline_displacement_vector * (1.0 - evaporation_rate))
-        
-        print(f" -> Pathway 2 Isolation Efficiency: {pathway_2_isolation_efficiency * 100.0:.2f}% Cores Isolated.")
-        print(f" -> Hawking Evaporation Factor: {evaporation_rate:.6f} (Horizon decay scale)")
-        print(f" -> Available Residual Growth Energy Density: {remaining_energy_density:.4f}")
-        print(f" -> Dynamic Timeline Displacement Result: {calculated_delay_gyr:.2f} Gyr")
-        
-        print("\n[INPUT] Evaluate Calculated Trans-Cosmic Delay Impulse Axis?")
-        print(f"        Execute holonomic information sync after modified delay of {calculated_delay_gyr:.2f} Gyr?")
-        impulse_reply = input("        Trigger Delayed Impulse Crossover? (Y/n): ").strip().lower()
-        
-        if impulse_reply != 'n':
-            timeline_displacement_risk = True if calculated_delay_gyr > 2.5 else False
-            print(f"\n           [TIMELINE DISPLACEMENT] Information sync locked at calculated +{calculated_delay_gyr:.2f} Gyr footprint.")
-        else:
-            timeline_displacement_risk = False
-            calculated_delay_gyr = 0.0
-            print("\n           [IMPACT ABORTED] Enforcing instant Conformal Reset framework.")
-
-        # --- PHASE 3: ADDENDUM 1 VERSION B MULTIVERSE COLLISION MONITOR ---
-        print("\n" + "-"*50)
-        print(" [ADDENDUM 1 - VERSION B] MULTIVERSE COLLISION MONITOR")
-        print("-"*50)
-        coll_choice = input("        Engage Addendum 1 Version B Multi-Collision track? (y/N): ").strip().lower()
-        addendum_1_dynamic_collision = True if coll_choice == 'y' else False
-        
-        collision_times = []
-        star_formation_mod = 1.0 + (agg_bubble_rate * 0.5)
-        omega_oaza = 1.0
-        b_mode = 's'
-
-        if addendum_1_dynamic_collision:
-            print("\n" + "="*55)
-            print("[ADDENDUM 1 - VERSION B] COBWEB COLLISION DETECTOR")
-            print("=" * 55)
-            print("        Select Intersection Detection Mode:")
-            print("               [m] - Manual Configuration Node")
-            print("               [s] - Stochastic Hyper-Foam (Fully Automated)")
-            b_mode = input("        Select Mode (m/S): ").strip().lower()
+            # Resetting tracking constants for the empty aeon checkpoint
+            calculated_delay_gyr = float('inf')
+            user_choice = "12"
+            timeline_displacement_risk = True
+            remaining_energy_density = 0.0
+            pathway_2_isolation_efficiency = 0.0
             
-            num_collisions = 0
-            auto_dense_fluid_prob = 0.5
+            # --- PHASE 1 (VACUUM TRACK): ADDENDUM 1 VERSION A - PRIMEVAL METRIC DRAINAGE ---
+            print("\n" + "-"*50)
+            print(" [ADDENDUM 1 - VERSION A] PRIMEVAL METRIC DRAINAGE INTERFACE (VACUUM NODE)")
+            print("-"*50)
+            drain_choice = input("        Trigger Scenario 1 Localized Metric Drainage? (y/N): ").strip().lower()
+            scenario_1_drainage_active = True if drain_choice == 'y' else False
+            addendum_1_scar_active = True if scenario_1_drainage_active else False
+            if addendum_1_scar_active:
+                print("           [TOPOLOGICAL SEAM] Network rupture verified. Conical scar encoded into local metric.")
 
-            if b_mode == 'm':
-                try:
-                    num_collisions = int(input("        >> Enter total intersecting universes: "))
-                    for i in range(num_collisions):
-                        t_coll = float(input(f"           Enter time for Node {i+1} (Gyr): "))
-                        collision_times.append((t_coll, 'manual'))
-                except ValueError:
-                    num_collisions = 0
-            else:
-                global_density_pool = active_manifold_multiverse_counter
-                if global_density_pool > 0:
-                    num_collisions = random.randint(1, max(3, int(math.log1p(global_density_pool) * 2.5)))
-                    for _ in range(num_collisions):
-                        t_coll = random.uniform(0.1, t_genesis)
-                        collision_times.append((t_coll, 'auto'))
-                    print(f"        [AUTO-FOAM] Anchored {num_collisions} independent intersections.")
+            # --- PHASE 3 (VACUUM TRACK): ADDENDUM 1 VERSION B - MULTIVERSE COLLISION MONITOR ---
+            print("\n" + "-"*50)
+            print(" [ADDENDUM 1 - VERSION B] MULTIVERSE COLLISION MONITOR (VACUUM NODE)")
+            print("-"*50)
+            coll_choice = input("        Engage Addendum 1 Version B Multi-Collision track? (y/N): ").strip().lower()
+            addendum_1_dynamic_collision = True if coll_choice == 'y' else False
+            
+            collision_times = []
+            star_formation_mod = 1.0 + (agg_bubble_rate * 0.5)
+            omega_oaza = 1.0
+            
+            if addendum_1_dynamic_collision:
+                print("\n=====================================================")
+                print("[ADDENDUM 1 - VERSION B] COBWEB COLLISION DETECTOR")
+                print("=====================================================")
+                b_mode = input("        Select Intersection Detection Mode ([m]anual / [s]tochastic): ").strip().lower()
+                num_collisions = 0
+                auto_dense_fluid_prob = 0.5
+
+                if b_mode == 'm':
+                    try:
+                        num_collisions = int(input("        >> Enter total intersecting universes: "))
+                        for i in range(num_collisions):
+                            t_coll = float(input(f"           Enter time for Node {i+1} (Gyr): "))
+                            collision_times.append((t_coll, 'manual'))
+                    except ValueError: num_collisions = 0
                 else:
-                    print("        [AUTO-FOAM] Background foam metric sterile. No nodes anchored.")
-                    
-            if num_collisions > 0:
-                omega_oaza = 2.5
-                print("\n" + "-"*50)
-                print(" [ADDENDUM 1] HOLONOMIC ANOMALY STRUCTURE DATA TRANSFER")
-                print("-"*50)
-                print("        Contact boundary interface achieved! Synchronizing tensor variants...")
-                
-                for t_coll, density_flag in collision_times:
-                    if density_flag == 'manual':
-                        is_dense = input(f"        >> Is Node at t={t_coll:.1f} Gyr a high-density zone? (Y/n): ").strip().lower()
-                    else:
-                        local_dilution_factor = math.exp(-0.05 * t_coll)
-                        effective_dense_node_prob = auto_dense_fluid_prob * local_dilution_factor
-                        is_dense = 'y' if random.random() <= effective_dense_node_prob else 'n'
+                    global_density_pool = active_manifold_multiverse_counter
+                    if global_density_pool > 0:
+                        num_collisions = random.randint(1, max(3, int(math.log1p(global_density_pool) * 2.5)))
+                        for _ in range(num_collisions):
+                            collision_times.append((random.uniform(0.1, min(t_genesis, 1000.0)), 'auto'))
+                        print(f"        [AUTO-FOAM] Anchored {num_collisions} independent intersections.")
                         
-                    if is_dense != 'n':
-                        sf_multiplier = random.uniform(2.5, 5.0)
-                        star_formation_mod *= sf_multiplier
-                        
-                        added_imnc = int(12 * t_coll * sf_multiplier * agg_bubble_rate)
-                        added_smnc = int(2 * t_coll * (sf_multiplier / 2.0) * agg_bubble_rate)
-                        n_imnc += added_imnc
-                        n_smnc += added_smnc
-                        print(f"           [SHOCK-FRONT] Collision compressed local fields by {sf_multiplier:.2f}x!")
-                        print(f"                         Materialized +{added_imnc} IMNC and +{added_smnc} SMNC cores around origin anchors.")
-                    else:
-                        print(f"           [ALIGNMENT] Seamless holonomic information exchange at t={t_coll:.1f} Gyr. Assets invariant.")
-        else:
-            addendum_1_dynamic_collision = False
+                if num_collisions > 0:
+                    omega_oaza = 2.5
+                    print("\n" + "-"*50)
+                    print(" [ADDENDUM 1] HOLONOMIC ANOMALY STRUCTURE DATA TRANSFER")
+                    print("-"*50)
+                    for t_coll, density_flag in collision_times:
+                        is_dense = 'n' if density_flag != 'manual' else input(f"        >> Is Node at t={t_coll:.1f} Gyr a high-density zone? (Y/n): ").strip().lower()
+                        if is_dense != 'n':
+                            sf_multiplier = random.uniform(2.5, 5.0)
+                            star_formation_mod *= sf_multiplier
 
+        else:
+            # --- REGULAR PATHWAY FOR ACTIVE MATRIX (CORES SURVIVED) ---
+            print("[INPUT] Configure active Horizon Assets for Evacuation:")
+            active_umnc, active_hmnc, active_smnc, active_imnc = 0, 0, 0, 0
+            try:
+                if n_umnc > 0: active_umnc = min(n_umnc, int(input(f"        Active UMNC anchors (0-{n_umnc}): ")))
+                if n_hmnc > 0: active_hmnc = min(n_hmnc, int(input(f"        Active HMNC mergers (0-{n_hmnc}): ")))
+                if n_smnc > 0: active_smnc = min(n_smnc, int(input(f"        Active SMNC satellites (0-{n_smnc}): ")))
+                if n_imnc > 0: active_imnc = min(n_imnc, int(input(f"        Active IMNC shields (0-{n_imnc}): ")))
+            except ValueError:
+                print("        [INPUT ERROR] Core manual override failed. Keeping raw values.")
+
+            # --- PHASE 1 (REGULAR): ADDENDUM 1 VERSION A - PRIMEVAL METRIC DRAINAGE ---
+            print("\n" + "-"*50)
+            print(" [SCENARIO 1 / ADDENDUM 1A] PRIMEVAL METRIC DRAINAGE INTERFACE")
+            print("-"*50)
+            drain_choice = input("        Trigger Scenario 1 Localized Metric Drainage? (y/N): ").strip().lower()
+            scenario_1_drainage_active = True if drain_choice == 'y' else False
+            addendum_1_scar_active = True if scenario_1_drainage_active else False
+
+            # --- PHASE 2 (REGULAR): PATHWAY 2 INDEPENDENT SPACETIME ISOLATION EVALUATOR ---
+            print("\n" + "-"*50)
+            print(" [PATHWAY 2] INDEPENDENT SPACETIME ISOLATION EVALUATOR (STERILE AEON 0)")
+            print("-"*50)
+            
+            pathway_2_isolation_efficiency = (active_umnc + active_hmnc + active_smnc + active_imnc) / current_object_count
+            core_mass_deficit_factor = math.exp(-0.06 * min(150.0, t_genesis))
+            remaining_energy_density = (t_genesis ** 2.0) * core_mass_deficit_factor * (1.0 - pathway_2_isolation_efficiency)
+            
+            conformal_entropy_slippage = 0.25 * math.sin(min(150.0, t_genesis)) + 0.50
+            
+            # --- PERFECT MASS COUPLING: OVERRIDING THE FLOATING LOWER BOUND ---
+            base_displacement = (min(150.0, t_genesis) * 0.15) + conformal_entropy_slippage
+            calculated_delay_gyr = base_displacement * (1.0 - pathway_2_isolation_efficiency)
+            
+            if calculated_delay_gyr < 0.0001:
+                calculated_delay_gyr = 0.0
+            
+            print(f" -> Pathway 2 Isolation Efficiency: {pathway_2_isolation_efficiency * 100.0:.2f}% Cores Isolated.")
+            print(f" -> Available Residual Growth Energy Density: {remaining_energy_density:.4f}")
+            print(f" -> Dynamic Timeline Displacement Result: {calculated_delay_gyr:.2f} Gyr")
+            
+            print("\n[INPUT] Evaluate Calculated Trans-Cosmic Delay Impulse Axis?")
+            
+            # --- DYNAMIC INTERFACE PROMPT BASED ON TIMELINE DELAY SHIFT ---
+            if calculated_delay_gyr == 0.0:
+                print("        Execute instant holonomic information sync?")
+                impulse_reply = input("        Trigger Instant Impulse Crossover? (Y/n): ").strip().lower()
+            else:
+                print(f"        Execute holonomic information sync after modified delay of {calculated_delay_gyr:.2f} Gyr?")
+                impulse_reply = input("        Trigger Delayed Impulse Crossover? (Y/n): ").strip().lower()
+                
+            timeline_displacement_risk = True if (calculated_delay_gyr > 2.5 and impulse_reply != 'n') else False
+
+            # --- PHASE 3 (REGULAR): ADDENDUM 1 VERSION B - MULTIVERSE COLLISION MONITOR ---
+            print("\n" + "-"*50)
+            print(" [ADDENDUM 1 - VERSION B] MULTIVERSE COLLISION MONITOR")
+            print("-"*50)
+            coll_choice = input("        Engage Addendum 1 Version B Multi-Collision track? (y/N): ").strip().lower()
+            addendum_1_dynamic_collision = True if coll_choice == 'y' else False
+            
+            collision_times = []
+            star_formation_mod = 1.0 + (agg_bubble_rate * 0.5)
+            omega_oaza = 1.0
+            
+            if addendum_1_dynamic_collision:
+                print("\n=====================================================")
+                print("[ADDENDUM 1 - VERSION B] COBWEB COLLISION DETECTOR")
+                print("=====================================================")
+                # --- UX LEGEND FOR THE REGULAR COBWEB TRACK ---
+                print("        Select Intersection Detection Mode:")
+                print("               [m] - Manual Configuration Node")
+                print("               [s] - Stochastic Hyper-Foam (Fully Automated)")
+                b_mode = input("        Select Mode (m/S): ").strip().lower()
+                num_collisions = 0
+                auto_dense_fluid_prob = 0.5
+
+                if b_mode == 'm':
+                    try:
+                        num_collisions = int(input("        >> Enter total intersecting universes: "))
+                        for i in range(num_collisions):
+                            t_coll = float(input(f"           Enter time for Node {i+1} (Gyr): "))
+                            collision_times.append((t_coll, 'manual'))
+                    except ValueError: num_collisions = 0
+                else:
+                    global_density_pool = active_manifold_multiverse_counter
+                    if global_density_pool > 0:
+                        num_collisions = random.randint(1, max(3, int(math.log1p(global_density_pool) * 2.5)))
+                        for _ in range(num_collisions):
+                            collision_times.append((random.uniform(0.1, min(t_genesis, 1000.0)), 'auto'))
+                        print(f"        [AUTO-FOAM] Anchored {num_collisions} independent intersections.")
+                        
+                if num_collisions > 0:
+                    omega_oaza = 2.5
+                    print("\n" + "-"*50)
+                    print(" [ADDENDUM 1] HOLONOMIC ANOMALY STRUCTURE DATA TRANSFER")
+                    print("-"*50)
+                    for t_coll, density_flag in collision_times:
+                        is_dense = 'n' if density_flag != 'manual' else input(f"        >> Is Node at t={t_coll:.1f} Gyr a high-density zone? (Y/n): ").strip().lower()
+                        if is_dense != 'n':
+                            sf_multiplier = random.uniform(2.5, 5.0)
+                            star_formation_mod *= sf_multiplier
+            else:
+                addendum_1_dynamic_collision = False
+
+        # --- COMBINED METRIC TERMINATION AND STATUS DISPLAY ---
         print("---------------------------------------------------------------------")
         print(f" -> Conformal Compression Factor (Omega_Oaza): {omega_oaza:.2f}")
-        print(f" -> Dynamic Trans-Cosmic Delay Vector: {calculated_delay_gyr:.2f} Gyr")
+        print(f" -> Dynamic Trans-Cosmic Delay Vector: {calculated_delay_gyr if calculated_delay_gyr != float('inf') else 'INFINITE'} Gyr")
         print(f" -> Final Computed Star Formation Frequency Modifier: {star_formation_mod:.3f}x")
 
-        # --- PHASE 4: TRAJECTORY AND SCENARIO DETECTOR MATRIX ---
-        accretion_drainage_active = (addendum_1_scar_active or 
-                                     addendum_1_dynamic_collision or 
-                                     addendum_1_ccc_exchange_allowed)
-        
-        # Scenario 1 comes first if specifically armed by user choices or structural drain active
+        # --- PHASE 4: TRAJECTORY PHASE ASSIGNMENT ---
         if current_object_count > 0 and scenario_1_drainage_active:
             user_choice = "1"
-            allowed_tolerance = 0.0
         elif current_object_count > 0 and addendum_1_dynamic_collision and omega_oaza == 2.5:
-            # Shifted boundaries to match the precision displacement metrics of Scenario 9 vs 7.2b
-            if not timeline_displacement_risk:
-                user_choice = "9"
-                allowed_tolerance = 0.0
-            else:
-                user_choice = "7.2b"
-                allowed_tolerance = 15.0
+            user_choice = "7.2b" if timeline_displacement_risk else "9"
         elif current_object_count > 0 and timeline_displacement_risk and not addendum_1_dynamic_collision:
             user_choice = "8.5"
-            allowed_tolerance = 15.0
         elif current_object_count >= 150 and t_genesis < 1.0: 
             user_choice = "6"
         elif current_object_count == 0 and t_genesis >= 50.0: 
@@ -418,38 +408,82 @@ def run_interactive_sandbox():
         else: 
             user_choice = "4"
         
-        print(f"        >> Verified Trajectory Phase: Scenario {user_choice} (Tolerance: {allowed_tolerance}%)")
-        print(f"\n[EVAL] Executing Evaluation for Scenario {user_choice}...")
+        print(f"        >> Verified Trajectory Phase: Scenario {user_choice} (Tolerance: {0.0}%)")
         time.sleep(0.1)
-        
-        active_manifold_multiverse_counter += int(2 * (t_genesis / 10.0))
+        active_manifold_multiverse_counter += int(2 * (min(150.0, t_genesis) / 10.0))
 
-        # --- TRANS-DIMENSIONAL COBWEB CROSSOVER JUMP ENGINE ---
+        # --- UI EXPLORER TOOL: CPT CHIRALITY INVERSION & EVOLUTIONARY IGNORANCE INDEX ---
+        for slot in range(1, 13):
+            data = parallel_timelines[slot]
+            ui_write_chance = 0.45 * flux_efficiency
+            if timeline_displacement_risk:
+                ui_write_chance *= 0.15
+            if data.get("replacement_shield", False):
+                ui_write_chance *= 0.50
+                
+            if random.random() <= ui_write_chance:
+                # CPT Chirality Inversion Filter (Matter-Antimatter mismatch reflection at the Big Bang)
+                mass_mismatch = abs((n_umnc + n_smnc + n_hmnc) - (data.get("umnc", 0) + data.get("smnc", 0) + data.get("hmnc", 0)))
+                if mass_mismatch > 100:
+                    data["chiral_inverted"] = True
+                else:
+                    data["chiral_inverted"] = False
+                    
+                ignorance_threshold = random.uniform(0.1, 12.0)
+                is_evolutionary_severed = False
+                current_delay = calculated_delay_gyr
+                if current_delay == float('inf') or current_delay > ignorance_threshold:
+                    is_evolutionary_severed = True
+                    
+                if is_evolutionary_severed:
+                    data["generation"] = data.get("generation", 0) + random.randint(1, 5)
+                    delay_string = "INFINITE" if current_delay == float('inf') else f"+{current_delay:.2f}"
+                    data["scenario"] = f"Scenario 8.5 [SEVERED BRANCH | Displaced {delay_string} Gyr]"
+                    data["multiverse_counter"] = data.get("multiverse_counter", 0) + random.randint(10, 100)
+                else:
+                    data["generation"] = current_generation
+                    data["multiverse_counter"] = int(active_manifold_multiverse_counter)
+                    data["scenario"] = f"Scenario {user_choice} [Synchronized Layer]"
+
+                data["age"] = float(t_genesis)
+                data["imnc"] = int(n_imnc)
+                data["smnc"] = int(n_smnc)
+                data["umnc"] = int(n_umnc)
+                data["hmnc"] = int(n_hmnc)
+                data["scar_v1"] = addendum_1_scar_active
+                data["collision_v2"] = addendum_1_dynamic_collision
+
+        print("\n[SUCCESS] Universal quantum-geometric fields processed stochastically.")
+        print("          RAM Multi-Manifold Index updated via isolation-displacement filtering.")
+
+        # --- TRANS-DIMENSIONAL COBWEB CROSSOVER DETECTED ---
         print("\n" + "-"*65)
         print(" [MULTIVERSE] TRANS-DIMENSIONAL COBWEB CROSSOVER DETECTED")
         print("-"*65)
-        print(" [INPUT] Abandon active spacetime branch?")
-        print("         [j] - Jump into a parallel universe")
-        print("         [n] - Remain on this coordinate lineage")
-        jump_choice = input("         Select Choice (j/N): ").strip().lower()
+        print(" [INPUT] Choose active continuum trajectory command:")
+        print("         [j] - Jump into a parallel universe (Stored in RAM)")
+        print("         [r] - Trigger a conformal reset due to mass invariance")
+        print("         [b] - Back to a certain point in time in this universe and continue")
+        print("         [q] - Break the laws of physics, terminate the multiverse and exit existence. You can always come back and create a new one!")
+        jump_choice = input("         Select Choice (j/r/b/Q): ").strip().lower()
         
         if jump_choice == 'j':
             print("\n=====================================================================")
-            print("    MULTIVERSE MATRIX INDEX: 12 PARALLEL SPACETIMES RUNNING IN RAM     ")
+            print("    MULTIVERSE MATRIX INDEX: 12 PARALLEL SPACETIMES STORED IN RAM     ")
             print("=====================================================================")
             for slot, data in parallel_timelines.items():
                 addenda_desc = "Standard"
-                if data["scar_v1"]: 
+                if data.get("scar_v1"): 
                     addenda_desc = "Addendum 1 (Ver.A) Scar"
-                elif data["collision_v2"]: 
+                elif data.get("collision_v2"): 
                     addenda_desc = "Addendum 1 (Ver.B) Resonance"
                 
-                slot_chirality = data.get("chiral_inverted", cpt_chiral_inversion_active)
+                slot_chirality = data.get("chiral_inverted", False)
                 chiral_tag = "[A]" if slot_chirality else "[M]"
                 
-                print(f" Slot {slot:02d} {chiral_tag} -> Manifest: Scenario {data['scenario']} | {addenda_desc}")
-                print(f"           Gen: {data['generation']} | Age: {data['age']:.1f} Gyr | Local Counter: {data['multiverse_counter']}")
-                print(f"           Pool: UMNC={data['umnc']} | HMNC={data['hmnc']} | SMNC={data['smnc']} | IMNC={data['imnc']}")
+                print(f" Slot {slot:02d} {chiral_tag} -> Manifest: {data.get('scenario', 'Unknown')}")
+                print(f"           Gen: {data.get('generation', 0)} | Age: {data.get('age', 0.0):.1f} Gyr | Local Counter: {data.get('multiverse_counter', 0)}")
+                print(f"           Pool: UMNC={data.get('umnc', 0)} | HMNC={data.get('hmnc', 0)} | SMNC={data.get('smnc', 0)} | IMNC={data.get('imnc', 0)}")
                 print(" ---------------------------------------------------------------------")
 
             print("=====================================================")
@@ -474,24 +508,89 @@ def run_interactive_sandbox():
                     print(" [FAIL] Target slot boundary unstable. Jump aborted.")
             except ValueError:
                 print(" [SECURITY] Invalid coordinate selection.")
-
-        print("=====================================================")
-        print(" PROCESS CONTROL INTERFACE")
-        print("=====================================================")
-        action = input("        Select Action Control ([c]onsecutive / [r]eset / [q]uit): ").strip().lower()
-        
-        if action == 'r':
+                
+        elif jump_choice == 'r':
             current_generation += 1
-            print(f"\n[RESET] Transitioning to Gen {current_generation}...")
-            n_umnc = int(n_umnc * 0.15)
-            n_hmnc = int(n_hmnc * 0.15)
-            n_smnc = int(n_smnc * 0.15)
-            n_imnc = int(n_imnc * 0.15)
+            print(f"\n" + "="*65)
+            print(f" [UR-GENESIS] BIFURCATION MATRIX - GENERATION {current_generation}")
+            print("="*65)
+            print("        Capturing evacuated horizon assets for child-spacetime injection...")
+            
+            isolated_umnc = locals().get('active_umnc', 0)
+            isolated_hmnc = locals().get('active_hmnc', 0)
+            isolated_smnc = locals().get('active_smnc', 0)
+            isolated_imnc = locals().get('active_imnc', 0)
+            
+            print(f"        -> Injecting invariant anchors: HMNC={isolated_hmnc} | UMNC={isolated_umnc}")
+            
+            try:
+                print("\n[INPUT] Configure child aeon timeline boundaries:")
+                t_genesis_new = float(input(f"        >> Set target timescale for Generation {current_generation} phase (Gyr): "))
+                t_genesis = max(0.0001, t_genesis_new)
+            except ValueError:
+                t_genesis = 4.0
+                print("        [INVALID] Defaulting child timescale baseline to 4.0 Gyr.")
+                
+            print("\n[EVAL] Sampling stochastic overlap between LQG Tensile Limit and Higgs scalar onset...")
+            time.sleep(0.2)
+            
+            higgs_roll = random.random()
+            if hmnc_evap == 0 and umnc_evap == 0 and current_object_count > 0:
+                higgs_roll = random.choice([0.1, 0.5])
+                
+            if higgs_roll < 0.20:
+                # 1. Instantaneous Vacuum Drop (Higgs == LQG)
+                assigned_scenario = "9"
+                allowed_tolerance = 0.0
+                print("           [STATUS]: Instantaneous Vacuum Drop (Higgs == LQG) triggered!")
+                print("                     Immediate vacuum tunneling active. Precision tolerance: 0%.")
+                star_formation_mod = 1.0
+            elif higgs_roll < 0.75:
+                # 2. Delayed Transition (Higgs < LQG)
+                assigned_scenario = "7.2b"
+                allowed_tolerance = 15.0
+                print("           [STATUS]: Delayed Transition (Higgs < LQG) registered.")
+                print("                     Fluid influx exposed to parent plasma fluctuations. Tolerance: +/-15%.")
+                star_formation_mod = random.uniform(0.85, 1.15)
+            else:
+                # 3. Suppressed Phase Transition (Higgs > LQG)
+                assigned_scenario = "3a" if random.random() < 0.5 else "4"
+                allowed_tolerance = 0.0
+                print("           [STATUS]: Suppressed Phase Transition (Higgs > LQG) invoked.")
+                print("                     Pathway 3 shockwave quenched. Bound strictly to baseline parameters.")
+                star_formation_mod = 1.0
+
+            print(f"\n[RESET] Compressing and transferring rest-mass into Conformal Generation {current_generation}...")
+            n_umnc = isolated_umnc + int((n_umnc * 0.15))
+            n_hmnc = isolated_hmnc + int((n_hmnc * 0.15))
+            n_smnc = isolated_smnc + int((n_smnc * 0.15))
+            n_imnc = isolated_imnc + int((n_imnc * 0.15))
+            
             addendum_1_scar_active = False
             addendum_1_dynamic_collision = False
-        elif action == 'q':
+            print(f" -> [SUCCESS] Child-spacetime initialized. Target Scenario Horizon: {assigned_scenario}\n")
+            continue
+
+        elif jump_choice == 'b':
+            print("\n[TEMPORAL BOUNCE] Initiating localized timeline regression...")
+            try:
+                t_rollback = float(input("         >> Enter target epoch to bounce back to (Gyr): "))
+                if 0.0 <= t_rollback <= t_genesis:
+                    t_genesis = t_rollback
+                    print(f" -> [SUCCESS] Coordinates shifted. Continuing from localized footprint at {t_rollback:.4f} Gyr.\n")
+                    continue
+                else:
+                    print(" [FAIL] Target coordinate outside the causal boundary of this aeon.")
+            except ValueError:
+                print(" [SECURITY] Invalid temporal configuration input.")
+
+        elif jump_choice == 'q':
             print("\n[SHUTDOWN] Safely disconnecting LQG filaments. Offline.\n")
             genesis_reply_loop = False
+            break
+            
+        else:
+            print("\n[CONTINUE] Proceeding down current chronological lineage matrix...\n")
 
 if __name__ == "__main__":
     run_interactive_sandbox()
