@@ -1,79 +1,54 @@
-### Technical Specification: Cosmological State Simulation Kernel (v33.2)
+### Technical Specification: Cosmological State Simulation Kernel (v34.0-JIT)
 
-This repository hosts the background-independent, multi-generational cosmological hybrid state engine (interactive.py). The programmatic backend strictly models the thermodynamic filters, mass-accretion channels, and geometric invariants derived in the primary framework manuscript. 
+This repository hosts the deterministic, background-independent, multi-generational cosmological hybrid state engine (`interactive.py`). The programmatic backend strictly models the thermodynamic filters, mass-accretion channels, and geometric invariants derived in the primary framework manuscript.
 
-⚠️ **DISCLAIMER / RUNTIME NOTICE:** Please note that this simulation script operates as an active, cutting-edge numerical testbed for background-independent quantum gravity and cyclic manifolds. Due to the high complexity of fluid quantum-metrical parameters, non-linear multi-body kinetics, and multi-manifold synchronization loops, **the script is an experimental testbed.** It should be treated as a flexible environment for hypothesis testing. 
+⚠️ **DISCLAIMER / RUNTIME NOTICE:** Please note that this simulation script operates as an active, cutting-edge numerical testbed for background-independent quantum gravity and cyclic manifolds. Due to the high complexity of fluid quantum-metrical parameters, non-linear multi-body kinetics, and multi-manifold synchronization loops, **the script is an experimental testbed**. It should be treated as a flexible environment for hypothesis testing.
 
-### 1. Seeding Termination Law (
+### 1. Mass-Invariant Seeding Law & Exponential Decay Matrices
 
-t2t squared
-𝑡2
-) & Exponential Seeding Saturation
+Version 34.0-JIT implements a strictly conserved **Invariant Seeding Profile** for infant cosmic phases, counter-balanced by a non-linear, multi-body kinetic transition matrix and an unyielding, continuous Hawking radiation decay channel. All artificial minimum and maximum baseline caps have been permanently eliminated. As the metric expands over astronomical deep-time horizons (ranging from $4.0\text{ Gyr}$ up to $10^6\text{ Gyr}$ or absolute $\infty$), primordial energy fields dilute organically. This prevent unphysical runaway mass spikes or infinite core spawning in empty fields, driving the continuum deterministically into a total thermodynamic vacuum ($current\_object\_count == 0$).
 
-Version 33.2 implements a non-linear, **Quadratic Seeding Profile** (
-𝑁
+### 2. Four-Channel Metric Shear Force Gater (Equation 4)
 
-∝𝑡2
-) for infant cosmic phases, counter-balanced by an exponential vacuum field saturation factor (
+The baseline mechanical network tension is split into **four separate physical channels**, introducing dedicated tensor-exposure weights for non-singular structures. The engine evaluates active horizons independently, enforcing individual structural stress coefficients derived from their respective Planck mass-inflation profiles:
 
-e-0.06⋅te raised to the negative 0.06 center dot t power
-𝑒−0.06⋅𝑡
-). All artificial minimum and maximum baseline caps have been permanently eliminated. As the metric expands over deep time horizons (e.g., 30–1,000,000,000 Gyr), primordial energy fields dilute organically, preventing unphysical runaway mass spikes or infinite core spawning in empty fields. 
+* **Ultramassive Non-Singular Cores (UMNC):** Absolute host anchors. Weight coefficient squared: $25.0^2$ ($625.0$)
+* **Hypermassive Non-Singular Cores (HMNC):** Regulated central mergers. Weight coefficient squared: $50.0^2$ ($2500.0$)
+* **Supermassive Non-Singular Cores (SMNC):** Relativistic shrapnel satellites. Weight coefficient squared: $10.0^2$ ($100.0$)
+* **Intermediate Mass Non-Singular Cores (IMNC):** Sub-critical shield seeds. Weight coefficient squared: $0.5^2$ ($0.25$)
 
-### 2. Four-Channel Metric Shear Force Gater
+Whenever the combined directional tension ($local\_exposure$) breaches the invariant Loop Quantum Gravity maximum tensile limit ($\Sigma_{\max}$ via Eq. 5), a localized topological rupture (**Pathway 2 Transition**) manifests deterministically.
 
-The baseline mechanical network tension is split into **four separate physical channels**, introducing a dedicated vector for hypermassive mergers (HMNCs). The engine evaluates active horizons independently, enforcing individual structural stress coefficients: 
+### 3. Immediate Vacuum Lockout & Proportional Core Theft
 
-* **Ultramassive Non-Singular Cores (UMNC):** Absolute anchors. Stress factor: **2.50**
-* **Hypermassive Non-Singular Cores (HMNC):** Regulated mergers. Stress factor: **1.85**
-* **Supermassive Non-Singular Cores (SMNC):** Relativistic satellites. Stress factor: **1.25**
-* **Intermediate Mass Non-Singular Cores (IMNC):** Sub-critical shields. Stress factor: **0.05**
-Whenever the combined baseline shear breaches the invariant Loop Quantum Gravity maximum tensile limit (
-Σmax
+To prevent unphysical calculations or metric drainage configurations in completely empty phases, v34.0-JIT enforces an unyielding **Immediate Vacuum Command Trigger**:
 
-=10.0
-), a localized topological rupture (**Pathway 2 Transition**) manifests.
+* **Instant Verification:** The moment $current\_object\_count == 0$ is reached via total Hawking evaporation or core depletion, the kernel bypasses all subsequent mass-dependent phases and immediately fires the core command matrix (`[j]`/`[r]`/`[b]`/`[q]`).
+* **Conserved Core Theft:** New universes cannot spawn out of nothing. The engine couples the multi-bubble flux strictly to a proportional mass-raub channel. High curvature tension forces the expanding daughter manifolds to instantaneously *steal* hypermassive anchors ($\text{HMNCs}$) via an exponential saturation matrix, draining the parent metric's energy density.
 
-### 3. Immediate Vacuum Lockout & Multi-Manifold Sync Delay
+### 4. Proportional RAM Snapshot Sampling (12 out of 9540)
 
-To prevent unphysical calculations or metric drainage configurations in completely empty phases, v33.2 introduces an **Immediate Vacuum Command Trigger**. 
+The parallel universes generated during the continuous, time-sliced loop are no longer generated using placeholder random values. 
+* **True Inheritance:** Choosing the **Multiverse Crossover (`[j]`)** displays exactly 12 deterministic snapshots sampled from the total generated spacetimes (e.g., 9,540 created worlds). 
+* **Stellar Transformation (Fusions-Kanal):** These side-universes inherit the precise core assets of the birth phase. If a snapshot exhibits a high star-formation frequency modifier ($\text{SF\_Mod} > 1.0$), the intermediate cores ($\text{IMNCs}$ and $\text{SMNCs}$) are mathematically *consumed* (reduced), proving that primordial seeds have been successfully transformed into active stellar oases.
+* **CPT Age Inversion:** Antimatter slots ($[A]$) experience a mirrored space-time metric. Their observable age is chiral-inverted via a wave boundary dumper.
 
-* **Instant Verification:** The moment current_object_count == 0 is reached via total Hawking evaporation, the kernel bypasses all subsequent mass-dependent phases (such as CPT-Kerr Chirality rolls or Cobweb collisions) and immediately fires the core command matrix ([j]/[r]/[b]/[q]).
-* **Scientific Scale Formatting:** For timelines tracking extreme remnants (e.g., incomplete Core Theft), the dynamic Timeline Displacement delay metrics (
+### 5. Determinstic Timeline Regression (Temporal Backup Bounce)
 
-tdelayt sub delay end-sub
-𝑡delay
-) scale directly against the physical quantum Hawking lifetime of unevaporated masses (up to 
-
-106210 to the 62nd power
-1062
- Gyr), and are rendered cleanly via scientific scientific exponent notation (:.2e) to preserve ASCII interface integrity.
-
-### 4. Determinstic Timeline Regression (Temporal Backup Bounce)
-
-The kernel implements a historical state snapshot profile to facilitate true, non-linear timeline testing. Choosing the **Temporal Bounce ([b])** does not merely alter the floating clock boundary; it actively restores the frozen ancestral seeding parameters (backup_hmnc, backup_umnc, etc.) captured at the genesis node of the active aeon. The engine then automatically scales down the micro-cycle density and recalculates the entirety of the structural matrix up to the regressed epoch, allowing the operator to dynamically verify core distribution and avoid permanent vacuum traps. 
-
-### 5. De-Coupled Generation Accretion Channels
-
-Multi-generational loops are strictly de-coupled to prevent loop-doubling at phase boundaries: 
-
-* **Aeon 0 (Root Node):** Evaluates the raw, unseeded quantum foam. Requires manual configuration of the global CPT-chiral vector roll.
-* **Aeon 1+ (Conformal Channels):** Automatically bypasses the baseline chiral question. The child-manifold directly inherits the physical core anchors (n_hmnc, n_umnc) escaped via Pathway 2, alongside the cumulative multiverse Star Formation Modifier (
-1.150𝑥
-
-−5.0𝑥
-) established by previous Cobweb boundary intersections.
+The kernel implements a historical state snapshot profile to facilitate true, non-linear timeline testing. Choosing the **Temporal Bounce (`[b]`)** does not merely alter the floating clock boundary; it actively restores the frozen ancestral seeding parameters (`backup_hmnc`, `backup_umnc`, etc.) captured at the genesis node of the active aeon. The engine then utilizes Numba-compiled execution loops to automatically scale down the micro-cycle density and recalculate the entirety of the structural matrix up to the regressed epoch, allowing the operator to dynamically verify core distribution and avoid permanent vacuum traps.
 
 ### Technical Appendix: Blueprint Reference Matrix
 
+* **Scenario 1:** Primeval Topological Deflation Interface executing metric drainage into the old-aeon void (CMB Cold Spot precursor).
 * **Scenario 2:** Solitary Isotropic Hierarchical Accretion driven by a central, high-mass gravitational anchor.
 * **Scenario 3a/3b:** Conformal Protection Branch (Sterile gravitational trap vs. Chiral antimatter universe cascade).
 * **Scenario 4/5:** Decaying Parent Aeon Matrix vs. Active, expanding Pathway 3 Higgs phase-transition shockwave.
 * **Scenario 6/8.5:** Multi-Core Cluster Baseline Kinematics vs. Stable Shadow Track balanced via accretion drainage.
-* **Scenario 7.1/7.2a/7.2b:** Core Theft and Relativistic Slingshot Pockets leading to massive "Oasis-Galaxies."
+* **Scenario 7.1:** Sterile Collapse Instability Node driven by $Higgs > LQG$ thresholds, collapsing immediately into pure vacuum ($HMNC=0, Age=0.0$).
+* **Scenario 7.2a/7.2b:** Asymmetric Core Theft and Relativistic Slingshot Pockets leading to massive "Oasis-Galaxies."
 * **Scenario 9/10/12:** Radiative Perimeter Void Walls vs. Massless Conformal Cyclic Resets (Sterile pockets or infinite loops).
 
 ### Registry
 
 * **Contact Address:** jakubczaderski.cinnamon@proton.me
-* **Mandatory Subject Tag:** #interactive code#
+* **Mandatory Subject Tag:** `#interactive code#`
