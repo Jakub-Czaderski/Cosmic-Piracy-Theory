@@ -11,12 +11,13 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
     time_step_standard = 1e-8
     time_step_micro = 1e-9
 
-    # Absolute Obergrenze für die Welten-Erzeugung: Die totale Menge der primordialen Saaten
+    # Absolute Obergrenze für die Welten-Erzeugung (Mass-Exclusivity Law)
     max_possible_universes = n_imnc + n_smnc + n_umnc + n_hmnc
     resolution_sensitivity = 1.45 if is_big_bang_focus else 1.00
 
-    # Im Infinity-Modus erweitern wir die maximale Zyklen-Sicherheitsgrenze drastisch für den Ryzen 5
+    # Im Infinity-Modus erweitern wir die maximale Zyklen-Sicherheitsgrenze
     loop_limit = 20000000 if is_infinity_run else micro_cycles
+    total_gw_energy_leak = 0.0
 
     for cycle in range(loop_limit):
         if is_big_bang_focus and actual_time_elapsed <= 1e-6:
@@ -40,28 +41,46 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
             n_umnc -= umnc_to_hmnc
             n_hmnc += umnc_to_hmnc
 
-        # 2. Bubble Flux Probability & Seeding via Mechanical Shear (Eq 4)
+        # --- UPDATE 2: HAMILTONIAN CONSTRAINT LOCKOUT (EQ 21) ---
+        # Der elastische Filament-Rückstoß erzeugt ein negatives Potential gegen Runaway-Massen
+        if primordial_spacetimes > 0:
+            lqg_elastic_recoil = math.tanh(primordial_spacetimes * 0.01)
+            n_imnc = max(0, int(n_imnc * (1.0 - lqg_elastic_recoil * 0.05)))
+
+        # 2. Bubble Flux Probability & Seeding via Regularized Shear Proxy (Eq 30 & 31)
+        has_active_flux = False
         if n_imnc > 0 or n_smnc > 0 or n_umnc > 0 or n_hmnc > 0:
             pull_imnc = int(n_imnc * agg_bubble_rate * 0.05) if n_imnc > 0 else 0
             pull_smnc = int(n_smnc * agg_bubble_rate * 0.08) if n_smnc > 0 else 0
             pull_umnc = int(n_umnc * agg_bubble_rate * 0.02) if n_umnc > 0 else 0
             pull_hmnc = int(n_hmnc * agg_bubble_rate * 0.01) if n_hmnc > 0 else 0
             
-            local_exposure = (pull_hmnc * 2500.0) + (pull_umnc * 625.0) + (pull_smnc * 100.0) + (pull_imnc * 0.25)
+            characteristic_mass_exposure = (pull_hmnc * 2500.0) + (pull_umnc * 625.0) + (pull_smnc * 100.0) + (pull_imnc * 0.25)
             
-            if local_exposure * 8.5e-4 * agg_bubble_rate * resolution_sensitivity >= 0.15:
-                generated_nodes = max(1, int(math.log1p(local_exposure * resolution_sensitivity) * agg_bubble_rate * 1.5))
+            # --- UPDATE 1: REGULARIZED SPIN ENHANCEMENT S(a_*) ---
+            kappa_parameter = 1.5
+            dimensionless_spin_proxy = 0.985 * resolution_sensitivity
+            spin_enhancement_S = 1.0 + kappa_parameter * (dimensionless_spin_proxy ** 2)
+            
+            f_shear_eff = characteristic_mass_exposure * spin_enhancement_S
+            
+            if (f_shear_eff * 2.85e-4 * agg_bubble_rate) >= 0.15:
+                generated_nodes = max(1, int(math.log1p(f_shear_eff) * agg_bubble_rate * 1.5))
                 
-                # STRIKTER MASSEN-CEILING-LOCKOUT
                 if primordial_spacetimes + generated_nodes <= max_possible_universes:
+                    has_active_flux = True
                     primordial_spacetimes += generated_nodes
+                    
+                    # --- UPDATE 2 (NEU): QUANTUM CAVITATION MATRIX (GW RELIC SPECTRUM) ---
+                    omega_zamo = (2.0 * f_shear_eff * dimensionless_spin_proxy) / (1.0 + characteristic_mass_exposure)
+                    total_gw_energy_leak += omega_zamo * generated_nodes * 1e-4
                     
                     n_imnc = max(0, n_imnc - pull_imnc)
                     n_smnc = max(0, n_smnc - pull_smnc)
                     n_umnc = max(0, n_umnc - pull_umnc)
                     
-                    # Proportionaler Core-Theft raubt die HMNCs weg
-                    stolen_hmnc = int(n_hmnc * (1.0 - math.exp(-0.0005 * local_exposure * agg_bubble_rate)))
+                    # Proportionaler Core-Theft: Tochterwelten rauben hypermassive Anker real auf
+                    stolen_hmnc = int(n_hmnc * (1.0 - math.exp(-0.0005 * f_shear_eff * agg_bubble_rate)))
                     stolen_hmnc = max(generated_nodes, min(n_hmnc, stolen_hmnc))
                     n_hmnc = max(0, n_hmnc - stolen_hmnc)
 
@@ -75,10 +94,8 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
         n_smnc -= min(n_smnc, int(n_smnc * (1.0 - math.exp(-r_smnc * time_per_cycle))))
         n_umnc -= min(n_umnc, int(n_umnc * (1.0 - math.exp(-r_umnc * time_per_cycle))))
         
-        # Unersättlicher, ununterbrochener Hawking-Verfall bis zur absoluten Masselosigkeit
         decay_prob = 1.0 - math.exp(-r_hmnc * time_per_cycle)
         if decay_prob == 0.0 and n_hmnc > 0:
-            # Numerischer Schutz: Erzwinge linearen quantisierten Massenabbau pro Epochen-Intervall
             if cycle % 1000 == 0: n_hmnc = max(0, n_hmnc - 1)
         else:
             n_hmnc -= min(n_hmnc, int(n_hmnc * decay_prob))
@@ -87,10 +104,10 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
         current_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
         if current_object_count == 0:
             t_genesis = actual_time_elapsed
-            return t_genesis, primordial_spacetimes, 0, 0, 0, 0, 0
+            return t_genesis, primordial_spacetimes, 0, 0, 0, 0, 0, total_gw_energy_leak
 
     t_genesis = actual_time_elapsed
-    return t_genesis, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count
+    return t_genesis, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_gw_energy_leak
 
 def execute_automated_logging(log_id, density, is_smooth, anomaly_score, descriptor):
     try:
@@ -101,7 +118,7 @@ def execute_automated_logging(log_id, density, is_smooth, anomaly_score, descrip
     except IOError:
         pass
 
-def evaluate_cluster_stability(active_umnc, active_smnc, active_imnc, n_hmnc, total_pnc_pool):
+def evaluate_cluster_stabelity(active_umnc, active_smnc, active_imnc, n_hmnc, total_pnc_pool):
     print("\n[MONITOR] Running Multi-Body Vector Analysis...")
     mass_weights = {"umnc": 50.0, "hmnc": 25.0, "smnc": 10.0, "imnc": 0.5, "pnc": 0.01}
     lorentz_gamma = 1.9015  
@@ -123,15 +140,15 @@ def evaluate_cluster_stability(active_umnc, active_smnc, active_imnc, n_hmnc, to
     if f_inward == 0.0:
         return "Explosion" if f_outward > 0.0 else "Massless"
             
-    r_stabil = f_outward / f_inward
+    r_stabel = f_outward / f_inward
     print(f" -> Inward Gravitational Pull Vector: {f_inward:.2f}")
     print(f" -> Outward Relativistic Escape Vector: {f_outward:.2f}")
-    print(f" -> Computed Dynamic Balance Ratio (R_stabil): {r_stabil:.4f}")
+    print(f" -> Computed Dynamic Balance Ratio (R_stabel): {r_stabel:.4f}")
     
-    if r_stabil < 0.28:
+    if r_stabel < 0.28:
         print(" -> [TRAJECTORY]: COLLAPSE (Central consolidation)")
         return "Collapse"
-    elif r_stabil > 0.65:
+    elif r_stabel > 0.65:
         print(" -> [TRAJECTORY]: EXPLOSION (Void structures)")
         return "Explosion"
     else:
@@ -198,15 +215,24 @@ def run_interactive_sandbox():
         calculated_delay_gyr = 0.0
 
         if current_generation == 0:
-            print("[INPUT] Initialize at Scenario 0 (Global CPT Crossover Node)?")
+            # --- CONFORMAL SEEDING ACCORDING TO NET-ZERO EXISTENCE ---
+            print("\n=====================================================================")
+            print(" [COSMIC INITIALIZATION]: Universe and antiuniverse created from nothing.")
+            print("=====================================================================")
+            print("[INPUT] Initialize at Scenario 0 (Primordial Core Formation)?")
             genesis_reply = input("        Trigger Ur-Genesis Phase (Y/n): ").strip().lower()
             
             if genesis_reply != 'y' and genesis_reply != '':
-                print("\n[CRITICAL RESET] Enforcing Conformal Cyclic Reset!")
-                continue 
+                # REGULATED: Masslessness forces strict scale-invariance and an immediate CCC reset!
+                print("\n [NOTICE]: NO MASS SEEDED. Conformal scale lost to infinite dilation.")
+                print("           Enforcing immediate Conformal Cyclic Reset due to scale-invariance...")
+                time.sleep(0.4)
+                # Schleife bleibt aktiv, erzwingt einen internen Geister-Sprung und fragt erneut
+                continue
 
             print("\n[PHASE 0] AEON 0 - PRIMORDIAL SEEDING AND BOUNDARY GATES")
             print("---------------------------------------------------------------------")
+
         else:
             print("\n" + "="*65)
             print(f" [CONTINUUM] BOOTING CHILD SPACETIME MANIFOLD - GENERATION {current_generation}")
@@ -267,7 +293,6 @@ def run_interactive_sandbox():
         backup_smnc = n_smnc
         backup_imnc = n_imnc
 
-        # --- PYTHON SCHNITTSTELLE FÜR DIE HIGHSPEED-MATRIX ---
         initial_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
         primordial_spacetimes = 0
         
@@ -286,8 +311,8 @@ def run_interactive_sandbox():
         flux_efficiency = 1.0 / (1.0 + math.log1p(1.0 / agg_bubble_rate))
         print(f"          [COSMOLOGICAL EVOLUTION]: Processing {micro_cycles} dynamic matrix cycles via JIT...")
         
-        is_focus_bool = True if (res_profile == "big_bang_focus") else False
-        t_genesis, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count = run_jit_evolution(
+        is_focus_bool = True if (res_profile == "urknall_focus") else False
+        t_genesis, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_emitted_gw_shrapnel = run_jit_evolution(
             micro_cycles, is_focus_bool, flux_efficiency, agg_bubble_rate, t_genesis, is_infinity_run, n_imnc, n_smnc, n_umnc, n_hmnc
         )
 
@@ -335,7 +360,7 @@ def run_interactive_sandbox():
                     s_hmnc, s_umnc, s_smnc, s_imnc = 0, 0, 0, 0
                     data["age"] = 0.0
                     slot_sf_mod = 1.00
-                    selected_manifest = "7.1 (Sterile Collapse Instability Node)"
+                    selected_manifest = "7.1 (Sterile Collapse Instabelity Node)"
                 else:
                     slot_sf_mod = 1.0 + (math.tanh(slot_fraction * 2.0) * 4.0) if (slot % 3 == 0) else 1.00
                     
@@ -414,8 +439,9 @@ def run_interactive_sandbox():
                     print("=====================================================================")
                     for slot, data in parallel_timelines.items():
                         chiral_tag = "[A]" if data.get("chiral_inverted", False) else "[M]"
-                        print(f" Slot {slot:02d} {chiral_tag} -> Manifest: {data.get('scenario', 'Unknown')}")
-                        print(f"           Gen: {data.get('generation', 0)} | Age: {data.get('age', 0.0):.2e} Gyr")
+                        # --- CAVITATION RE-COALESCENCE PRINT MATRIX ---
+                        print(f" Slot {slot:02d} {chiral_tag} -> Manifest: {d.get('scenario', 'Unknown')}")
+                        print(f"           Gen: {d.get('generation', 0)} | Age: {d.get('age', 0.0):.2e} Gyr | GW Relic: {d.get('gw_relic_density', 0.0):.3e}")
                         print(" ---------------------------------------------------------------------")
                     try:
                         target_slot = int(input(" >> Select target Timeline Slot to jump into (1-12): "))
@@ -461,12 +487,11 @@ def run_interactive_sandbox():
                             micro_cycles = max(100, int(math.log1p(t_genesis) * 120.0))
                             print(f"          [RE-CALCULATING TIMELINE]: Processing {micro_cycles} cycles for {t_genesis:.4f} Gyr...")
                             
-                            # JIT Aufruf fuer den Temporal Bounce einfügen
                             is_focus_bool = True if (res_profile == "big_bang_focus") else False
-                            t_genesis, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count = run_jit_evolution(
+                            t_genesis, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_emitted_gw_shrapnel = run_jit_evolution(
                                 micro_cycles, is_focus_bool, flux_efficiency, agg_bubble_rate, t_genesis, is_infinity_run, n_imnc, n_smnc, n_umnc, n_hmnc
                             )
-                            
+
                             current_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
                             active_manifold_multiverse_counter = primordial_spacetimes
                             print(f" -> [SUCCESS] Timeline recalculated. Regressed state: HMNC={n_hmnc} | UMNC={n_umnc}")
@@ -715,10 +740,12 @@ def run_interactive_sandbox():
                     micro_cycles = max(100, int(math.log1p(t_genesis) * 120.0))
                     print(f"          [RE-CALCULATING TIMELINE]: Processing {micro_cycles} cycles for {t_genesis:.4f} Gyr...")
                     
+
                     is_focus_bool = True if (res_profile == "big_bang_focus") else False
-                    t_genesis, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count = run_jit_evolution(
-                        micro_cycles, is_focus_bool, flux_efficiency, agg_bubble_rate, t_genesis, is_infinity_run, n_imnc, n_smnc, n_umnc, n_hmnc
-                    )
+                    t_genesis, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_emitted_gw_shrapnel = run_jit_evolution(
+                    micro_cycles, is_focus_bool, flux_efficiency, agg_bubble_rate, t_genesis, is_infinity_run, n_imnc, n_smnc, n_umnc, n_hmnc
+                            )
+
                     
                     current_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
                     print(f" -> [SUCCESS] Timeline recalculated. Continuing with restored cores at {t_rollback:.4f} Gyr.\n")
