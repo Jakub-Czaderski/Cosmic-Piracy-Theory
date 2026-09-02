@@ -39,15 +39,15 @@ To prevent unphysical calculations or metric drainage configurations in complete
 * **Conserved Core Theft:** New universes cannot spawn out of nothing. The engine couples the multi-bubble flux strictly to a proportional mass-raub channel. High curvature tension forces the expanding daughter manifolds to instantaneously *steal* hypermassive anchors ($\text{HMNCs}$) via an exponential saturation matrix, draining the parent metric's energy density.
 * **The Scale-Invariance of Nothingness:** Initializing without mass triggers scale-invariant boundary rules. Rejecting the primordial core formation at Scenario 0 removes the metric's temporal clocks, forcing an instantaneous Conformal Cyclic Reset (CCC) back to the Ur-Genesis node.
 
-### 4. Proportional RAM Snapshot Sampling (12 out of 9540)
+### 4. Proportional RAM Snapshot Sampling (12 out of active manifolds)
 
 The parallel universes generated during the continuous, time-sliced loop are no longer generated using placeholder random values. 
 * **True Snapshot Inheritance:** Choosing the Multiverse Crossover (`[j]`) displays exactly 12 deterministic snapshots sampled directly from the total generated spacetimes.
 * **Stellar Transformation (Fusions-Kanal):** These side-universes inherit the precise core assets of the birth phase. If a snapshot exhibits a high star-formation frequency modifier ($\text{SF\_Mod} > 1.0$), the intermediate cores ($\text{IMNCs}$ and $\text{SMNCs}$) are mathematically *consumed* (reduced), proving that primordial seeds have been successfully transformed into active stellar oases.
 * **CPT Age Inversion:** Antimatter slots ($[A]$) experience a mirrored space-time metric. Their observable age is chiral-inverted via a wave boundary dumper.
-* **Isotropic Stochastic GW Background (1–10 mm Spectrum):** The abrupt metric cavitation during anchor detachment triggers an instantaneous geometric expansion wave. This leaves an unmaskable observational footprint: a highly specific, isotropic stochastic background of millimeter-wavelength relic gravitational waves, cleanly rendered via scientific notation (`:.3e`).
+* **Isotropic Stochastic GW Background (1–10 mm Spectrum):** The abrupt metric cavitation during anchor detachment triggers an instantaneous geometric expansion wave. This leaves an unmaskable observational footprint: a highly specific, isotropic stochastic background of millimeter-wavelength relic gravitational waves, cleanly rendered via scientific notation.
 
-### 5. Determinstic Timeline Regression (Temporal Backup Bounce)
+### 5. Deterministic Timeline Regression (Temporal Backup Bounce)
 
 The kernel implements a historical state snapshot profile to facilitate true, non-linear timeline testing. Choosing the **Temporal Bounce (`[b]`)** does not merely alter the floating clock boundary; it actively restores the frozen ancestral seeding parameters (`backup_hmnc`, `backup_umnc`, etc.) captured at the genesis node of the active aeon. The engine then utilizes Numba-compiled execution loops to automatically scale down the micro-cycle density and recalculate the entirety of the structural matrix up to the regressed epoch, allowing the operator to dynamically verify core distribution and avoid permanent vacuum traps.
 
@@ -56,13 +56,13 @@ The kernel implements a historical state snapshot profile to facilitate true, no
 Multi-generational loops are strictly de-coupled to prevent loop-doubling at phase boundaries: 
 * **Aeon 0 (Root Node):** Evaluates the raw, unseeded quantum foam. Requires manual activation of the CPT-chiral vector roll. The initial system message explicitly deklariert: *„Universe and antiuniverse created from nothing.“*
 * **Aeon 1+ (Conformal Channels):** Automatically bypasses the baseline chiral question. The child-manifold directly inherits the physical core anchors escaped via Pathway 2.
-* **Hamiltonian Constraint Lockout ($\hat{H}_{\text{eff}} = 0$):** Driven by the quantum mechanical bounce pressure of the regularized Hamilton constraint operator, an elastic filament recoil acts as a negative gravitational binding energy barrier, dynamically quenching active micro-core kinetic transitions.
+* **Hamiltonian Constraint Lockout ($\hat{H}_{\text{eff}} = 0$):** Driven by the quantum mechanical bounce pressure of the regularized Hamilton constraint operator, an elastic filament recoil acts as a negative topological damping feedback, stripping sub-critical intermediate mass cores proportionally to the active spacetime generation count to maintain global net-zero equilibrium.
 
-## Hardware-Accelerated Performance
+### 7. Resolution Interface & Dynamic Slicing Matrix
 
-The state engine is optimized to handle astronomical deep-time horizons up to a million billion years or absolute $\infty$ by executing up to **100 Billion matrix cycles**. 
-
-To bypass Python's single-thread interpreter bottleneck on multi-core mobile architectures (e.g., AMD Ryzen 5 3450U with Radeon Vega Mobile Gfx $\times$ 4), v35.0-JIT utilizes a **Just-In-Time (JIT) Numba compiler**. This offloads floating-point decay matrices directly onto native x86 machine instructions utilizing AVX2 vector extensions, dropping computation and execution latency for $1.79 \times 10^{10}$ iterations from ~74 minutes to **under 15 seconds**.
+The simulation features an interactive temporal slicing selector at boot:
+* **Standard Matrix (1):** Deep-time macro steps governed by customizable floating-point Gyr offsets.
+* **big_bang Horizon (2):** Ultra-high-resolution annual micro-cycles ($10^{-9}\text{ Gyr}$) for the early radiation-dominated freeze-out envelope, ensuring precise capture of primordial non-singular core (PNC) density decay dynamics prior to transitioning into macro-scale steps.
 
 ## Technical Appendix: Blueprint Reference Matrix
 
