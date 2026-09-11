@@ -273,12 +273,66 @@ def run_interactive_sandbox():
         calculated_delay_gyr = 0.0
 
         if current_generation == 0:
-            # --- CONFORMAL SEEDING ACCORDING TO NET-ZERO EXISTENCE ---
             print("\n=====================================================================")
             print(" [COSMIC INITIALIZATION]: Universe and antiuniverse created from nothing.")
             print("=====================================================================")
             print("[INPUT] Initialize at Scenario 0 (Primordial Core Formation)?")
-            genesis_reply = input("        Trigger Ur-Genesis Phase (Y/n): ").strip().lower()
+            
+            raw_reply = input("        Trigger Ur-Genesis Phase (Y/n): ").strip()
+            genesis_reply = raw_reply.lower()
+            
+            if "primordial black holes don't exist" in genesis_reply or "no primordial black holes" in genesis_reply:
+                print("\n >> Congratulations! You don't exist!\n")
+                sys.exit(0)
+                
+            elif "loop quantum gravity is false" in genesis_reply or "no lqg" in genesis_reply:
+                print("\n >> Congratulations! You don't exist!\n")
+                sys.exit(0)
+                
+            elif "cpt symmetry is broken" in genesis_reply or "no cpt" in genesis_reply:
+                print("\n >> Congratulations! You don't exist!\n")
+                sys.exit(0)
+                
+            elif "conformal cyclic cosmology is wrong" in genesis_reply or "no ccc" in genesis_reply:
+                print("\n >> Congratulations! You don't exist!\n")
+                sys.exit(0)
+                
+            elif "center for chaos containment is fake" in genesis_reply or "no center for chaos containment" in genesis_reply:
+                print("\n >> Too much chaos everywhere! We need - ")
+                print("    ...........................")
+                print("    ...........................")
+                print("    ...........................")
+                print("    Maximum entropy achieved. No life ever again.\n")
+                sys.exit(0)
+                
+            elif "cosmic piracy is a myth" in genesis_reply or "no piracy" in genesis_reply:
+                print("\n >> Congratulations! You don't exist!\n")
+                sys.exit(0)
+                
+            elif "string theory is true" in genesis_reply or "<3 strings" in genesis_reply:
+                print("\n >> Congratulations! You don't exist!\n")
+                sys.exit(0)
+                
+            elif "donkeys are stupid!" in genesis_reply or "donkeys are stupid" in genesis_reply:
+                print("\n >> Congratulations! You don't exist!\n")
+                sys.exit(0)
+                
+            elif "impossible ghost particles forever!" in genesis_reply or "<3 little ghost!" in genesis_reply or "<3 little ghost" in genesis_reply or "impossible ghost particles forever" in genesis_reply:
+                print("\n >> WOW! This is my absolute favourite particle!")
+                print("    ...........................")
+                print("    ...........................")
+                print("    :( System collapsed\n")
+                sys.exit(0)
+
+            if genesis_reply != 'y' and genesis_reply != '':
+                print("\n [NOTICE]: NO MASS SEEDED. Conformal scale lost to infinite dilation.")
+                print("           Enforcing immediate Conformal Cyclic Reset due to scale-invariance...")
+                time.sleep(0.4)
+                continue
+
+            print("\n[PHASE 0] AEON 0 - PRIMORDIAL SEEDING AND BOUNDARY GATES")
+            print("---------------------------------------------------------------------")
+
             
             if genesis_reply != 'y' and genesis_reply != '':
                 print("\n [NOTICE]: NO MASS SEEDED. Conformal scale lost to infinite dilation.")
@@ -298,7 +352,20 @@ def run_interactive_sandbox():
             print("---------------------------------------------------------------------")
             time.sleep(0.4)
 
-        # Every universe – whether Generation 0 or 1 – asks for its own new, distinct parameters
+        # --- DYNAMIC INTERFACE MODE NODE (FOR COLLISION/DEVELOPMENTTRACKING) ---
+        if current_generation > 0:
+            print("[INPUT] Select Interface Development Mode for the Child Aeon:")
+            print("        [auto]   - Automated physics-tracking for boundary events")
+            print("        [dev]    - Development override window for anomaly tuning")
+            print("        [manual] - Step-by-step custom parameter injection")
+            dev_mode_choice = input(" >> Mode Selection (auto/dev/manual): ").strip().lower()
+            if dev_mode_choice not in ['auto', 'dev', 'manual']:
+                dev_mode_choice = 'auto'
+            print(f"   [SUCCESS] Interface Mode locked: [{dev_mode_choice.upper()}] Mode active.\n")
+        else:
+            dev_mode_choice = 'manual' # Aeon 0 defaults to manual startup
+
+        # Every universe asks for its free tools independently of the mode
         print(f"[INPUT] Enter target timescale for Aeon {current_generation} PNC growth phase:")
         t_input_str = input("        Delta t_0 (in Gyr, e.g. 4.0 or infinity): ").strip().lower()
         
@@ -360,9 +427,7 @@ def run_interactive_sandbox():
             micro_window_years = default_micro_count
         else:
             if res_profile == "big_bang_focus":
-                # Uses the value seamlessly configured at the top resolution menu
                 micro_window_years = default_micro_count
-                
                 micro_duration_gyr = micro_window_years * time_step_micro
                 if t_genesis <= micro_duration_gyr:
                     micro_cycles = int(t_genesis / time_step_micro)
@@ -376,16 +441,25 @@ def run_interactive_sandbox():
                 micro_cycles = max(100, int(t_genesis / time_step_standard))
 
         flux_efficiency = 1.0 / (1.0 + math.log1p(1.0 / agg_bubble_rate))
-        print(f"          [COSMOLOGICAL EVOLUTION]: Processing {micro_cycles} dynamic matrix cycles via JIT...")
+        
+        # --- PHYSICAL COUPLING: Star Formation factor dampening (Prevents Billiards overflow) ---
+        # The inherited factor is scaled logarithmically to prevent numerical runaway while respecting core masses
+        if star_formation_mod > 1000.0:
+            star_formation_mod = 1.0 + math.log1p(star_formation_mod) * 5.0
+            
+        print(f"          [STAR FORMATION ENGINE]: Active. Modulator locked at: {star_formation_mod:.3f}x")
+        print(f"          [PATHWAY 2 CORES]: Processing {micro_cycles} dynamic matrix cycles via JIT...")
         
         is_focus_bool = (res_profile == "big_bang_focus")
         
+        # EXACTLY ONE REPAIRED JIT INVOCATION PASSING INHERITED CORES AND ALL 13 ARGUMENTS
         actual_relic_time, JIT_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_emitted_gw_shrapnel = run_jit_evolution(
             micro_cycles, is_focus_bool, flux_efficiency, agg_bubble_rate, t_genesis, is_infinity_run, 
             n_imnc, n_smnc, n_umnc, n_hmnc, micro_window_years, time_step_micro, time_step_standard
         )
 
         active_manifold_multiverse_counter = int(JIT_spacetimes)
+
 
         if current_object_count == 0:
             calculated_delay_gyr = float('inf')
