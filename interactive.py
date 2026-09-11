@@ -292,10 +292,13 @@ def run_interactive_sandbox():
             print("\n" + "="*65)
             print(f" [CONTINUUM] BOOTING CHILD SPACETIME MANIFOLD - GENERATION {current_generation}")
             print("="*65)
-            print(f"    [PHASE {current_generation}] AEON {current_generation} - EVOLVING STRUCTURES & SEED KINETICS")
+            print(f"    [INHERITED HORIZON] Active Scenario: Scenario {assigned_scenario}")
+            print(f"    [INHERITED ENGINE ] Current Star Formation Modifier: {star_formation_mod:.3f}x")
+            print(f"    [INHERITED MASSES ] Injected Anchors: HMNC={n_hmnc} | UMNC={n_umnc} | SMNC={n_smnc} | IMNC={n_imnc}")
             print("---------------------------------------------------------------------")
             time.sleep(0.4)
 
+        # Every universe – whether Generation 0 or 1 – asks for its own new, distinct parameters
         print(f"[INPUT] Enter target timescale for Aeon {current_generation} PNC growth phase:")
         t_input_str = input("        Delta t_0 (in Gyr, e.g. 4.0 or infinity): ").strip().lower()
         
@@ -311,11 +314,12 @@ def run_interactive_sandbox():
                 t_genesis = 4.0
                 print("          [INVALID] Defaulting to baseline timescale 4.0 Gyr.")
 
-        print(f"\n[INPUT] Configure Multi-Bubble Generation Flux for Aeon {current_generation}:")
-        try:
-            agg_bubble_rate = float(input("        >> Enter creation aggressiveness (0.01 - 0.99): "))
-        except ValueError:
-            agg_bubble_rate = 0.25
+            print(f"\n[INPUT] Configure Multi-Bubble Generation Flux for Aeon {current_generation}:")
+            try:
+                agg_bubble_rate = float(input("        >> Enter creation aggressiveness (0.01 - 0.99): "))
+            except ValueError:
+                agg_bubble_rate = 0.25
+
 
         # --- PATHWAY 2 CAUSAL LAYER INITIALIZATION (ZERO HARDCODED BASES) ---
         if current_generation == 0:
@@ -733,7 +737,7 @@ def run_interactive_sandbox():
             print("         [j] - Jump into a parallel universe (Stored in RAM)")
             print("         [r] - Trigger a conformal reset due to mass invariance")
             print("         [b] - Back to a certain point in time in this universe and continue")
-            print("         [q] - Terminate the multiverse and exit existence.")
+            print("         [q] - Break the laws of physics, terminate the multiverse and exit existence. You can always come back and create a new one!")
             jump_choice = input("         Select Choice (j/r/b/q): ").strip().lower()
 
         if jump_choice == 'j':
