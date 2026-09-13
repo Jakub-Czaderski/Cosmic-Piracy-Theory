@@ -712,11 +712,35 @@ def run_interactive_sandbox():
                 active_imnc = n_imnc
 
             print("\n" + "-"*50)
-            print(" [SCENARIO 1 / ADDENDUM 1A] PRIMEVAL METRIC DRAINAGE INTERFACE")
+            print(" [SCENARIO 1] PRIMEVAL METRIC DRAINAGE INTERFACE")
             print("-"*50)
-            drain_choice = input("        Trigger Scenario 1 Localized Metric Drainage? (y/N): ").strip().lower()
-            scenario_1_drainage_active = True if drain_choice == 'y' else False
-            addendum_1_scar_active = True if scenario_1_drainage_active else False
+            if dev_mode_choice == 'auto':
+                # Scenario 1 is determined purely by the physical trajectory criteria later
+                scenario_1_drainage_active = False 
+                print("        [AUTO-PHYSICS]: Automated horizon tracking active for Scenario 1.")
+            else:
+                drain_choice = input("        Trigger Scenario 1 Localized Metric Drainage? (y/N): ").strip().lower()
+                scenario_1_drainage_active = True if drain_choice == 'y' else False
+
+            print("\n" + "-"*50)
+            print(" [ADDENDUM 1 - VERSION A] PRIMEVAL COSMOLOGICAL SCAR TRACK")
+            print("-"*50)
+            if dev_mode_choice == 'auto':
+                # Addendum 1A triggers autonomously if specific shear thresholds were breached
+                if active_manifold_multiverse_counter > 100:
+                    addendum_1_scar_active = True
+                    print("        [AUTO-PHYSICS]: High directional anisotropy. Addendum 1A ENGAGED.")
+                else:
+                    addendum_1_scar_active = False
+                    print("        [AUTO-PHYSICS]: Low topological stress. Addendum 1A INACTIVE.")
+                time.sleep(0.4)
+            else:
+                scar_choice = input("        Engage Addendum 1A Cosmological Scar tracking? (y/N): ").strip().lower()
+                addendum_1_scar_active = True if scar_choice == 'y' else False
+
+            # If Addendum 1A is active, it imprints the directional shift onto the engine
+            if addendum_1_scar_active:
+                star_formation_mod *= 1.45
 
             print("\n" + "-"*50)
             print(" [PATHWAY 2] INDEPENDENT SPACETIME ISOLATION EVALUATOR (STERILE AEON 0)")
@@ -801,20 +825,72 @@ def run_interactive_sandbox():
         # Cluster stability and balance calculation check
         evaluate_cluster_stabelity(active_umnc, active_smnc, active_imnc, n_hmnc, primordial_spacetimes)
 
-        # Main deterministic scenario selection gate based on metrics
-        if current_object_count > 0 and scenario_1_drainage_active:
-            user_choice = "1"
-        elif current_object_count > 0 and addendum_1_dynamic_collision and omega_oaza == 2.5:
-            user_choice = "7.2b" if (pathway_2_isolation_efficiency < 0.95) else "9"
-        elif current_object_count > 0 and (pathway_2_isolation_efficiency < 0.95) and not addendum_1_dynamic_collision:
-            user_choice = "8.5"
-        elif current_object_count >= 150 and t_genesis < 1.0: 
-            user_choice = "6"
-        elif current_object_count == 0 and t_genesis >= 50.0: 
-            user_choice = "12"
-        else: 
-            user_choice = "4"
+        # === COMPLETE MULTIVERSE SCENARIO MATRIX ENGINE (STRICT LATEX COUPLING) ===
+        # Formally resolving every single branching pathway and sub-case from Section 3.
         
+        # Fundamental Initial State Proxies
+        is_massless_vacuum = (current_object_count == 0)
+        is_solitary_core = (backup_hmnc == 1 and backup_umnc <= 8 and backup_smnc == 0)
+        is_multi_core_cluster = (backup_umnc > 8 or backup_smnc > 0 or backup_hmnc > 1)
+        
+        # Temporal & Density Framework Mapping (Case 1 vs Case 2)
+        is_case_1_high_density = (t_genesis < 1000.0) and not is_infinity_run
+        is_case_2_inf_diluted = (is_infinity_run or t_genesis >= 1000.0)
+
+        # Main Architectural Decision Tree
+        if not is_massless_vacuum:
+            if scenario_1_drainage_active:
+                # Scenario 1: Primeval Topological Deflation Blueprints (Section 3.1)
+                user_choice = "1"
+                
+            elif is_solitary_core:
+                if not addendum_1_dynamic_collision:
+                    # Solitary core architectures without shockwaves (Section 3.2 & 3.4)
+                    if is_case_1_high_density:
+                        user_choice = "2"    # Solitary Isotropic Accretion
+                    else:
+                        user_choice = "4"    # Decaying Parent Aeon Collapse
+                else:
+                    # Event 1 coupled with dynamic field transitions (Section 3.3 & 3.5)
+                    if is_case_1_high_density:
+                        # Bifurcation inside Scenario 3 based on Higgs activation (Section 3.3)
+                        # High expansion pressure (Omega_Oaza) triggers conformal protection
+                        user_choice = "3b" if (omega_oaza >= 2.0) else "3a"
+                    else:
+                        user_choice = "5"    # Active Pathway 3 Higgs Shockwave
+                        
+            elif is_multi_core_cluster:
+                if not addendum_1_dynamic_collision:
+                    # Event 2 cluster metrics without subsequent transitions (Section 3.6 & 3.7.1)
+                    if pathway_2_isolation_efficiency < 0.95:
+                        user_choice = "8.5"  # Stable Shadow Track Drainage
+                    else:
+                        user_choice = "6"    # Multi-Core Cluster Baseline Framework
+                else:
+                    # Event 2 cluster with active multi-collision fields (Section 3.7, 3.8 & 3.9)
+                    if is_case_1_high_density:
+                        # Scenario 7 branching modes governed by stabilization efficiency (Section 3.7)
+                        if pathway_2_isolation_efficiency < 0.30:
+                            user_choice = "7.1"   # Sterile Collapse Instability Node
+                        else:
+                            # Selection between Solitary Anchor Mode and Multi-Core Cluster Mode
+                            user_choice = "7.2a" if (n_hmnc == 1 and n_umnc < 10) else "7.2b"
+                    else:
+                        # Scenario 8 and 9 branching under Case 2 (Section 3.8 & 3.9)
+                        if is_case_2_inf_diluted and not is_infinity_run:
+                            # Subcase 1 (Solitary Anchor) vs Subcase 2 (Multi-Core Slingshot)
+                            user_choice = "8 (Subcase 1)" if (n_umnc < 5) else "8 (Subcase 2)"
+                        else:
+                            # Radiative Void Walls driven by strict geometric limits
+                            user_choice = "9" if (agg_bubble_rate <= 0.05) else "7.2b"
+        else:
+            # Absolute masslessness configurations under Event 3 (Section 3.10, 3.11 & 3.12)
+            # Scenario 11 is mathematically blocked as stated in Section 3.11
+            if agg_bubble_rate >= 0.50:
+                user_choice = "12"  # Pure geometric phase transition of empty space
+            else:
+                user_choice = "10"  # Standard CCC radiation-restart with coded asymmetry
+
         print(f"        >> Verified Trajectory Phase: Scenario {user_choice} (Tolerance: 0.0%)")
         assigned_scenario = user_choice
 
