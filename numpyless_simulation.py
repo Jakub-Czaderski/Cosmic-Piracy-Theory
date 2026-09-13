@@ -332,6 +332,23 @@ def run_interactive_sandbox():
                 print("    :( System collapsed\n")
                 sys.exit(0)
 
+            elif genesis_reply == "":
+                print("\n >> Alternatively, you can enter a CHEAT CODE!")
+                time.sleep(2.0)
+                continue
+
+            elif "?" in genesis_reply:
+                print("Explanation:")
+                print("\n >> Here you decide, wheather any PNCs will be created in this aeon. They are very important for life's creation.")
+                time.sleep(2.0)
+                continue
+
+            elif "what did just happen?" in genesis_reply:
+                print("\n Further explanation:")
+                print("\n >> With no mass (aka PNCs), there was nothing to experience time, so a conformal reset followed. You may create a universe, or you just mash 'n' or any other letter except 'y' because you are bored.")
+                time.sleep(2.0)
+                continue
+
             if genesis_reply != 'y' and genesis_reply != '':
                 print("\n [NOTICE]: NO MASS SEEDED. Conformal scale lost to infinite dilation.")
                 print("           Enforcing immediate Conformal Cyclic Reset due to scale-invariance...")
@@ -374,7 +391,7 @@ def run_interactive_sandbox():
             dev_mode_choice = 'manual' # Aeon 0 defaults to manual startup
 
         # Every universe asks for its free tools independently of the mode
-        print(f"[INPUT] Enter target timescale for Aeon {current_generation} PNC growth phase:")
+        print(f"[INPUT] Enter target timescale for Aeon {current_generation}:")
         t_input_str = input("        Delta t_0 (in Gyr, e.g. 4.0 or infinity): ").strip().lower()
         
         is_infinity_run = False
