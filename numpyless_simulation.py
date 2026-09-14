@@ -37,23 +37,25 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
         if actual_time_elapsed >= t_genesis:
             break
         
-        # === STOCHASTIC PNC NUCLEATION (DYNAMIC RESOLUTION RADIATION ERA) ===
-        # Dynamically scales the freeze-out envelope to match whatever micro_window_years the user inputs.
-        if is_big_bang_focus and cycle < micro_window_years:
-            age_in_years = max(1.0, float(cycle))
-            
-            # The freeze-out scale now adapts to your window limit (e.g. freezing out near 70% of the window)
-            freeze_out_scale = max(100.0, float(micro_window_years) * 0.7)
-            
-            # Density decay normalized to the chosen detail horizon
-            density_decay_factor = (1.0 / (age_in_years ** 1.5)) * math.exp(-age_in_years / freeze_out_scale)
-            
-            # Differential birth rate
-            pnc_birth_rate = 2.5e8 * agg_bubble_rate * resolution_sensitivity * density_decay_factor
-            
-            generated_pncs = int64(pnc_birth_rate)
-            if generated_pncs > 0:
-                n_imnc += generated_pncs
+            if num_collisions > 0:
+                omega_oaza = 2.5
+                print("\n" + "-"*50)
+                print(" [ADDENDUM 1] CONSERVED TOPOLOGICAL TUNNEL DATA TRANSFER")
+                print("-"*50)
+                
+                total_collision_energy = 0.0
+                for t_coll, density_flag in collision_times:
+                    is_dense = 'n' if density_flag != 'manual' else input(f"        >> Is Node at t={t_coll:.1f} Gyr a high-density zone? (Y/n): ").strip().lower()
+                    
+                    ancestral_density_contribution = math.tanh(backup_hmnc * 0.5 + backup_umnc * 0.2)
+                    quantum_saturation_boost = 1.0 + (ancestral_density_contribution * 1.5)
+                    
+                    transfer_factor = 3.75 if (is_dense == 'y') else 2.50
+                    total_collision_energy += transfer_factor * (quantum_saturation_boost if density_flag == 'auto' else 1.0)
+                
+                # Thermal barrier saturation according to Eq. 25
+                omega_oaza_saturation = 1.0 + (1.5 * math.tanh(total_collision_energy / 10.0))
+                star_formation_mod *= omega_oaza_saturation
 
         # === 1. MACRO-CORE KINETIC TRANSITIONS (DENSITY-COUPLED MERGER MATRIX) ===
         # Cores only merge and mature if the local phase-space density permits interactions.
@@ -107,11 +109,14 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
             f_shear_base = characteristic_mass_exposure * spin_enhancement_S
             
             # MODULATION RULE: agg_bubble_rate * 10 = deviation in % (Max +/- 10% impact)
-            # Maps agg [0.01 - 0.99] to a strict modulation corridor of [0.90 to 1.10]
             agg_percentage_modulation = 1.0 + ((agg_bubble_rate - 0.5) * 0.20)
             f_shear_eff = f_shear_base * agg_percentage_modulation
             
-            a_eff = 4.0 * math.pi * (dimensionless_spin_proxy ** 2) * (1.0 + actual_time_elapsed * 1e5)
+            # FIX: We smooth the network expansion area logarithmically to prevent numerical freeze-out
+            # This allows early-epoch dense scaling while preventing deep-time expansion from killing all ruptures
+            network_expansion_damping = 1.0 + math.log1p(actual_time_elapsed * 1e3)
+            a_eff = 4.0 * math.pi * (dimensionless_spin_proxy ** 2) * network_expansion_damping
+            
             sigma_qg = 1e5 / (4.0 * math.pi * math.sqrt(3.0))
             
             if (f_shear_eff / a_eff) > sigma_qg:
@@ -468,9 +473,8 @@ def run_interactive_sandbox():
         flux_efficiency = 1.0 / (1.0 + math.log1p(1.0 / agg_bubble_rate))
         
         # --- PHYSICAL COUPLING: Star Formation factor dampening (Prevents Billiards overflow) ---
-        # The inherited factor is scaled logarithmically to prevent numerical runaway while respecting core masses
-        if star_formation_mod > 1000.0:
-            star_formation_mod = 1.0 + math.log1p(star_formation_mod) * 5.0
+        if star_formation_mod > 2.5:
+            star_formation_mod = 2.5 + math.log1p(star_formation_mod - 2.5)
             
         print(f"          [STAR FORMATION ENGINE]: Active. Modulator locked at: {star_formation_mod:.3f}x")
         print(f"          [PATHWAY 2 CORES]: Processing {micro_cycles} dynamic matrix cycles via JIT...")
@@ -652,7 +656,7 @@ def run_interactive_sandbox():
                             
                             is_focus_bool = (res_profile == "big_bang_focus")
                             t_genesis_out, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_emitted_gw_shrapnel = run_jit_evolution(
-                                micro_cycles_b, is_focus_bool, flux_efficiency, agg_bubble_rate, t_genesis, is_infinity_run, 
+                                micro_cycles, is_focus_bool, flux_efficiency, agg_bubble_rate, t_genesis, is_infinity_run, 
                                 n_imnc, n_smnc, n_umnc, n_hmnc, micro_window_years, time_step_micro, time_step_standard
                             )
 
@@ -726,19 +730,19 @@ def run_interactive_sandbox():
             print(" [ADDENDUM 1 - VERSION A] PRIMEVAL COSMOLOGICAL SCAR TRACK")
             print("-"*50)
             if dev_mode_choice == 'auto':
-                # Addendum 1A triggers autonomously if specific shear thresholds were breached
+                # addendum 1 version a triggers autonomously if specific shear thresholds were breached
                 if active_manifold_multiverse_counter > 100:
                     addendum_1_scar_active = True
-                    print("        [AUTO-PHYSICS]: High directional anisotropy. Addendum 1A ENGAGED.")
+                    print("        [AUTO-PHYSICS]: High directional anisotropy. addendum 1 version a ENGAGED.")
                 else:
                     addendum_1_scar_active = False
-                    print("        [AUTO-PHYSICS]: Low topological stress. Addendum 1A INACTIVE.")
+                    print("        [AUTO-PHYSICS]: Low topological stress. addendum 1 version a INACTIVE.")
                 time.sleep(0.4)
             else:
-                scar_choice = input("        Engage Addendum 1A Cosmological Scar tracking? (y/N): ").strip().lower()
+                scar_choice = input("        Engage addendum 1 version a Cosmological Scar tracking? (y/N): ").strip().lower()
                 addendum_1_scar_active = True if scar_choice == 'y' else False
 
-            # If Addendum 1A is active, it imprints the directional shift onto the engine
+            # If addendum 1 version a is active, it imprints the directional shift onto the engine
             if addendum_1_scar_active:
                 star_formation_mod *= 1.45
 
@@ -802,20 +806,25 @@ def run_interactive_sandbox():
                             collision_times.append((t_coll, 'auto'))
                         print(f"        [QUANTUM-SMEARING] Overlapped {num_collisions} synchronized intersection nodes.")
 
-                if num_collisions > 0:
-                    omega_oaza = 2.5
-                    print("\n" + "-"*50)
-                    print(" [ADDENDUM 1] CONSERVED TOPOLOGICAL TUNNEL DATA TRANSFER")
-                    print("-"*50)
-                    for t_coll, density_flag in collision_times:
-                        is_dense = 'n' if density_flag != 'manual' else input(f"        >> Is Node at t={t_coll:.1f} Gyr a high-density zone? (Y/n): ").strip().lower()
-                        
-                        ancestral_density_contribution = math.tanh(backup_hmnc * 0.5 + backup_umnc * 0.2)
-                        quantum_saturation_boost = 1.0 + (ancestral_density_contribution * 1.5)
-                        
-                        transfer_factor = 3.75 if (is_dense == 'y') else 2.50
-                        sf_multiplier = transfer_factor * (quantum_saturation_boost if density_flag == 'auto' else 1.0)
-                        star_formation_mod *= sf_multiplier
+            if num_collisions > 0:
+                omega_oaza = 2.5
+                print("\n" + "-"*50)
+                print(" [ADDENDUM 1] CONSERVED TOPOLOGICAL TUNNEL DATA TRANSFER")
+                print("-"*50)
+                
+                total_collision_energy = 0.0
+                for t_coll, density_flag in collision_times:
+                    is_dense = 'n' if density_flag != 'manual' else input(f"        >> Is Node at t={t_coll:.1f} Gyr a high-density zone? (Y/n): ").strip().lower()
+                    
+                    ancestral_density_contribution = math.tanh(backup_hmnc * 0.5 + backup_umnc * 0.2)
+                    quantum_saturation_boost = 1.0 + (ancestral_density_contribution * 1.5)
+                    
+                    transfer_factor = 3.75 if (is_dense == 'y') else 2.50
+                    total_collision_energy += transfer_factor * (quantum_saturation_boost if density_flag == 'auto' else 1.0)
+                
+                # Thermal barrier saturation according to Eq. 25
+                omega_oaza_saturation = 1.0 + (1.5 * math.tanh(total_collision_energy / 10.0))
+                star_formation_mod *= omega_oaza_saturation
 
         print("---------------------------------------------------------------------")
         print(f" -> Conformal Compression Factor (Omega_Oaza): {omega_oaza:.2f}")
