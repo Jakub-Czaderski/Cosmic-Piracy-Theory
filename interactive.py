@@ -15,8 +15,7 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
     max_possible_universes = n_imnc + n_smnc + n_umnc + n_hmnc
     resolution_sensitivity = 1.45 if is_big_bang_focus else 1.00
 
-    # Expand maximum loop security limits if infinity mode is active
-    loop_limit = 20000000 if is_infinity_run else micro_cycles
+    loop_limit = micro_cycles
     total_gw_energy_leak = 0.0
 
     for cycle in range(loop_limit):
@@ -146,11 +145,8 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
         n_hmnc -= min(n_hmnc, np.int64(n_hmnc * (1.0 - math.exp(-r_hmnc * time_per_cycle * 0.0001))))
 
         current_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
-        
-        # INFINITY & DEEP-TIME OPTIMIZATION: Early termination upon vacuum stabilization
-        # This prevents mobile CPUs from grinding through millions of dead iterations
         if current_object_count == 0:
-            return actual_time_elapsed, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_gw_energy_leak
+            return actual_time_elapsed, primordial_spacetimes, np.int64(0), np.int64(0), np.int64(0), np.int64(0), np.int64(0), total_gw_energy_leak
             
         if is_infinity_run and actual_time_elapsed > 50.0 and current_object_count < 10:
             return actual_time_elapsed, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_gw_energy_leak
@@ -443,9 +439,6 @@ def run_interactive_sandbox():
 
         initial_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
         primordial_spacetimes = 0
-        
-        time_step_standard = 1e-7
-        time_step_micro = 1e-9
 
         if is_infinity_run:
             micro_cycles = 1000000 if res_profile == "big_bang_focus" else 200000
@@ -459,15 +452,8 @@ def run_interactive_sandbox():
                     micro_window_years = micro_cycles
                 else:
                     remaining_time_gyr = t_genesis - micro_duration_gyr
-                    # OPTIMIZATION: Adaptive step scaling for Deep-Time (>10 Gyr)
-                    # Compresses billions of dead macro-steps on mobile CPUs
-                    if t_genesis > 10.0:
-                        # Fine-tuned adaptive step scaling to balance cycle density and CPU load
-                        adaptive_ts_std = time_step_standard * (t_genesis / 25.0)
-                        standard_cycles = int(remaining_time_gyr / adaptive_ts_std)
-                        time_step_standard = adaptive_ts_std
-                    else:
-                        standard_cycles = int(remaining_time_gyr / time_step_standard)
+                    # Dynamic cycle allocation based directly on input magnitude
+                    standard_cycles = int(remaining_time_gyr / time_step_standard)
                     micro_cycles = micro_window_years + standard_cycles
             else:
                 micro_window_years = 0
