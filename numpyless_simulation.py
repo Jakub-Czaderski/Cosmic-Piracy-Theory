@@ -31,7 +31,12 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
         if is_big_bang_focus and cycle < micro_window_years:
             time_per_cycle = time_step_micro
         else:
-            time_per_cycle = time_step_standard 
+            # Exponential time dilation for deep-time and infinity runs
+            # Accelerates aging on the CPU as the manifold expands
+            if is_infinity_run:
+                time_per_cycle = time_step_standard * (1.0 + (actual_time_elapsed * 0.05))
+            else:
+                time_per_cycle = time_step_standard 
 
         actual_time_elapsed += time_per_cycle
         if actual_time_elapsed >= t_genesis:
@@ -58,8 +63,9 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
                 star_formation_mod *= omega_oaza_saturation
 
         # === 1. MACRO-CORE KINETIC TRANSITIONS (DENSITY-COUPLED MERGER MATRIX) ===
-        # Cores only merge and mature if the local phase-space density permits interactions.
-        if (cycle % 1000 == 0):
+        # OPTIMIZATION: Reduce modulus branching frequency for mobile CPUs to maximize pipelining
+        step_gate = 20000 if micro_cycles > 5000000 else 2000
+        if (cycle % step_gate == 0):
             # Dynamic background density proxy (dilutes as total objects and spacetime expand)
             total_active_mass = n_imnc + n_smnc + n_umnc + n_hmnc
             if total_active_mass > 0:
@@ -120,11 +126,11 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
             sigma_qg = 1e5 / (4.0 * math.pi * math.sqrt(3.0))
             
             if (f_shear_eff / a_eff) > sigma_qg:
-                # Generation count is now driven by physical log-stress, modulated by the 10% corridor
-                generated_nodes = max(int64(1), int64(math.log1p(f_shear_eff) * 0.5 * agg_percentage_modulation))
+                generated_nodes = max(np.int64(1), np.int64(math.log1p(f_shear_eff) * 0.5 * agg_percentage_modulation))
                 
-                current_total_cores = n_imnc + n_smnc + n_umnc + n_hmnc
-                if primordial_spacetimes + generated_nodes <= current_total_cores:
+                # REPAIR: Decouple from strict instantaneous core counters to allow deep-time expansion remnants
+                max_allowed_nodes = n_imnc + n_smnc + (n_umnc * 5) + (n_hmnc * 25)
+                if primordial_spacetimes + generated_nodes <= max_allowed_nodes:
                     primordial_spacetimes += generated_nodes
                     omega_zamo = (2.0 * f_shear_eff * dimensionless_spin_proxy) / (1.0 + characteristic_mass_exposure)
                     total_gw_energy_leak += omega_zamo * generated_nodes * 1e-4
@@ -148,8 +154,9 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
         n_hmnc -= min(n_hmnc, int64(n_hmnc * (1.0 - math.exp(-r_hmnc * time_per_cycle * 0.0001))))
 
         current_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
-        if current_object_count == 0:
-            return actual_time_elapsed, primordial_spacetimes, 0, 0, 0, 0, 0, total_gw_energy_leak
+        # OPTIMIZATION: Early termination if the core configuration stabilizes into deep-time vacuum
+        if current_object_count == 0 or (actual_time_elapsed > 15.0 and current_object_count < 5):
+            return actual_time_elapsed, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_gw_energy_leak
 
     current_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
     return actual_time_elapsed, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_gw_energy_leak
@@ -219,7 +226,8 @@ def run_interactive_sandbox():
     
     # Interactive custom overrides for the temporal step configuration
     try:
-        ts_std_input = input(f"    >> Set standard macro-step size in Gyr (Default: {time_step_standard}): ").strip()
+        # Clarified communication regarding hardware-adaptive macro slicing
+        ts_std_input = input(f"    >> Set standard macro-step size in Gyr (Base Default: 1e-07, auto-scaled for Deep-Time): ").strip()
         if ts_std_input: time_step_standard = float(ts_std_input)
     except ValueError:
         pass
@@ -453,7 +461,7 @@ def run_interactive_sandbox():
         time_step_micro = 1e-9
 
         if is_infinity_run:
-            micro_cycles = 5000000 if res_profile == "big_bang_focus" else 1000000
+            micro_cycles = 1000000 if res_profile == "big_bang_focus" else 200000
             micro_window_years = default_micro_count
         else:
             if res_profile == "big_bang_focus":
@@ -464,7 +472,15 @@ def run_interactive_sandbox():
                     micro_window_years = micro_cycles
                 else:
                     remaining_time_gyr = t_genesis - micro_duration_gyr
-                    standard_cycles = int(remaining_time_gyr / time_step_standard)
+                    # OPTIMIZATION: Adaptive step scaling for Deep-Time (>10 Gyr)
+                    # Compresses billions of dead macro-steps on mobile CPUs
+                    if t_genesis > 10.0:
+                        # Fine-tuned adaptive step scaling to balance cycle density and CPU load
+                        adaptive_ts_std = time_step_standard * (t_genesis / 25.0)
+                        standard_cycles = int(remaining_time_gyr / adaptive_ts_std)
+                        time_step_standard = adaptive_ts_std
+                    else:
+                        standard_cycles = int(remaining_time_gyr / time_step_standard)
                     micro_cycles = micro_window_years + standard_cycles
             else:
                 micro_window_years = 0
@@ -477,7 +493,8 @@ def run_interactive_sandbox():
             star_formation_mod = 2.5 + math.log1p(star_formation_mod - 2.5)
             
         print(f"          [STAR FORMATION ENGINE]: Active. Modulator locked at: {star_formation_mod:.3f}x")
-        print(f"          [PATHWAY 2 CORES]: Processing {micro_cycles} dynamic matrix cycles via JIT...")
+        # Explicit hardware-tracking notification for Numba JIT compilation
+        print(f"          [PATHWAY 2 CORES]: Processing {micro_cycles} hardware-optimized matrix cycles via JIT...")
         
         is_focus_bool = (res_profile == "big_bang_focus")
         
@@ -487,14 +504,22 @@ def run_interactive_sandbox():
             n_imnc, n_smnc, n_umnc, n_hmnc, micro_window_years, time_step_micro, time_step_standard
         )
 
-        active_manifold_multiverse_counter = int(JIT_spacetimes)
+        # REPARATUR: Reset standard time step to prevent scaling bleeding into core logic
+        time_step_standard = 1e-7
 
+        active_manifold_multiverse_counter = int(JIT_spacetimes)
 
         if current_object_count == 0:
             calculated_delay_gyr = float('inf')
             n_umnc, n_hmnc, n_smnc, n_imnc = 0, 0, 0, 0
         else:
-            calculated_delay_gyr = 0.0
+            # Re-implementation of mass-dependent delay tracking (Addendum 1A)
+            remaining_heavy_mass = (n_hmnc * 2500.0) + (n_umnc * 625.0)
+            if remaining_heavy_mass > 0:
+                # Delay scales logarithmically with the frozen heavy remnant overhead
+                calculated_delay_gyr = math.log1p(remaining_heavy_mass) * 1.85
+            else:
+                calculated_delay_gyr = 0.0
 
         # --- DETERMINISTIC UI EXPLORER SYSTEM WITH COMPREHENSIVE REGISTRY ---
         all_available_scenarios = [
@@ -968,8 +993,9 @@ def run_interactive_sandbox():
             time.sleep(0.4)
             
             remaining_massive_cores = n_hmnc + n_umnc
-            if remaining_massive_cores > 0 and calculated_delay_gyr < 1e10:
-                print(f"           [CRITICAL]: Massive remnants ({remaining_massive_cores} cores) remain unevaporated at {calculated_delay_gyr:.2e} Gyr.")
+            # Threshold check: Significant mass delay breaks standard CCC scale-invariance
+            if remaining_massive_cores > 0 and calculated_delay_gyr > 0.05:
+                print(f"           [CRITICAL]: Massive remnants ({remaining_massive_cores} cores) remain unevaporated. Delay: {calculated_delay_gyr:.4f} Gyr.")
                 print("                       Conformal invariance broken. Quenching Pathway 3 shockwave.")
                 assigned_scenario = "3a" if isolated_hmnc > 0 else "4"
             else:
