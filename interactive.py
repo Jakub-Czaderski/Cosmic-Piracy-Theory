@@ -472,7 +472,13 @@ def run_interactive_sandbox():
             calculated_delay_gyr = float('inf')
             n_umnc, n_hmnc, n_smnc, n_imnc = 0, 0, 0, 0
         else:
-            calculated_delay_gyr = 0.0
+            # Re-implementation of mass-dependent delay tracking (Addendum 1A)
+            remaining_heavy_mass = (n_hmnc * 2500.0) + (n_umnc * 625.0)
+            if remaining_heavy_mass > 0:
+                # Delay scales logarithmically with the frozen heavy remnant overhead
+                calculated_delay_gyr = math.log1p(remaining_heavy_mass) * 1.85
+            else:
+                calculated_delay_gyr = 0.0
 
         # --- DETERMINISTIC UI EXPLORER SYSTEM WITH COMPREHENSIVE REGISTRY ---
         all_available_scenarios = [
@@ -765,6 +771,9 @@ def run_interactive_sandbox():
                     print("\n" + "-"*50)
                     print(" [ADDENDUM 1] CONSERVED TOPOLOGICAL TUNNEL DATA TRANSFER")
                     print("-"*50)
+                    
+                    # REPAIR: Accumulate energy linearly instead of multiplying exponentially
+                    total_collision_energy = 0.0
                     for t_coll, density_flag in collision_times:
                         is_dense = 'n' if density_flag != 'manual' else input(f"        >> Is Node at t={t_coll:.1f} Gyr a high-density zone? (Y/n): ").strip().lower()
                         
@@ -772,8 +781,11 @@ def run_interactive_sandbox():
                         quantum_saturation_boost = 1.0 + (ancestral_density_contribution * 1.5)
                         
                         transfer_factor = 3.75 if (is_dense == 'y') else 2.50
-                        sf_multiplier = transfer_factor * (quantum_saturation_boost if density_flag == 'auto' else 1.0)
-                        star_formation_mod *= sf_multiplier
+                        total_collision_energy += transfer_factor * (quantum_saturation_boost if density_flag == 'auto' else 1.0)
+                    
+                    # Thermal barrier saturation according to Eq. 25 of the paper
+                    omega_oaza_saturation = 1.0 + (1.5 * math.tanh(total_collision_energy / 10.0))
+                    star_formation_mod *= omega_oaza_saturation
 
         print("---------------------------------------------------------------------")
         print(f" -> Conformal Compression Factor (Omega_Oaza): {omega_oaza:.2f}")
@@ -865,8 +877,9 @@ def run_interactive_sandbox():
             time.sleep(0.4)
             
             remaining_massive_cores = n_hmnc + n_umnc
-            if remaining_massive_cores > 0 and calculated_delay_gyr < 1e10:
-                print(f"           [CRITICAL]: Massive remnants ({remaining_massive_cores} cores) remain unevaporated at {calculated_delay_gyr:.2e} Gyr.")
+            # Threshold check: Significant mass delay breaks standard CCC scale-invariance
+            if remaining_massive_cores > 0 and calculated_delay_gyr > 0.05:
+                print(f"           [CRITICAL]: Massive remnants ({remaining_massive_cores} cores) remain unevaporated. Delay: {calculated_delay_gyr:.4f} Gyr.")
                 print("                       Conformal invariance broken. Quenching Pathway 3 shockwave.")
                 assigned_scenario = "3a" if isolated_hmnc > 0 else "4"
             else:
