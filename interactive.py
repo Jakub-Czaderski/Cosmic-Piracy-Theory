@@ -15,48 +15,41 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
     max_possible_universes = n_imnc + n_smnc + n_umnc + n_hmnc
     resolution_sensitivity = 1.45 if is_big_bang_focus else 1.00
 
-    loop_limit = micro_cycles
+    # Expand maximum loop security limits if infinity mode is active
+    loop_limit = 20000000 if is_infinity_run else micro_cycles
     total_gw_energy_leak = 0.0
 
     for cycle in range(loop_limit):
         if is_big_bang_focus and cycle < micro_window_years:
             time_per_cycle = time_step_micro
         else:
-            # Exponential time dilation for deep-time and infinity runs
-            # Accelerates aging on the CPU as the manifold expands
-            if is_infinity_run:
-                time_per_cycle = time_step_standard * (1.0 + (actual_time_elapsed * 0.05))
-            else:
-                time_per_cycle = time_step_standard 
+            time_per_cycle = time_step_standard 
 
         actual_time_elapsed += time_per_cycle
         if actual_time_elapsed >= t_genesis:
             break
         
-            if num_collisions > 0:
-                omega_oaza = 2.5
-                print("\n" + "-"*50)
-                print(" [ADDENDUM 1] CONSERVED TOPOLOGICAL TUNNEL DATA TRANSFER")
-                print("-"*50)
-                
-                total_collision_energy = 0.0
-                for t_coll, density_flag in collision_times:
-                    is_dense = 'n' if density_flag != 'manual' else input(f"        >> Is Node at t={t_coll:.1f} Gyr a high-density zone? (Y/n): ").strip().lower()
-                    
-                    ancestral_density_contribution = math.tanh(backup_hmnc * 0.5 + backup_umnc * 0.2)
-                    quantum_saturation_boost = 1.0 + (ancestral_density_contribution * 1.5)
-                    
-                    transfer_factor = 3.75 if (is_dense == 'y') else 2.50
-                    total_collision_energy += transfer_factor * (quantum_saturation_boost if density_flag == 'auto' else 1.0)
-                
-                # Thermal barrier saturation according to Eq. 25
-                omega_oaza_saturation = 1.0 + (1.5 * math.tanh(total_collision_energy / 10.0))
-                star_formation_mod *= omega_oaza_saturation
+        # === STOCHASTIC PNC NUCLEATION (DYNAMIC RESOLUTION RADIATION ERA) ===
+        # Dynamically scales the freeze-out envelope to match whatever micro_window_years the user inputs.
+        if is_big_bang_focus and cycle < micro_window_years:
+            age_in_years = max(1.0, float(cycle))
+            
+            # The freeze-out scale now adapts to your window limit (e.g. freezing out near 70% of the window)
+            freeze_out_scale = max(100.0, float(micro_window_years) * 0.7)
+            
+            # Density decay normalized to the chosen detail horizon
+            density_decay_factor = (1.0 / (age_in_years ** 1.5)) * math.exp(-age_in_years / freeze_out_scale)
+            
+            # Differential birth rate
+            pnc_birth_rate = 2.5e8 * agg_bubble_rate * resolution_sensitivity * density_decay_factor
+            
+            generated_pncs = np.int64(pnc_birth_rate)
+            if generated_pncs > 0:
+                n_imnc += generated_pncs
 
         # === 1. MACRO-CORE KINETIC TRANSITIONS (DENSITY-COUPLED MERGER MATRIX) ===
-        # OPTIMIZATION: Reduce modulus branching frequency for mobile CPUs to maximize pipelining
-        step_gate = 20000 if micro_cycles > 5000000 else 2000
-        if (cycle % step_gate == 0):
+        # Cores only merge and mature if the local phase-space density permits interactions.
+        if (cycle % 1000 == 0):
             # Dynamic background density proxy (dilutes as total objects and spacetime expand)
             total_active_mass = n_imnc + n_smnc + n_umnc + n_hmnc
             if total_active_mass > 0:
@@ -106,22 +99,19 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
             f_shear_base = characteristic_mass_exposure * spin_enhancement_S
             
             # MODULATION RULE: agg_bubble_rate * 10 = deviation in % (Max +/- 10% impact)
+            # Maps agg [0.01 - 0.99] to a strict modulation corridor of [0.90 to 1.10]
             agg_percentage_modulation = 1.0 + ((agg_bubble_rate - 0.5) * 0.20)
             f_shear_eff = f_shear_base * agg_percentage_modulation
             
-            # FIX: We smooth the network expansion area logarithmically to prevent numerical freeze-out
-            # This allows early-epoch dense scaling while preventing deep-time expansion from killing all ruptures
-            network_expansion_damping = 1.0 + math.log1p(actual_time_elapsed * 1e3)
-            a_eff = 4.0 * math.pi * (dimensionless_spin_proxy ** 2) * network_expansion_damping
-            
+            a_eff = 4.0 * math.pi * (dimensionless_spin_proxy ** 2) * (1.0 + actual_time_elapsed * 1e5)
             sigma_qg = 1e5 / (4.0 * math.pi * math.sqrt(3.0))
             
             if (f_shear_eff / a_eff) > sigma_qg:
+                # Generation count is now driven by physical log-stress, modulated by the 10% corridor
                 generated_nodes = max(np.int64(1), np.int64(math.log1p(f_shear_eff) * 0.5 * agg_percentage_modulation))
                 
-                # REPAIR: Decouple from strict instantaneous core counters to allow deep-time expansion remnants
-                max_allowed_nodes = n_imnc + n_smnc + (n_umnc * 5) + (n_hmnc * 25)
-                if primordial_spacetimes + generated_nodes <= max_allowed_nodes:
+                current_total_cores = n_imnc + n_smnc + n_umnc + n_hmnc
+                if primordial_spacetimes + generated_nodes <= current_total_cores:
                     primordial_spacetimes += generated_nodes
                     omega_zamo = (2.0 * f_shear_eff * dimensionless_spin_proxy) / (1.0 + characteristic_mass_exposure)
                     total_gw_energy_leak += omega_zamo * generated_nodes * 1e-4
@@ -146,10 +136,7 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
 
         current_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
         if current_object_count == 0:
-            return actual_time_elapsed, primordial_spacetimes, np.int64(0), np.int64(0), np.int64(0), np.int64(0), np.int64(0), total_gw_energy_leak
-            
-        if is_infinity_run and actual_time_elapsed > 50.0 and current_object_count < 10:
-            return actual_time_elapsed, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_gw_energy_leak
+            return actual_time_elapsed, primordial_spacetimes, 0, 0, 0, 0, 0, total_gw_energy_leak
 
     current_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
     return actual_time_elapsed, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_gw_energy_leak
@@ -219,8 +206,7 @@ def run_interactive_sandbox():
     
     # Interactive custom overrides for the temporal step configuration
     try:
-        # Clarified communication regarding hardware-adaptive macro slicing
-        ts_std_input = input(f"    >> Set standard macro-step size in Gyr (Base Default: 1e-07, auto-scaled for Deep-Time): ").strip()
+        ts_std_input = input(f"    >> Set standard macro-step size in Gyr (Default: {time_step_standard}): ").strip()
         if ts_std_input: time_step_standard = float(ts_std_input)
     except ValueError:
         pass
@@ -439,9 +425,12 @@ def run_interactive_sandbox():
 
         initial_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
         primordial_spacetimes = 0
+        
+        time_step_standard = 1e-7
+        time_step_micro = 1e-9
 
         if is_infinity_run:
-            micro_cycles = 1000000 if res_profile == "big_bang_focus" else 200000
+            micro_cycles = 5000000 if res_profile == "big_bang_focus" else 1000000
             micro_window_years = default_micro_count
         else:
             if res_profile == "big_bang_focus":
@@ -452,7 +441,6 @@ def run_interactive_sandbox():
                     micro_window_years = micro_cycles
                 else:
                     remaining_time_gyr = t_genesis - micro_duration_gyr
-                    # Dynamic cycle allocation based directly on input magnitude
                     standard_cycles = int(remaining_time_gyr / time_step_standard)
                     micro_cycles = micro_window_years + standard_cycles
             else:
@@ -462,13 +450,12 @@ def run_interactive_sandbox():
         flux_efficiency = 1.0 / (1.0 + math.log1p(1.0 / agg_bubble_rate))
         
         # --- PHYSICAL COUPLING: Star Formation factor dampening (Prevents Billiards overflow) ---
-        # REPARATUR: Kontinuierliche Dämpfung basierend auf der maximalen LQG-Netzwerkspannung
-        if star_formation_mod > 2.5:
-            star_formation_mod = 2.5 + math.log1p(star_formation_mod - 2.5)
+        # The inherited factor is scaled logarithmically to prevent numerical runaway while respecting core masses
+        if star_formation_mod > 1000.0:
+            star_formation_mod = 1.0 + math.log1p(star_formation_mod) * 5.0
             
         print(f"          [STAR FORMATION ENGINE]: Active. Modulator locked at: {star_formation_mod:.3f}x")
-        # Explicit hardware-tracking notification for Numba JIT compilation
-        print(f"          [PATHWAY 2 CORES]: Processing {micro_cycles} hardware-optimized matrix cycles via JIT...")
+        print(f"          [PATHWAY 2 CORES]: Processing {micro_cycles} dynamic matrix cycles via JIT...")
         
         is_focus_bool = (res_profile == "big_bang_focus")
         
@@ -478,22 +465,14 @@ def run_interactive_sandbox():
             n_imnc, n_smnc, n_umnc, n_hmnc, micro_window_years, time_step_micro, time_step_standard
         )
 
-        # REPARATUR: Reset standard time step to prevent scaling bleeding into core logic
-        time_step_standard = 1e-7
-
         active_manifold_multiverse_counter = int(JIT_spacetimes)
+
 
         if current_object_count == 0:
             calculated_delay_gyr = float('inf')
             n_umnc, n_hmnc, n_smnc, n_imnc = 0, 0, 0, 0
         else:
-            # Re-implementation of mass-dependent delay tracking (Addendum 1A)
-            remaining_heavy_mass = (n_hmnc * 2500.0) + (n_umnc * 625.0)
-            if remaining_heavy_mass > 0:
-                # Delay scales logarithmically with the frozen heavy remnant overhead
-                calculated_delay_gyr = math.log1p(remaining_heavy_mass) * 1.85
-            else:
-                calculated_delay_gyr = 0.0
+            calculated_delay_gyr = 0.0
 
         # --- DETERMINISTIC UI EXPLORER SYSTEM WITH COMPREHENSIVE REGISTRY ---
         all_available_scenarios = [
@@ -715,35 +694,11 @@ def run_interactive_sandbox():
                 active_imnc = n_imnc
 
             print("\n" + "-"*50)
-            print(" [SCENARIO 1] PRIMEVAL METRIC DRAINAGE INTERFACE")
+            print(" [SCENARIO 1 / ADDENDUM 1A] PRIMEVAL METRIC DRAINAGE INTERFACE")
             print("-"*50)
-            if dev_mode_choice == 'auto':
-                # Scenario 1 is determined purely by the physical trajectory criteria later
-                scenario_1_drainage_active = False 
-                print("        [AUTO-PHYSICS]: Automated horizon tracking active for Scenario 1.")
-            else:
-                drain_choice = input("        Trigger Scenario 1 Localized Metric Drainage? (y/N): ").strip().lower()
-                scenario_1_drainage_active = True if drain_choice == 'y' else False
-
-            print("\n" + "-"*50)
-            print(" [ADDENDUM 1 - VERSION A] PRIMEVAL COSMOLOGICAL SCAR TRACK")
-            print("-"*50)
-            if dev_mode_choice == 'auto':
-                # addendum 1 version a triggers autonomously if specific shear thresholds were breached
-                if active_manifold_multiverse_counter > 100:
-                    addendum_1_scar_active = True
-                    print("        [AUTO-PHYSICS]: High directional anisotropy. addendum 1 version a ENGAGED.")
-                else:
-                    addendum_1_scar_active = False
-                    print("        [AUTO-PHYSICS]: Low topological stress. addendum 1 version a INACTIVE.")
-                time.sleep(0.4)
-            else:
-                scar_choice = input("        Engage addendum 1 version a Cosmological Scar tracking? (y/N): ").strip().lower()
-                addendum_1_scar_active = True if scar_choice == 'y' else False
-
-            # If addendum 1 version a is active, it imprints the directional shift onto the engine
-            if addendum_1_scar_active:
-                star_formation_mod *= 1.45
+            drain_choice = input("        Trigger Scenario 1 Localized Metric Drainage? (y/N): ").strip().lower()
+            scenario_1_drainage_active = True if drain_choice == 'y' else False
+            addendum_1_scar_active = True if scenario_1_drainage_active else False
 
             print("\n" + "-"*50)
             print(" [PATHWAY 2] INDEPENDENT SPACETIME ISOLATION EVALUATOR (STERILE AEON 0)")
@@ -804,25 +759,21 @@ def run_interactive_sandbox():
                             t_coll = 0.1 + (i * (min(t_genesis, 1000.0) / max(1, num_collisions)))
                             collision_times.append((t_coll, 'auto'))
                         print(f"        [QUANTUM-SMEARING] Overlapped {num_collisions} synchronized intersection nodes.")
-            if num_collisions > 0:
-                omega_oaza = 2.5
-                print("\n" + "-"*50)
-                print(" [ADDENDUM 1] CONSERVED TOPOLOGICAL TUNNEL DATA TRANSFER")
-                print("-"*50)
-                
-                total_collision_energy = 0.0
-                for t_coll, density_flag in collision_times:
-                    is_dense = 'n' if density_flag != 'manual' else input(f"        >> Is Node at t={t_coll:.1f} Gyr a high-density zone? (Y/n): ").strip().lower()
-                    
-                    ancestral_density_contribution = math.tanh(backup_hmnc * 0.5 + backup_umnc * 0.2)
-                    quantum_saturation_boost = 1.0 + (ancestral_density_contribution * 1.5)
-                    
-                    transfer_factor = 3.75 if (is_dense == 'y') else 2.50
-                    total_collision_energy += transfer_factor * (quantum_saturation_boost if density_flag == 'auto' else 1.0)
-                
-                # Thermal barrier saturation according to Eq. 25
-                omega_oaza_saturation = 1.0 + (1.5 * math.tanh(total_collision_energy / 10.0))
-                star_formation_mod *= omega_oaza_saturation
+
+                if num_collisions > 0:
+                    omega_oaza = 2.5
+                    print("\n" + "-"*50)
+                    print(" [ADDENDUM 1] CONSERVED TOPOLOGICAL TUNNEL DATA TRANSFER")
+                    print("-"*50)
+                    for t_coll, density_flag in collision_times:
+                        is_dense = 'n' if density_flag != 'manual' else input(f"        >> Is Node at t={t_coll:.1f} Gyr a high-density zone? (Y/n): ").strip().lower()
+                        
+                        ancestral_density_contribution = math.tanh(backup_hmnc * 0.5 + backup_umnc * 0.2)
+                        quantum_saturation_boost = 1.0 + (ancestral_density_contribution * 1.5)
+                        
+                        transfer_factor = 3.75 if (is_dense == 'y') else 2.50
+                        sf_multiplier = transfer_factor * (quantum_saturation_boost if density_flag == 'auto' else 1.0)
+                        star_formation_mod *= sf_multiplier
 
         print("---------------------------------------------------------------------")
         print(f" -> Conformal Compression Factor (Omega_Oaza): {omega_oaza:.2f}")
@@ -832,72 +783,20 @@ def run_interactive_sandbox():
         # Cluster stability and balance calculation check
         evaluate_cluster_stabelity(active_umnc, active_smnc, active_imnc, n_hmnc, primordial_spacetimes)
 
-        # === COMPLETE MULTIVERSE SCENARIO MATRIX ENGINE (STRICT LATEX COUPLING) ===
-        # Formally resolving every single branching pathway and sub-case from Section 3.
+        # Main deterministic scenario selection gate based on metrics
+        if current_object_count > 0 and scenario_1_drainage_active:
+            user_choice = "1"
+        elif current_object_count > 0 and addendum_1_dynamic_collision and omega_oaza == 2.5:
+            user_choice = "7.2b" if (pathway_2_isolation_efficiency < 0.95) else "9"
+        elif current_object_count > 0 and (pathway_2_isolation_efficiency < 0.95) and not addendum_1_dynamic_collision:
+            user_choice = "8.5"
+        elif current_object_count >= 150 and t_genesis < 1.0: 
+            user_choice = "6"
+        elif current_object_count == 0 and t_genesis >= 50.0: 
+            user_choice = "12"
+        else: 
+            user_choice = "4"
         
-        # Fundamental Initial State Proxies
-        is_massless_vacuum = (current_object_count == 0)
-        is_solitary_core = (backup_hmnc == 1 and backup_umnc <= 8 and backup_smnc == 0)
-        is_multi_core_cluster = (backup_umnc > 8 or backup_smnc > 0 or backup_hmnc > 1)
-        
-        # Temporal & Density Framework Mapping (Case 1 vs Case 2)
-        is_case_1_high_density = (t_genesis < 1000.0) and not is_infinity_run
-        is_case_2_inf_diluted = (is_infinity_run or t_genesis >= 1000.0)
-
-        # Main Architectural Decision Tree
-        if not is_massless_vacuum:
-            if scenario_1_drainage_active:
-                # Scenario 1: Primeval Topological Deflation Blueprints (Section 3.1)
-                user_choice = "1"
-                
-            elif is_solitary_core:
-                if not addendum_1_dynamic_collision:
-                    # Solitary core architectures without shockwaves (Section 3.2 & 3.4)
-                    if is_case_1_high_density:
-                        user_choice = "2"    # Solitary Isotropic Accretion
-                    else:
-                        user_choice = "4"    # Decaying Parent Aeon Collapse
-                else:
-                    # Event 1 coupled with dynamic field transitions (Section 3.3 & 3.5)
-                    if is_case_1_high_density:
-                        # Bifurcation inside Scenario 3 based on Higgs activation (Section 3.3)
-                        # High expansion pressure (Omega_Oaza) triggers conformal protection
-                        user_choice = "3b" if (omega_oaza >= 2.0) else "3a"
-                    else:
-                        user_choice = "5"    # Active Pathway 3 Higgs Shockwave
-                        
-            elif is_multi_core_cluster:
-                if not addendum_1_dynamic_collision:
-                    # Event 2 cluster metrics without subsequent transitions (Section 3.6 & 3.7.1)
-                    if pathway_2_isolation_efficiency < 0.95:
-                        user_choice = "8.5"  # Stable Shadow Track Drainage
-                    else:
-                        user_choice = "6"    # Multi-Core Cluster Baseline Framework
-                else:
-                    # Event 2 cluster with active multi-collision fields (Section 3.7, 3.8 & 3.9)
-                    if is_case_1_high_density:
-                        # Scenario 7 branching modes governed by stabilization efficiency (Section 3.7)
-                        if pathway_2_isolation_efficiency < 0.30:
-                            user_choice = "7.1"   # Sterile Collapse Instability Node
-                        else:
-                            # Selection between Solitary Anchor Mode and Multi-Core Cluster Mode
-                            user_choice = "7.2a" if (n_hmnc == 1 and n_umnc < 10) else "7.2b"
-                    else:
-                        # Scenario 8 and 9 branching under Case 2 (Section 3.8 & 3.9)
-                        if is_case_2_inf_diluted and not is_infinity_run:
-                            # Subcase 1 (Solitary Anchor) vs Subcase 2 (Multi-Core Slingshot)
-                            user_choice = "8 (Subcase 1)" if (n_umnc < 5) else "8 (Subcase 2)"
-                        else:
-                            # Radiative Void Walls driven by strict geometric limits
-                            user_choice = "9" if (agg_bubble_rate <= 0.05) else "7.2b"
-        else:
-            # Absolute masslessness configurations under Event 3 (Section 3.10, 3.11 & 3.12)
-            # Scenario 11 is mathematically blocked as stated in Section 3.11
-            if agg_bubble_rate >= 0.50:
-                user_choice = "12"  # Pure geometric phase transition of empty space
-            else:
-                user_choice = "10"  # Standard CCC radiation-restart with coded asymmetry
-
         print(f"        >> Verified Trajectory Phase: Scenario {user_choice} (Tolerance: 0.0%)")
         assigned_scenario = user_choice
 
@@ -966,9 +865,8 @@ def run_interactive_sandbox():
             time.sleep(0.4)
             
             remaining_massive_cores = n_hmnc + n_umnc
-            # Threshold check: Significant mass delay breaks standard CCC scale-invariance
-            if remaining_massive_cores > 0 and calculated_delay_gyr > 0.05:
-                print(f"           [CRITICAL]: Massive remnants ({remaining_massive_cores} cores) remain unevaporated. Delay: {calculated_delay_gyr:.4f} Gyr.")
+            if remaining_massive_cores > 0 and calculated_delay_gyr < 1e10:
+                print(f"           [CRITICAL]: Massive remnants ({remaining_massive_cores} cores) remain unevaporated at {calculated_delay_gyr:.2e} Gyr.")
                 print("                       Conformal invariance broken. Quenching Pathway 3 shockwave.")
                 assigned_scenario = "3a" if isolated_hmnc > 0 else "4"
             else:
