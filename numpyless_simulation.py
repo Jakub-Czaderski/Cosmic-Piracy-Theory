@@ -16,22 +16,31 @@ except ImportError:
 @njit
 def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubble_rate, t_genesis, is_infinity_run, n_imnc, n_smnc, n_umnc, n_hmnc, micro_window_years, time_step_micro, time_step_standard):
     actual_time_elapsed = 0.0
-    # FIX: Native Numba int64 handles bit-stability seamlessly without numpy
+    # FIX: Start strictly from 0 for the current aeon calculation horizon
     primordial_spacetimes = int64(0)
 
     # Absolute upper bound for child universe seeding (Mass-Exclusivity Law)
     max_possible_universes = n_imnc + n_smnc + n_umnc + n_hmnc
     resolution_sensitivity = 1.45 if is_big_bang_focus else 1.00
 
-    # Expand maximum loop security limits if infinity mode is active
-    loop_limit = 20000000 if is_infinity_run else micro_cycles
     total_gw_energy_leak = 0.0
+    cycle = 0
+    is_manifold_active = True
 
-    for cycle in range(loop_limit):
+    while is_manifold_active:
+        # Maintain loop safety metrics for standard runs
+        if not is_infinity_run and cycle >= micro_cycles:
+            break
+
         if is_big_bang_focus and cycle < micro_window_years:
             time_per_cycle = time_step_micro
         else:
-            time_per_cycle = time_step_standard 
+            # Accelerate deep-time aging dynamically if infinity mode is engaged
+            if is_infinity_run:
+                # Stable log-profile scaling to prevent floating-point and Hawking underflow
+                time_per_cycle = time_step_standard * (1.0 + math.log1p(actual_time_elapsed * 0.5))
+            else:
+                time_per_cycle = time_step_standard
 
         actual_time_elapsed += time_per_cycle
         if actual_time_elapsed >= t_genesis:
@@ -115,8 +124,11 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
             sigma_qg = 1e5 / (4.0 * math.pi * math.sqrt(3.0))
             
             if (f_shear_eff / a_eff) > sigma_qg:
-                # Generation count is now driven by physical log-stress, modulated by the 10% corridor
-                generated_nodes = max(int64(1), int64(math.log1p(f_shear_eff) * 0.5 * agg_percentage_modulation))
+                # ABSOLUTE UR-GENESIS BARRIER: Zero spacetime generation if flux is locked
+                if flux_efficiency == 0.0:
+                    generated_nodes = int64(0)
+                else:
+                    generated_nodes = max(int64(1), int64(math.log1p(f_shear_eff) * 0.5 * agg_percentage_modulation))
                 
                 current_total_cores = n_imnc + n_smnc + n_umnc + n_hmnc
                 if primordial_spacetimes + generated_nodes <= current_total_cores:
@@ -143,8 +155,22 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
         n_hmnc -= min(n_hmnc, int64(n_hmnc * (1.0 - math.exp(-r_hmnc * time_per_cycle * 0.0001))))
 
         current_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
+        
+        # Strictly enforce early termination once true vacuum symmetry is hit
         if current_object_count == 0:
-            return actual_time_elapsed, primordial_spacetimes, 0, 0, 0, 0, 0, total_gw_energy_leak
+            is_manifold_active = False
+            return actual_time_elapsed, primordial_spacetimes, int64(0), int64(0), int64(0), int64(0), int64(0), total_gw_energy_leak
+            
+        # ASYMPTOTIC VACUUM EXIT: Break out if infinity run stabilizes into static frozen deep-time
+        if is_infinity_run and actual_time_elapsed > 100.0 and current_object_count < 15:
+            is_manifold_active = False
+            return actual_time_elapsed, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_gw_energy_leak
+            
+        # Safeguard ceiling limit to prevent infinite runaway on zero-decay channels
+        if is_infinity_run and cycle >= 1000000000000:
+            is_manifold_active = False
+            
+        cycle += 1
 
     current_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
     return actual_time_elapsed, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_gw_energy_leak
@@ -337,7 +363,7 @@ def run_interactive_sandbox():
                 time.sleep(2.0)
                 continue
 
-            elif "?" in genesis_reply:
+            elif genesis_reply == "?":
                 print("Explanation:")
                 print("\n >> Here you decide, wheather any PNCs will be created in this aeon. They are very important for life's creation.")
                 time.sleep(2.0)
@@ -349,16 +375,6 @@ def run_interactive_sandbox():
                 time.sleep(2.0)
                 continue
 
-            if genesis_reply != 'y' and genesis_reply != '':
-                print("\n [NOTICE]: NO MASS SEEDED. Conformal scale lost to infinite dilation.")
-                print("           Enforcing immediate Conformal Cyclic Reset due to scale-invariance...")
-                time.sleep(0.4)
-                continue
-
-            print("\n[PHASE 0] AEON 0 - PRIMORDIAL SEEDING AND BOUNDARY GATES")
-            print("---------------------------------------------------------------------")
-
-            
             if genesis_reply != 'y' and genesis_reply != '':
                 print("\n [NOTICE]: NO MASS SEEDED. Conformal scale lost to infinite dilation.")
                 print("           Enforcing immediate Conformal Cyclic Reset due to scale-invariance...")
@@ -391,7 +407,7 @@ def run_interactive_sandbox():
             dev_mode_choice = 'manual' # Aeon 0 defaults to manual startup
 
         # Every universe asks for its free tools independently of the mode
-        print(f"[INPUT] Enter target timescale for Aeon {current_generation}:")
+        print(f"[INPUT] Enter target timescale for Aeon {current_generation} PNC growth phase:")
         t_input_str = input("        Delta t_0 (in Gyr, e.g. 4.0 or infinity): ").strip().lower()
         
         is_infinity_run = False
@@ -406,16 +422,16 @@ def run_interactive_sandbox():
                 t_genesis = 4.0
                 print("          [INVALID] Defaulting to baseline timescale 4.0 Gyr.")
 
-            print(f"\n[INPUT] Configure Multi-Bubble Generation Flux for Aeon {current_generation}:")
-            try:
-                agg_bubble_rate = float(input("        >> Enter creation aggressiveness (0.01 - 0.99): "))
-            except ValueError:
-                agg_bubble_rate = 0.25
-
+        # FIX: Pull aggressiveness input out of the conditional block to ensure variable instantiation
+        print(f"\n[INPUT] Configure Multi-Bubble Generation Flux for Aeon {current_generation}:")
+        try:
+            agg_bubble_rate = float(input("        >> Enter creation aggressiveness (0.01 - 0.99): "))
+        except ValueError:
+            agg_bubble_rate = 0.25
 
         # --- PATHWAY 2 CAUSAL LAYER INITIALIZATION (ZERO HARDCODED BASES) ---
         if current_generation == 0:
-            star_formation_mod = 1.0 + (agg_bubble_rate * 0.5)
+            star_formation_mod = 0.0
             conformal_saturation = math.tanh(t_genesis / 15.0)
             
             # Primordial Ur-Genesis: Only heavy rotating anchors exist at the boundary node
@@ -473,13 +489,17 @@ def run_interactive_sandbox():
             star_formation_mod = 1.0 + math.log1p(star_formation_mod) * 5.0
             
         print(f"          [STAR FORMATION ENGINE]: Active. Modulator locked at: {star_formation_mod:.3f}x")
-        print(f"          [PATHWAY 2 CORES]: Processing {micro_cycles} dynamic matrix cycles via JIT...")
+        # REPAIR: Dynamic text feedback reflecting the state of the continuum run
+        if is_infinity_run:
+            print("          [PATHWAY 2 CORES]: Processing continuous forward dilution via JIT until total vacuum...")
+        else:
+            print(f"          [PATHWAY 2 CORES]: Processing {micro_cycles} dynamic matrix cycles via JIT...")
         
         is_focus_bool = (res_profile == "big_bang_focus")
         
-        # EXACTLY ONE REPAIRED JIT INVOCATION PASSING INHERITED CORES AND ALL 13 ARGUMENTS
+        # EXACTLY ONE FIXED JIT INVOCATION WITH PRIMORDIAL STELLAR COUNTER BALANCING
         actual_relic_time, JIT_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_emitted_gw_shrapnel = run_jit_evolution(
-            micro_cycles, is_focus_bool, flux_efficiency, agg_bubble_rate, t_genesis, is_infinity_run, 
+            micro_cycles, is_focus_bool, 0.0 if star_formation_mod == 0.0 else flux_efficiency, agg_bubble_rate, t_genesis, is_infinity_run, 
             n_imnc, n_smnc, n_umnc, n_hmnc, micro_window_years, time_step_micro, time_step_standard
         )
 
@@ -683,7 +703,7 @@ def run_interactive_sandbox():
             if not vacuum_menu_active and current_object_count > 0:
                 continue
 
-        else:
+        elif current_object_count > 0:
             print("[INPUT] Configure active Horizon Assets for Evacuation:")
             print("---------------------------------------------------------------------")
             # Dynamic input prompts that accept 'Enter' to evacuate maximum available cores
@@ -718,35 +738,11 @@ def run_interactive_sandbox():
                 active_imnc = n_imnc
 
             print("\n" + "-"*50)
-            print(" [SCENARIO 1] PRIMEVAL METRIC DRAINAGE INTERFACE")
+            print(" [SCENARIO 1 / ADDENDUM 1A] PRIMEVAL METRIC DRAINAGE INTERFACE")
             print("-"*50)
-            if dev_mode_choice == 'auto':
-                # Scenario 1 is determined purely by the physical trajectory criteria later
-                scenario_1_drainage_active = False 
-                print("        [AUTO-PHYSICS]: Automated horizon tracking active for Scenario 1.")
-            else:
-                drain_choice = input("        Trigger Scenario 1 Localized Metric Drainage? (y/N): ").strip().lower()
-                scenario_1_drainage_active = True if drain_choice == 'y' else False
-
-            print("\n" + "-"*50)
-            print(" [ADDENDUM 1 - VERSION A] PRIMEVAL COSMOLOGICAL SCAR TRACK")
-            print("-"*50)
-            if dev_mode_choice == 'auto':
-                # Addendum 1A triggers autonomously if specific shear thresholds were breached
-                if active_manifold_multiverse_counter > 100:
-                    addendum_1_scar_active = True
-                    print("        [AUTO-PHYSICS]: High directional anisotropy. Addendum 1A ENGAGED.")
-                else:
-                    addendum_1_scar_active = False
-                    print("        [AUTO-PHYSICS]: Low topological stress. Addendum 1A INACTIVE.")
-                time.sleep(0.4)
-            else:
-                scar_choice = input("        Engage Addendum 1A Cosmological Scar tracking? (y/N): ").strip().lower()
-                addendum_1_scar_active = True if scar_choice == 'y' else False
-
-            # If Addendum 1A is active, it imprints the directional shift onto the engine
-            if addendum_1_scar_active:
-                star_formation_mod *= 1.45
+            drain_choice = input("        Trigger Scenario 1 Localized Metric Drainage? (y/N): ").strip().lower()
+            scenario_1_drainage_active = True if drain_choice == 'y' else False
+            addendum_1_scar_active = True if scenario_1_drainage_active else False
 
             print("\n" + "-"*50)
             print(" [PATHWAY 2] INDEPENDENT SPACETIME ISOLATION EVALUATOR (STERILE AEON 0)")
@@ -814,7 +810,7 @@ def run_interactive_sandbox():
                     print(" [ADDENDUM 1] CONSERVED TOPOLOGICAL TUNNEL DATA TRANSFER")
                     print("-"*50)
                     
-                    # REPAIR: Accumulate energy linearly instead of multiplying exponentially
+                    # FIX: Accumulate energy linearly instead of multiplying exponentially
                     total_collision_energy = 0.0
                     for t_coll, density_flag in collision_times:
                         is_dense = 'n' if density_flag != 'manual' else input(f"        >> Is Node at t={t_coll:.1f} Gyr a high-density zone? (Y/n): ").strip().lower()
@@ -829,6 +825,13 @@ def run_interactive_sandbox():
                     omega_oaza_saturation = 1.0 + (1.5 * math.tanh(total_collision_energy / 10.0))
                     star_formation_mod *= omega_oaza_saturation
 
+        else:
+            # Automatic safe fallback initialization if the cosmos hits an immediate vacuum state
+            active_hmnc = int(0)
+            active_umnc = int(0)
+            active_smnc = int(0)
+            active_imnc = int(0)
+
         print("---------------------------------------------------------------------")
         print(f" -> Conformal Compression Factor (Omega_Oaza): {omega_oaza:.2f}")
         print(f" -> Dynamic Trans-Cosmic Delay Vector: {calculated_delay_gyr:.2e} Gyr")
@@ -837,72 +840,20 @@ def run_interactive_sandbox():
         # Cluster stability and balance calculation check
         evaluate_cluster_stabelity(active_umnc, active_smnc, active_imnc, n_hmnc, primordial_spacetimes)
 
-        # === COMPLETE MULTIVERSE SCENARIO MATRIX ENGINE (STRICT LATEX COUPLING) ===
-        # Formally resolving every single branching pathway and sub-case from Section 3.
+        # Main deterministic scenario selection gate based on metrics
+        if current_object_count > 0 and scenario_1_drainage_active:
+            user_choice = "1"
+        elif current_object_count > 0 and addendum_1_dynamic_collision and omega_oaza == 2.5:
+            user_choice = "7.2b" if (pathway_2_isolation_efficiency < 0.95) else "9"
+        elif current_object_count > 0 and (pathway_2_isolation_efficiency < 0.95) and not addendum_1_dynamic_collision:
+            user_choice = "8.5"
+        elif current_object_count >= 150 and t_genesis < 1.0: 
+            user_choice = "6"
+        elif current_object_count == 0 and t_genesis >= 50.0: 
+            user_choice = "12"
+        else: 
+            user_choice = "4"
         
-        # Fundamental Initial State Proxies
-        is_massless_vacuum = (current_object_count == 0)
-        is_solitary_core = (backup_hmnc == 1 and backup_umnc <= 8 and backup_smnc == 0)
-        is_multi_core_cluster = (backup_umnc > 8 or backup_smnc > 0 or backup_hmnc > 1)
-        
-        # Temporal & Density Framework Mapping (Case 1 vs Case 2)
-        is_case_1_high_density = (t_genesis < 1000.0) and not is_infinity_run
-        is_case_2_inf_diluted = (is_infinity_run or t_genesis >= 1000.0)
-
-        # Main Architectural Decision Tree
-        if not is_massless_vacuum:
-            if scenario_1_drainage_active:
-                # Scenario 1: Primeval Topological Deflation Blueprints (Section 3.1)
-                user_choice = "1"
-                
-            elif is_solitary_core:
-                if not addendum_1_dynamic_collision:
-                    # Solitary core architectures without shockwaves (Section 3.2 & 3.4)
-                    if is_case_1_high_density:
-                        user_choice = "2"    # Solitary Isotropic Accretion
-                    else:
-                        user_choice = "4"    # Decaying Parent Aeon Collapse
-                else:
-                    # Event 1 coupled with dynamic field transitions (Section 3.3 & 3.5)
-                    if is_case_1_high_density:
-                        # Bifurcation inside Scenario 3 based on Higgs activation (Section 3.3)
-                        # High expansion pressure (Omega_Oaza) triggers conformal protection
-                        user_choice = "3b" if (omega_oaza >= 2.0) else "3a"
-                    else:
-                        user_choice = "5"    # Active Pathway 3 Higgs Shockwave
-                        
-            elif is_multi_core_cluster:
-                if not addendum_1_dynamic_collision:
-                    # Event 2 cluster metrics without subsequent transitions (Section 3.6 & 3.7.1)
-                    if pathway_2_isolation_efficiency < 0.95:
-                        user_choice = "8.5"  # Stable Shadow Track Drainage
-                    else:
-                        user_choice = "6"    # Multi-Core Cluster Baseline Framework
-                else:
-                    # Event 2 cluster with active multi-collision fields (Section 3.7, 3.8 & 3.9)
-                    if is_case_1_high_density:
-                        # Scenario 7 branching modes governed by stabilization efficiency (Section 3.7)
-                        if pathway_2_isolation_efficiency < 0.30:
-                            user_choice = "7.1"   # Sterile Collapse Instability Node
-                        else:
-                            # Selection between Solitary Anchor Mode and Multi-Core Cluster Mode
-                            user_choice = "7.2a" if (n_hmnc == 1 and n_umnc < 10) else "7.2b"
-                    else:
-                        # Scenario 8 and 9 branching under Case 2 (Section 3.8 & 3.9)
-                        if is_case_2_inf_diluted and not is_infinity_run:
-                            # Subcase 1 (Solitary Anchor) vs Subcase 2 (Multi-Core Slingshot)
-                            user_choice = "8 (Subcase 1)" if (n_umnc < 5) else "8 (Subcase 2)"
-                        else:
-                            # Radiative Void Walls driven by strict geometric limits
-                            user_choice = "9" if (agg_bubble_rate <= 0.05) else "7.2b"
-        else:
-            # Absolute masslessness configurations under Event 3 (Section 3.10, 3.11 & 3.12)
-            # Scenario 11 is mathematically blocked as stated in Section 3.11
-            if agg_bubble_rate >= 0.50:
-                user_choice = "12"  # Pure geometric phase transition of empty space
-            else:
-                user_choice = "10"  # Standard CCC radiation-restart with coded asymmetry
-
         print(f"        >> Verified Trajectory Phase: Scenario {user_choice} (Tolerance: 0.0%)")
         assigned_scenario = user_choice
 
