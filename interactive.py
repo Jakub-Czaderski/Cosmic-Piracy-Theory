@@ -15,24 +15,15 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
     max_possible_universes = n_imnc + n_smnc + n_umnc + n_hmnc
     resolution_sensitivity = 1.45 if is_big_bang_focus else 1.00
 
+    # Expand maximum loop security limits if infinity mode is active
+    loop_limit = 20000000 if is_infinity_run else micro_cycles
     total_gw_energy_leak = 0.0
-    cycle = 0
-    is_manifold_active = True
 
-    while is_manifold_active:
-        # Maintain loop safety metrics for standard runs
-        if not is_infinity_run and cycle >= micro_cycles:
-            break
-
+    for cycle in range(loop_limit):
         if is_big_bang_focus and cycle < micro_window_years:
             time_per_cycle = time_step_micro
         else:
-            # Accelerate deep-time aging dynamically if infinity mode is engaged
-            if is_infinity_run:
-                # Stable log-profile scaling to prevent floating-point and Hawking underflow
-                time_per_cycle = time_step_standard * (1.0 + math.log1p(actual_time_elapsed * 0.5))
-            else:
-                time_per_cycle = time_step_standard
+            time_per_cycle = time_step_standard 
 
         actual_time_elapsed += time_per_cycle
         if actual_time_elapsed >= t_genesis:
@@ -116,11 +107,8 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
             sigma_qg = 1e5 / (4.0 * math.pi * math.sqrt(3.0))
             
             if (f_shear_eff / a_eff) > sigma_qg:
-                # ABSOLUTE UR-GENESIS BARRIER: Zero spacetime generation if flux is locked
-                if flux_efficiency == 0.0:
-                    generated_nodes = np.int64(0)
-                else:
-                    generated_nodes = max(np.int64(1), np.int64(math.log1p(f_shear_eff) * 0.5 * agg_percentage_modulation))
+                # Generation count is now driven by physical log-stress, modulated by the 10% corridor
+                generated_nodes = max(np.int64(1), np.int64(math.log1p(f_shear_eff) * 0.5 * agg_percentage_modulation))
                 
                 current_total_cores = n_imnc + n_smnc + n_umnc + n_hmnc
                 if primordial_spacetimes + generated_nodes <= current_total_cores:
@@ -147,22 +135,8 @@ def run_jit_evolution(micro_cycles, is_big_bang_focus, flux_efficiency, agg_bubb
         n_hmnc -= min(n_hmnc, np.int64(n_hmnc * (1.0 - math.exp(-r_hmnc * time_per_cycle * 0.0001))))
 
         current_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
-        
-        # Strictly enforce early termination once true vacuum symmetry is hit
         if current_object_count == 0:
-            is_manifold_active = False
-            return actual_time_elapsed, primordial_spacetimes, np.int64(0), np.int64(0), np.int64(0), np.int64(0), np.int64(0), total_gw_energy_leak
-            
-        # ASYMPTOTIC VACUUM EXIT: Break out if infinity run stabilizes into static frozen deep-time
-        if is_infinity_run and actual_time_elapsed > 100.0 and current_object_count < 15:
-            is_manifold_active = False
-            return actual_time_elapsed, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_gw_energy_leak
-            
-        # Safeguard ceiling limit to prevent infinite runaway on zero-decay channels
-        if is_infinity_run and cycle >= 1000000000000:
-            is_manifold_active = False
-            
-        cycle += 1
+            return actual_time_elapsed, primordial_spacetimes, 0, 0, 0, 0, 0, total_gw_energy_leak
 
     current_object_count = n_umnc + n_hmnc + n_smnc + n_imnc
     return actual_time_elapsed, primordial_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_gw_energy_leak
@@ -414,16 +388,16 @@ def run_interactive_sandbox():
                 t_genesis = 4.0
                 print("          [INVALID] Defaulting to baseline timescale 4.0 Gyr.")
 
-        # FIX: Pull aggressiveness input out of the conditional block to ensure variable instantiation
-        print(f"\n[INPUT] Configure Multi-Bubble Generation Flux for Aeon {current_generation}:")
-        try:
-            agg_bubble_rate = float(input("        >> Enter creation aggressiveness (0.01 - 0.99): "))
-        except ValueError:
-            agg_bubble_rate = 0.25
+            print(f"\n[INPUT] Configure Multi-Bubble Generation Flux for Aeon {current_generation}:")
+            try:
+                agg_bubble_rate = float(input("        >> Enter creation aggressiveness (0.01 - 0.99): "))
+            except ValueError:
+                agg_bubble_rate = 0.25
+
 
         # --- PATHWAY 2 CAUSAL LAYER INITIALIZATION (ZERO HARDCODED BASES) ---
         if current_generation == 0:
-            star_formation_mod = 0.0
+            star_formation_mod = 1.0 + (agg_bubble_rate * 0.5)
             conformal_saturation = math.tanh(t_genesis / 15.0)
             
             # Primordial Ur-Genesis: Only heavy rotating anchors exist at the boundary node
@@ -481,17 +455,13 @@ def run_interactive_sandbox():
             star_formation_mod = 1.0 + math.log1p(star_formation_mod) * 5.0
             
         print(f"          [STAR FORMATION ENGINE]: Active. Modulator locked at: {star_formation_mod:.3f}x")
-        # REPAIR: Dynamic text feedback reflecting the state of the continuum run
-        if is_infinity_run:
-            print("          [PATHWAY 2 CORES]: Processing continuous forward dilution via JIT until total vacuum...")
-        else:
-            print(f"          [PATHWAY 2 CORES]: Processing {micro_cycles} dynamic matrix cycles via JIT...")
+        print(f"          [PATHWAY 2 CORES]: Processing {micro_cycles} dynamic matrix cycles via JIT...")
         
         is_focus_bool = (res_profile == "big_bang_focus")
         
-        # EXACTLY ONE FIXED JIT INVOCATION WITH PRIMORDIAL STELLAR COUNTER BALANCING
+        # EXACTLY ONE REPAIRED JIT INVOCATION PASSING INHERITED CORES AND ALL 13 ARGUMENTS
         actual_relic_time, JIT_spacetimes, n_imnc, n_smnc, n_umnc, n_hmnc, current_object_count, total_emitted_gw_shrapnel = run_jit_evolution(
-            micro_cycles, is_focus_bool, 0.0 if star_formation_mod == 0.0 else flux_efficiency, agg_bubble_rate, t_genesis, is_infinity_run, 
+            micro_cycles, is_focus_bool, flux_efficiency, agg_bubble_rate, t_genesis, is_infinity_run, 
             n_imnc, n_smnc, n_umnc, n_hmnc, micro_window_years, time_step_micro, time_step_standard
         )
 
@@ -502,13 +472,7 @@ def run_interactive_sandbox():
             calculated_delay_gyr = float('inf')
             n_umnc, n_hmnc, n_smnc, n_imnc = 0, 0, 0, 0
         else:
-            # Re-implementation of mass-dependent delay tracking (Addendum 1A)
-            remaining_heavy_mass = (n_hmnc * 2500.0) + (n_umnc * 625.0)
-            if remaining_heavy_mass > 0:
-                # Delay scales logarithmically with the frozen heavy remnant overhead
-                calculated_delay_gyr = math.log1p(remaining_heavy_mass) * 1.85
-            else:
-                calculated_delay_gyr = 0.0
+            calculated_delay_gyr = 0.0
 
         # --- DETERMINISTIC UI EXPLORER SYSTEM WITH COMPREHENSIVE REGISTRY ---
         all_available_scenarios = [
@@ -695,7 +659,7 @@ def run_interactive_sandbox():
             if not vacuum_menu_active and current_object_count > 0:
                 continue
 
-        elif current_object_count > 0:
+        else:
             print("[INPUT] Configure active Horizon Assets for Evacuation:")
             print("---------------------------------------------------------------------")
             # Dynamic input prompts that accept 'Enter' to evacuate maximum available cores
@@ -801,9 +765,6 @@ def run_interactive_sandbox():
                     print("\n" + "-"*50)
                     print(" [ADDENDUM 1] CONSERVED TOPOLOGICAL TUNNEL DATA TRANSFER")
                     print("-"*50)
-                    
-                    # FIX: Accumulate energy linearly instead of multiplying exponentially
-                    total_collision_energy = 0.0
                     for t_coll, density_flag in collision_times:
                         is_dense = 'n' if density_flag != 'manual' else input(f"        >> Is Node at t={t_coll:.1f} Gyr a high-density zone? (Y/n): ").strip().lower()
                         
@@ -811,18 +772,8 @@ def run_interactive_sandbox():
                         quantum_saturation_boost = 1.0 + (ancestral_density_contribution * 1.5)
                         
                         transfer_factor = 3.75 if (is_dense == 'y') else 2.50
-                        total_collision_energy += transfer_factor * (quantum_saturation_boost if density_flag == 'auto' else 1.0)
-                    
-                    # Thermal barrier saturation according to Eq. 25 of the paper
-                    omega_oaza_saturation = 1.0 + (1.5 * math.tanh(total_collision_energy / 10.0))
-                    star_formation_mod *= omega_oaza_saturation
-
-        else:
-            # Automatic safe fallback initialization if the cosmos hits an immediate vacuum state
-            active_hmnc = int(0)
-            active_umnc = int(0)
-            active_smnc = int(0)
-            active_imnc = int(0)
+                        sf_multiplier = transfer_factor * (quantum_saturation_boost if density_flag == 'auto' else 1.0)
+                        star_formation_mod *= sf_multiplier
 
         print("---------------------------------------------------------------------")
         print(f" -> Conformal Compression Factor (Omega_Oaza): {omega_oaza:.2f}")
@@ -914,9 +865,8 @@ def run_interactive_sandbox():
             time.sleep(0.4)
             
             remaining_massive_cores = n_hmnc + n_umnc
-            # Threshold check: Significant mass delay breaks standard CCC scale-invariance
-            if remaining_massive_cores > 0 and calculated_delay_gyr > 0.05:
-                print(f"           [CRITICAL]: Massive remnants ({remaining_massive_cores} cores) remain unevaporated. Delay: {calculated_delay_gyr:.4f} Gyr.")
+            if remaining_massive_cores > 0 and calculated_delay_gyr < 1e10:
+                print(f"           [CRITICAL]: Massive remnants ({remaining_massive_cores} cores) remain unevaporated at {calculated_delay_gyr:.2e} Gyr.")
                 print("                       Conformal invariance broken. Quenching Pathway 3 shockwave.")
                 assigned_scenario = "3a" if isolated_hmnc > 0 else "4"
             else:
