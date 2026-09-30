@@ -1,12 +1,6 @@
 # Cosmic Piracy Theory (CP-Theory) — Numerical Verification
 **Theoretical Keywords for Indexing:** Loop Quantum Gravity (LQG) | Conformal Cyclic Cosmology (CCC) | CPT-Symmetric Multiverse | Primordial Black Hole Nucleation | CMB Anomalies Validation
 
-> 🚨 **ARXIV ENDORSEMENT REQUIRED:** I am currently seeking an official endorsement for the arXiv categories **astro-ph.CO** (Cosmology) or **gr-qc** (General Relativity and Quantum Cosmology). If you are an established arXiv endorser willing to verify this background-independent LQG-rupture framework, please use the official verification token path below to unlock the verification node:
->
-> 👉 **[CLICK HERE TO ENDORSE THIS WORK ON ARXIV](https://arxiv.org/auth/endorse?x=4ITJ34)** 👈
-
----
-
 This repository provides the open-source numerical verification pipeline for the **Cosmic Piracy Hypothesis (CP-Theory)**. 
 The core framework presents a background-independent alternative to standard cosmic inflation by integrating the structural mechanics of Loop Quantum Gravity (LQG) with the global symmetries of a CPT-conserving Conformal Cyclic Cosmology (CCC).
 
